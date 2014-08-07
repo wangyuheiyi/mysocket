@@ -20,13 +20,7 @@ public class MessageServerHandler extends SimpleChannelInboundHandler<Object>{
 		default:
 			break;
 		}
-		
-		
-		
-//		AddressBook addressBook=(AddressBook)msg;
-//		Person person=addressBook.getPerson(0);
-//		System.out.println(person.getName());
-//		System.out.println(addressBook.getPersonCount());
+
     }
 
     @Override

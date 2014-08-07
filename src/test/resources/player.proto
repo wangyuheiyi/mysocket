@@ -1,0 +1,13 @@
+package bean;
+option java_package ="com.bean";
+option java_outer_classname = "PlayerBean";
+
+message CGPlayerCheckLogin {
+	required int32 playerId = 1;
+	optional string userCode = 2 [default = null];
+	optional String deviceID = 3 [default = null];
+}
+
+message GCPlayerCheckLogin {
+	required int32 playerId = 1;
+}
