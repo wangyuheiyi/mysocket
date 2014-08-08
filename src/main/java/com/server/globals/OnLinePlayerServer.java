@@ -8,13 +8,15 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import org.slf4j.Logger;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import com.common.constants.Loggers;
 import com.player.Player;
+import com.server.IBaseServer;
 
-
-public class OnLinePlayerServer {
+@Component
+public class OnLinePlayerServer implements IBaseServer{
 	public static final Logger logger = Loggers.playerLogger;
 	/** 最多同时在线的人数 */
 	private int maxPlayerNum;
@@ -36,8 +38,6 @@ public class OnLinePlayerServer {
 	public OnLinePlayerServer(int maxPlayerNum)
 	{
 		this.maxPlayerNum=maxPlayerNum;
-		_onlinePlayersMap = new ConcurrentHashMap<Long, Player>(maxPlayerNum);
-		sessionPlayers=new ConcurrentHashMap<Channel, Player>(maxPlayerNum);
 	}
 	
 	
@@ -70,6 +70,12 @@ public class OnLinePlayerServer {
 		{
 			readLock.unlock();
 		}
+	}
+
+	@Override
+	public void init() {
+		_onlinePlayersMap = new ConcurrentHashMap<Long, Player>(maxPlayerNum);
+		sessionPlayers=new ConcurrentHashMap<Channel, Player>(maxPlayerNum);
 	}
 	
 	
