@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.common.globals.server.IBaseServer;
 import com.common.msg.MessageQueue;
+import com.common.msg.bean.BaseBean;
 
 /**
  * 全局逻辑业务
@@ -71,4 +72,7 @@ public class GlobalLogicRunner implements Callable<Integer>,IBaseServer
 		msgQueue = new MessageQueue();
 	}
 
+	public void put(BaseBean msg) {
+		this.msgQueue.put(msg);
+	}
 }
