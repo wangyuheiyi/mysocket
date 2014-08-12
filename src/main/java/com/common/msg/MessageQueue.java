@@ -4,7 +4,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import com.common.constants.Loggers;
-import com.common.msg.bean.BaseBean;
+import com.common.handler.IMessageHandler;
 
 /**
  * 消息队列，使用{@link BlockingQueue}实现
@@ -13,16 +13,16 @@ import com.common.msg.bean.BaseBean;
  */
 public class MessageQueue {
 	/** 玩家的消息队列 */
-	private BlockingQueue<BaseBean> msgQueue;
+	private BlockingQueue<IMessageHandler> msgQueue;
 
 	public MessageQueue() {
-		msgQueue = new LinkedBlockingQueue<BaseBean>();
+		msgQueue = new LinkedBlockingQueue<IMessageHandler>();
 	}
 
 	/**
 	 * @param msg
 	 */
-	public void put(BaseBean msg) {
+	public void put(IMessageHandler msg) {
 		if (msg == null) {
 			return;
 		}
@@ -38,7 +38,7 @@ public class MessageQueue {
 	 * 
 	 * @return
 	 */
-	public BaseBean get() {
+	public IMessageHandler get() {
 		if (isEmpty()) {
 			return null;
 		}

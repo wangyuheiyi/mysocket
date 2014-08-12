@@ -1,12 +1,9 @@
 package com;
 
 import org.springframework.beans.BeansException;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.common.globals.context.ContextFactiry;
-import com.common.globals.server.impl.DiscardServer;
-import com.common.globals.server.impl.GlobalLogicRunner;
-import com.common.globals.server.impl.OnLinePlayerServer;
+import com.common.globals.server.impl.*;
 
 public class GameServer {
 	
@@ -15,10 +12,16 @@ public class GameServer {
 		ContextFactiry.getContext("serverContext").getBean(OnLinePlayerServer.class).init();
 		ContextFactiry.getContext("serverContext").getBean(DiscardServer.class).init();
 		ContextFactiry.getContext("serverContext").getBean(GlobalLogicRunner.class).init();
+		ContextFactiry.getContext("serverContext").getBean(SystemTimeService.class).init();
+		ContextFactiry.getContext("serverContext").getBean(SceneService.class).init();
 	}
 	
+	/**
+	 * 启动服务
+	 */
 	public void start(){
 		try {
+			ContextFactiry.getContext("serverContext").getBean(SceneService.class).start();
 			ContextFactiry.getContext("serverContext").getBean(DiscardServer.class).run();
 		} catch (BeansException e) {
 			// TODO Auto-generated catch block

@@ -77,11 +77,6 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
             WebSocketServerHandshakerFactory.sendUnsupportedVersionResponse(ctx.channel());
         } else {
             handshaker.handshake(ctx.channel(), req);
-            //连接成功后加载在线玩家
-            OnLinePlayerServer onLinePlayerServer = ContextFactiry.getContext("serverContext").getBean(OnLinePlayerServer.class);
-            Player player=new Player();
-            player.setChannel(ctx.channel());
-            onLinePlayerServer.onPlayerEnterServer(0l, ctx.channel(), player);
         }
     }
 

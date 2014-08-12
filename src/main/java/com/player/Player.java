@@ -2,8 +2,8 @@ package com.player;
 
 import io.netty.channel.Channel;
 
+import com.common.handler.IMessageHandler;
 import com.common.msg.MessageQueue;
-import com.common.msg.bean.BaseBean;
 
 
 
@@ -50,7 +50,7 @@ public class Player {
 	 * 放置玩家需要处理的消息
 	 * @param msg
 	 */
-	public void putMessage(BaseBean msg)
+	public void putMessage(IMessageHandler msg)
 	{
 		this.msgQueue.put(msg);
 		// 记录玩家处理消息个数

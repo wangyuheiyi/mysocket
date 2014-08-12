@@ -9,4 +9,8 @@
 	   	<constructor-arg value="com/conf/serverConf.xml" />
 	   </bean>
 	
+	
+		<bean id="handlerContext" class="com.common.globals.context.impl.BaseContext" >
+	   	<constructor-arg value="com/conf/handlerConf.xml" />
+	   </bean>
 </beans>
