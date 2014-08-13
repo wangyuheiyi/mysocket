@@ -7,6 +7,7 @@ import com.common.handler.IMessageHandler;
 import com.common.msg.bean.BaseBean;
 import com.common.msg.bean.BaseBean.BaseMessage;
 import com.common.msg.bean.PlayerBean.CGPlayerCheckLogin;
+import com.common.msg.bean.PlayerBean.GCPlayerCheckLogin;
 import com.player.Player;
 @Scope("prototype")
 @Component
@@ -15,7 +16,12 @@ public class CGPlayerCheckLoginHandler implements IMessageHandler{
 	private Player player;
 	@Override
 	public void execute() {
-		System.out.println("start");
+		BaseMessage.Builder myMessage=BaseMessage.newBuilder();
+		GCPlayerCheckLogin.Builder gcPlayerCheckLogin=GCPlayerCheckLogin.newBuilder();
+		gcPlayerCheckLogin.setPlayerId(cgPlayerCheckLogin.getPlayerId());
+		myMessage.setType(BaseMessage.Type.GCPLAYERCHECKLOGIN);
+		myMessage.setExtension(BaseBean.gcPlayerCheckLogin, gcPlayerCheckLogin.build());
+		player.sendMessage(myMessage.build());
 	}
 
 	@Override

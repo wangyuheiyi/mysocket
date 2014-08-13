@@ -1,7 +1,10 @@
 package com.player;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
+import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 
+import com.common.constants.Loggers;
 import com.common.handler.IMessageHandler;
 import com.common.msg.MessageQueue;
 
@@ -55,5 +58,15 @@ public class Player {
 		this.msgQueue.put(msg);
 		// 记录玩家处理消息个数
 		playerMessageCount++;
+	}
+	
+	/**
+	 * 将消息发送给Player
+	 * @param msg
+	 */
+	public void sendMessage(Object msg)
+	{
+		BinaryWebSocketFrame message=new BinaryWebSocketFrame((ByteBuf)msg);
+		channel.writeAndFlush(message);
 	}
 }
