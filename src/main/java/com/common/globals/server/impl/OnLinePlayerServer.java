@@ -1,4 +1,4 @@
-package com.server.globals;
+package com.common.globals.server.impl;
 
 import io.netty.channel.Channel;
 
@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import com.common.constants.Loggers;
+import com.common.globals.server.IBaseServer;
 import com.player.Player;
-import com.server.IBaseServer;
 
 @Component
 public class OnLinePlayerServer implements IBaseServer{
@@ -35,9 +35,8 @@ public class OnLinePlayerServer implements IBaseServer{
 	 * @param maxPlayerNum
 	 *            最多同时在线的人数
 	 */
-	public OnLinePlayerServer(int maxPlayerNum)
+	public OnLinePlayerServer()
 	{
-		this.maxPlayerNum=maxPlayerNum;
 	}
 	
 	
@@ -74,6 +73,7 @@ public class OnLinePlayerServer implements IBaseServer{
 
 	@Override
 	public void init() {
+		this.maxPlayerNum=2000;
 		_onlinePlayersMap = new ConcurrentHashMap<Long, Player>(maxPlayerNum);
 		sessionPlayers=new ConcurrentHashMap<Channel, Player>(maxPlayerNum);
 	}

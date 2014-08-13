@@ -1,11 +1,11 @@
-package com.server.globals;
+package com.common.globals.server.impl;
 
 import java.util.concurrent.Callable;
 
 import org.springframework.stereotype.Component;
 
+import com.common.globals.server.IBaseServer;
 import com.common.msg.MessageQueue;
-import com.server.IBaseServer;
 
 /**
  * 全局逻辑业务

@@ -1,4 +1,4 @@
-package com.server;
+package com.common.globals.server;
 
 /**
  * 所有server的公共接口

@@ -1,4 +1,4 @@
-package com.server.globals;
+package com.common.globals.server.impl;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -8,18 +8,14 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import com.common.globals.server.IBaseServer;
 import com.common.handler.WebSocketServerInitializer;
-import com.server.IBaseServer;
 @Component
 public class DiscardServer implements IBaseServer{
 	private int port;
-	@Autowired
-    public DiscardServer(@Qualifier(value="sqlMapClient4A")int port) {
-        this.port = port;
+    public DiscardServer() {
     }
 
     public void run() throws Exception {
@@ -44,6 +40,7 @@ public class DiscardServer implements IBaseServer{
 
 	@Override
 	public void init() {
+        this.port = 8090;
 	}
 
 }

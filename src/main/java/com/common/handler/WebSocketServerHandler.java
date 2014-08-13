@@ -9,9 +9,9 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.common.globals.context.ContextFactiry;
+import com.common.globals.server.impl.OnLinePlayerServer;
 import com.player.Player;
-import com.server.ServerConfig;
-import com.server.globals.OnLinePlayerServer;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -78,8 +78,7 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object> 
         } else {
             handshaker.handshake(ctx.channel(), req);
             //连接成功后加载在线玩家
-            AnnotationConfigApplicationContext springctx = new AnnotationConfigApplicationContext(ServerConfig.class);
-            OnLinePlayerServer onLinePlayerServer = (OnLinePlayerServer) springctx.getBean("onLinePlayerServer");
+            OnLinePlayerServer onLinePlayerServer = ContextFactiry.getContext("serverContext").getBean(OnLinePlayerServer.class);
             Player player=new Player();
             player.setChannel(ctx.channel());
             onLinePlayerServer.onPlayerEnterServer(0l, ctx.channel(), player);

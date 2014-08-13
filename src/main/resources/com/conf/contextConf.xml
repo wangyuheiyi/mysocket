@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans.xsd">
+	   <!--  factory-method="getInstance"-->
+	   <bean id="serverContext" class="com.common.globals.context.impl.BaseContext" >
+	   	<!--<property name="contextFiles" value="com/conf/serverConf.xml" />-->
+	   	<constructor-arg value="com/conf/serverConf.xml" />
+	   </bean>
+	
+</beans>
