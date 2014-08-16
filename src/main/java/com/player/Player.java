@@ -66,7 +66,6 @@ public class Player {
 	 */
 	public void sendMessage(Object msg)
 	{
-		BinaryWebSocketFrame message=new BinaryWebSocketFrame((ByteBuf)msg);
-		channel.writeAndFlush(message);
+		channel.writeAndFlush(msg);
 	}
 }
