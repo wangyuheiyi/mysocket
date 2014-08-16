@@ -17,6 +17,7 @@ public class MessageServerHandler extends SimpleChannelInboundHandler<Object>{
 	@Override
     public void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
 		
+		
 		BaseMessage baseBean=(BaseMessage)msg;
 		switch (baseBean.getType()) {
 		case CGPLAYERCHECKLOGIN:
