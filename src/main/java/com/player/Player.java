@@ -1,10 +1,6 @@
 package com.player;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
-import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
-
-import com.common.constants.Loggers;
 import com.common.handler.IMessageHandler;
 import com.common.msg.MessageQueue;
 
@@ -17,6 +13,8 @@ public class Player {
 	private MessageQueue msgQueue;
 	/** 玩家消息通道*/
 	private Channel channel;
+	/** 玩家ip地址 */
+	private String clientIp;
 	
 	/** 处理的消息总数,为避免同步，在主线程中修改 */
 	private static volatile long playerMessageCount = 0;
@@ -68,4 +66,18 @@ public class Player {
 	{
 		channel.writeAndFlush(msg);
 	}
+
+
+
+	public String getClientIp() {
+		return clientIp;
+	}
+
+
+
+	public void setClientIp(String clientIp) {
+		this.clientIp = clientIp;
+	}
+	
+	
 }

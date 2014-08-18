@@ -1,6 +1,6 @@
 package com.common.handler;
 
-import com.common.msg.bean.BaseBean.BaseMessage;
+import com.common.msg.BaseBean.BaseMessage;
 import com.player.Player;
 
 public interface IMessageHandler {

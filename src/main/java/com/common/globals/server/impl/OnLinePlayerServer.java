@@ -78,6 +78,9 @@ public class OnLinePlayerServer implements IBaseServer{
 		sessionPlayers=new ConcurrentHashMap<Channel, Player>(maxPlayerNum);
 	}
 	
-	
+	public int getOnlinePlayerCount() 
+	{
+		return _onlinePlayersMap.size();
+	}
 	
 }
