@@ -2,7 +2,7 @@ package com;
 
 import org.springframework.beans.BeansException;
 
-import com.common.globals.context.ContextFactiry;
+import com.common.context.ContextFactiry;
 import com.common.globals.server.impl.*;
 
 public class GameServer {

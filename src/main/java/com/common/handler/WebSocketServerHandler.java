@@ -9,7 +9,7 @@ import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.common.globals.context.ContextFactiry;
+import com.common.context.ContextFactiry;
 import com.common.globals.server.impl.OnLinePlayerServer;
 import com.player.Player;
 
