@@ -14,7 +14,7 @@ import com.common.constants.SharedConstants;
 import com.common.context.ContextFactiry;
 import com.common.globals.server.impl.GlobalLogicRunner;
 import com.common.globals.server.impl.SystemTimeService;
-import com.common.util.ExecutorUtil;
+import com.core.util.ExecutorUtil;
 
 /**
  * 自定义心跳线程
