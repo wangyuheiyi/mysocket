@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.common.constants.Loggers;
+import com.common.globals.config.GameConfigServer;
 import com.common.globals.server.IBaseServer;
 import com.common.handler.IMessageHandler;
 import com.common.msg.MessageQueue;
@@ -71,7 +72,7 @@ public class GlobalLogicRunner implements Callable<Integer>,IBaseServer
 	}
 
 	@Override
-	public void init() {
+	public void init(GameConfigServer config) {
 		msgQueue = new MessageQueue();
 	}
 

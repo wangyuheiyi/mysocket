@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import com.common.constants.Loggers;
+import com.common.globals.config.GameConfigServer;
 import com.common.globals.server.IBaseServer;
 import com.player.Player;
 
@@ -72,8 +73,8 @@ public class OnLinePlayerServer implements IBaseServer{
 	}
 
 	@Override
-	public void init() {
-		this.maxPlayerNum=2000;
+	public void init(GameConfigServer config) {
+		this.maxPlayerNum=config.getMaxOnlineUsers();
 		_onlinePlayersMap = new ConcurrentHashMap<Long, Player>(maxPlayerNum);
 		sessionPlayers=new ConcurrentHashMap<Channel, Player>(maxPlayerNum);
 	}

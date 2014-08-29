@@ -7,5 +7,6 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_15"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/mycore"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/mydb"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

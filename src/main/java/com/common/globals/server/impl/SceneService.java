@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.common.Thread.HeartbeatThread;
 import com.common.constants.Loggers;
+import com.common.globals.config.GameConfigServer;
 import com.common.globals.server.IBaseServer;
 
 /**
@@ -32,7 +33,7 @@ public class SceneService implements IBaseServer{
 	}
 
 	@Override
-	public void init() {
+	public void init(GameConfigServer config) {
 		sceneTaskScheduler = new HeartbeatThread();
 	}
 }

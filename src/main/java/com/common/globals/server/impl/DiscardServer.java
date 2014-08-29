@@ -10,6 +10,7 @@ import io.netty.handler.logging.LoggingHandler;
 
 import org.springframework.stereotype.Component;
 
+import com.common.globals.config.GameConfigServer;
 import com.common.globals.server.IBaseServer;
 import com.common.handler.WebSocketServerInitializer;
 @Component
@@ -39,8 +40,8 @@ public class DiscardServer implements IBaseServer{
     }
 
 	@Override
-	public void init() {
-        this.port = 8090;
+	public void init(GameConfigServer config) {
+        this.port = Integer.parseInt(config.getPorts());
 	}
 
 }

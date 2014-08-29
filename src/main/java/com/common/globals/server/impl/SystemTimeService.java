@@ -3,6 +3,7 @@ package com.common.globals.server.impl;
 
 import org.springframework.stereotype.Component;
 
+import com.common.globals.config.GameConfigServer;
 import com.common.globals.server.IBaseServer;
 
 /**
@@ -102,7 +103,7 @@ public class SystemTimeService implements IBaseServer
 	}
 
 	@Override
-	public void init() {
+	public void init(GameConfigServer config) {
 		this.cacheTime = true;
 		if (this.cacheTime) 
 		{

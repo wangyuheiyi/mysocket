@@ -16,7 +16,7 @@ config.serverId = "100003";
 // 如果需要让其他人连接自己的机器, 可以修改这个 IP 地址
 config.bindIp = "192.168.5.156";
 
-config.ports = "8084";
+config.ports = "8090";
 config.serverName = "zsg";
 config.serverHost = "192.168.5.156";
 config.serverDomain = "zsg";
@@ -31,10 +31,6 @@ config.scriptDir = "scripts";
 // 战报文件存放目录
 config.battleReportRootPath = "/D:/Temp_Test/";
 config.battleReportServiceType = 0;
-
-config.dbInitType = 0;
-config.dbConfigName = "game_server_hibernate.cfg.xml,game_server_hibernate_query.xml";
-config.battleReportDbConfigName = "battle_report_ibatis_config.xml";
 
 config.flashSocketPolicy = "<cross-domain-policy>\r\n<allow-access-from domain=\"*\" to-ports=\"80-65535\" />\r\n </cross-domain-policy>\r\n\0";
 config.gameServerCount = 1;

@@ -1,4 +1,4 @@
-package com.common.globals.server.impl;
+package com.common.globals.config;
 
 import java.io.File;
 
@@ -15,7 +15,7 @@ import com.core.config.ServerConfig;
  * @author Thinker
  * 
  */
-public class GameConfigServer extends ServerConfig implements IBaseServer 
+public class GameConfigServer extends ServerConfig 
 {
 	/** 系统配置的数据库版本号 */
 	private String dbVersion;
@@ -46,8 +46,6 @@ public class GameConfigServer extends ServerConfig implements IBaseServer
 	/** 战报服务的类型,0 file 1 db */
 	private int battleReportServiceType = 0;
 	
-	/** 战报数据库配置文件*/
-	private String battleReportDbConfigName;
 	/** 战报文件存储目录 */
 	private String battleReportRootPath;
 	
@@ -254,14 +252,6 @@ public class GameConfigServer extends ServerConfig implements IBaseServer
 	
 	public void setBattleReportServiceType(int battleReportServiceType) {
 		this.battleReportServiceType = battleReportServiceType;
-	}
-
-	public String getBattleReportDbConfigName() {
-		return battleReportDbConfigName;
-	}
-	
-	public void setBattleReportDbConfigName(String battleReportDbConfigName) {
-		this.battleReportDbConfigName = battleReportDbConfigName;
 	}
 	
 	public String getBattleReportRootPath() {
@@ -502,11 +492,6 @@ public class GameConfigServer extends ServerConfig implements IBaseServer
 
 	public String getGameCode() {
 		return gameCode;
-	}
-
-	@Override
-	public void init() {
-		
 	}
 
 
