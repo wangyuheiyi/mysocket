@@ -7,6 +7,8 @@
 	   http://www.springframework.org/schema/context
 	   http://www.springframework.org/schema/context/spring-context.xsd">
 	   
-	<context:component-scan base-package="com.player.handler" />
+	<context:component-scan base-package="com.common.handler.impl">
+		<context:include-filter type="regex" expression=".player.*"/>
+	</context:component-scan>
 	
 </beans>

@@ -3,12 +3,11 @@ package com.common.handler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
-import com.common.context.ContextFactiry;
-import com.common.globals.server.impl.GlobalLogicRunner;
+import com.common.globals.server.impl.ServerManager;
+import com.common.handler.impl.MessageHandlerServer;
 import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
 import com.common.msg.MissionBean.MissionInfo;
-import com.player.Player;
 
 public class MessageServerHandler extends SimpleChannelInboundHandler<Object>{
 	@Override
@@ -17,12 +16,9 @@ public class MessageServerHandler extends SimpleChannelInboundHandler<Object>{
 		BaseMessage baseBean=(BaseMessage)msg;
 		switch (baseBean.getType()) {
 		case GLOBALMESSAGE:
-            Player player=new Player();
-            player.setChannel(ctx.channel());
 			//设置对象
-			IMessageHandler cgPlayerCheckLoginHandler=ContextFactiry.getContext("handlerContext").getBean(IMessageHandler.class);
-			cgPlayerCheckLoginHandler.setMessage(baseBean, player);
-			ContextFactiry.getContext("serverContext").getBean(GlobalLogicRunner.class).put(cgPlayerCheckLoginHandler);
+			IMessageHandler iHandler=MessageHandlerServer.getInstance().getMessageHandler(ctx.channel(), baseBean);
+			ServerManager.getInstance().getGlobalLogicRunner().put(iHandler);
 			break;
 		case PLAYERMESSAGE:
 			MissionInfo missionInfo=baseBean.getExtension(BaseBean.missionInfo);

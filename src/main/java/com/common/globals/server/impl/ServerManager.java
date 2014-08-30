@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import com.common.context.ContextFactiry;
 import com.common.globals.config.GameConfigServer;
 import com.common.globals.server.IBaseServer;
+import com.db.dao.impl.DbServer;
 @Component
 public class ServerManager implements IBaseServer{
 	public static ServerManager getInstance() 
@@ -27,6 +28,8 @@ public class ServerManager implements IBaseServer{
 	@Autowired
 	private UuidService uUIDService;
 	
+	private DbServer dbServer;
+	
 	@Override
 	public void init(GameConfigServer config) {
 		discardServer.init(config);
@@ -35,6 +38,7 @@ public class ServerManager implements IBaseServer{
 		sceneService.init(config);
 		systemTimeService.init(config);
 		uUIDService.init(config);
+		dbServer=ContextFactiry.getContext("dbContext").getBean(DbServer.class);
 	}
 	
 	public void start(){
@@ -49,4 +53,34 @@ public class ServerManager implements IBaseServer{
 			e.printStackTrace();
 		}
 	}
+
+	public DiscardServer getDiscardServer() {
+		return discardServer;
+	}
+
+	public GlobalLogicRunner getGlobalLogicRunner() {
+		return globalLogicRunner;
+	}
+
+	public OnLinePlayerServer getOnLinePlayerServer() {
+		return onLinePlayerServer;
+	}
+
+	public SceneService getSceneService() {
+		return sceneService;
+	}
+
+	public SystemTimeService getSystemTimeService() {
+		return systemTimeService;
+	}
+
+	public UuidService getuUIDService() {
+		return uUIDService;
+	}
+
+	public DbServer getDbServer() {
+		return dbServer;
+	}
+	
+	
 }

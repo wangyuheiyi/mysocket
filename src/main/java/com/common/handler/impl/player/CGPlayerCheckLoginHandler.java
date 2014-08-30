@@ -1,8 +1,11 @@
-package com.player.handler;
+package com.common.handler.impl.player;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.common.context.ContextFactiry;
+import com.common.globals.server.impl.OnLinePlayerServer;
+import com.common.globals.server.impl.ServerManager;
 import com.common.handler.IMessageHandler;
 import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
@@ -19,12 +22,13 @@ public class CGPlayerCheckLoginHandler implements IMessageHandler{
 		BaseMessage.Builder myMessage=BaseMessage.newBuilder();
 		GCPlayerCheckLogin.Builder gcPlayerCheckLogin=GCPlayerCheckLogin.newBuilder();
 		gcPlayerCheckLogin.setPlayerId(cgPlayerCheckLogin.getPlayerId());
+		player.setId(cgPlayerCheckLogin.getPlayerId());
 		myMessage.setType(BaseMessage.Type.GLOBALMESSAGE);
 		myMessage.setMessageCode(BaseMessage.MessageCode.GCPLAYERCHECKLOGIN);
 		myMessage.setExtension(BaseBean.gcPlayerCheckLogin, gcPlayerCheckLogin.build());
 		 //连接成功后加载在线玩家
-//      OnLinePlayerServer onLinePlayerServer = ContextFactiry.getContext("serverContext").getBean(OnLinePlayerServer.class);
-//      onLinePlayerServer.onPlayerEnterServer(0l, ctx.channel(), player);
+		OnLinePlayerServer onLinePlayerServer = ServerManager.getInstance().getOnLinePlayerServer();
+		onLinePlayerServer.onPlayerEnterServer(player.getId(), player);
 		player.sendMessage(myMessage.build());
 	}
 

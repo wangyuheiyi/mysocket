@@ -41,13 +41,13 @@ public class OnLinePlayerServer implements IBaseServer{
 	}
 	
 	
-	public boolean onPlayerEnterServer(long roleUUID,Channel channels, Player player)
+	public boolean onPlayerEnterServer(long roleUUID, Player player)
 	{
 		Assert.notNull(player);
 		if (_onlinePlayersMap.size() >= maxPlayerNum) return false;
 		writeLock.lock();
 		_onlinePlayersMap.put(roleUUID, player);
-		sessionPlayers.put(channels, player);
+		sessionPlayers.put(player.getChannel(), player);
 		logger.info("Player login, passportId: " + player.getId());
 		writeLock.unlock();
 		return true;
@@ -65,6 +65,18 @@ public class OnLinePlayerServer implements IBaseServer{
 		try 
 		{
 			Player player = _onlinePlayersMap.get(playerId);
+			return player;
+		} finally
+		{
+			readLock.unlock();
+		}
+	}
+	
+	public Player getPlayerByChannel(Channel channel){
+		readLock.lock();
+		try 
+		{
+			Player player = sessionPlayers.get(channel);
 			return player;
 		} finally
 		{

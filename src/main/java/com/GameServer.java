@@ -23,11 +23,6 @@ public class GameServer {
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		URL url = classLoader.getResource("game_server.cfg.js");
 		config = ConfigHelper.buildConfig(GameConfigServer.class, url);
-//		ContextFactiry.getContext("serverContext").getBean(OnLinePlayerServer.class).init();
-//		ContextFactiry.getContext("serverContext").getBean(DiscardServer.class).init();
-//		ContextFactiry.getContext("serverContext").getBean(GlobalLogicRunner.class).init();
-//		ContextFactiry.getContext("serverContext").getBean(SystemTimeService.class).init();
-//		ContextFactiry.getContext("serverContext").getBean(SceneService.class).init();
 		ServerManager.getInstance().init(config);
 	}
 	
