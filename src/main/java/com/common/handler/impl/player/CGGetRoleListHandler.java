@@ -24,7 +24,13 @@ public class CGGetRoleListHandler implements IMessageHandler{
 		BaseMessage.Builder myMessage=BaseMessage.newBuilder();
 		GCGetRoleList.Builder gcGetRoleList=GCGetRoleList.newBuilder();
 		HumanInfo.Builder humanInfo=null;
-		List<HumanEntity> humanEntityList=ServerManager.getInstance().getDbServer().getHumanDao().getHumanAllList(cgGetRoleList.getPlayerId());
+		List<HumanEntity> humanEntityList=null;
+		try {
+			humanEntityList=ServerManager.getInstance().getDbServer().getHumanDao().getHumanAllList(cgGetRoleList.getPlayerId());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		if(humanEntityList!=null)
 		{
 			for(HumanEntity humanEntity:humanEntityList){
