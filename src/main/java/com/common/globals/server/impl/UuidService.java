@@ -8,6 +8,7 @@ import com.common.globals.config.GameConfigServer;
 import com.common.globals.server.IBaseServer;
 import com.core.uuid.UUID64;
 import com.core.uuid.UUIDType;
+import com.db.dao.BaseDao;
 
 /**
  * UUID管理器
@@ -33,6 +34,7 @@ public class UuidService implements IBaseServer
 	/** 线的ID */
 	private int lid;
 
+	private BaseDao dao;
 
 	public long getNextUUID(UUIDType uuidType)
 	{
@@ -87,6 +89,7 @@ public class UuidService implements IBaseServer
 			(long) _uuid64.getMinUUID(), (long) _uuid64.getMaxUUID()
 		};
 		long _curUUID = 0;
+		
 //		List _result = dbService.findByNamedQueryAndNamedParam(_queryName,
 //				_paramName, _paramValues);
 //		if (_result == null || _result.isEmpty()) 

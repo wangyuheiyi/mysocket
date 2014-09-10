@@ -4,7 +4,8 @@ package com.common.handler.impl;
 
 import io.netty.channel.Channel;
 
-import org.springframework.stereotype.Component;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 
 import com.common.context.ContextFactiry;
 import com.common.globals.server.impl.OnLinePlayerServer;
@@ -12,9 +13,11 @@ import com.common.globals.server.impl.ServerManager;
 import com.common.handler.IMessageHandler;
 import com.common.handler.impl.player.CGGetRoleListHandler;
 import com.common.handler.impl.player.CGPlayerCheckLoginHandler;
+import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
+import com.common.msg.MissionBean.MissionInfo;
 import com.player.Player;
-@Component
+@Service
 public class MessageHandlerServer{
 	
 	public static MessageHandlerServer getInstance() 
@@ -42,5 +45,22 @@ public class MessageHandlerServer{
     		return cgGetRoleListHandler;
     	}
 		return null;
+    }
+    
+    @Async
+    public void putMessageToMsgQueue(Channel channel,BaseMessage baseBean){
+    	switch (baseBean.getType()) {
+		case GLOBALMESSAGE:
+			//设置对象
+			IMessageHandler iHandler=MessageHandlerServer.getInstance().getMessageHandler(channel, baseBean);
+			ServerManager.getInstance().getGlobalLogicRunner().put(iHandler);
+			break;
+		case PLAYERMESSAGE:
+			MissionInfo missionInfo=baseBean.getExtension(BaseBean.missionInfo);
+			System.out.println("missionId:"+missionInfo.getMissionId());
+			break;
+		default:
+			break;
+		}
     }
 }

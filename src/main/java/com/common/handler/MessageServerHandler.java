@@ -8,26 +8,17 @@ import com.common.handler.impl.MessageHandlerServer;
 import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
 import com.common.msg.MissionBean.MissionInfo;
-
+/**
+ * 根据消息类型分发消息队列中
+ * @author Administrator
+ *
+ */
 public class MessageServerHandler extends SimpleChannelInboundHandler<Object>{
 	@Override
     public void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
 		
 		BaseMessage baseBean=(BaseMessage)msg;
-		switch (baseBean.getType()) {
-		case GLOBALMESSAGE:
-			//设置对象
-			IMessageHandler iHandler=MessageHandlerServer.getInstance().getMessageHandler(ctx.channel(), baseBean);
-			ServerManager.getInstance().getGlobalLogicRunner().put(iHandler);
-			break;
-		case PLAYERMESSAGE:
-			MissionInfo missionInfo=baseBean.getExtension(BaseBean.missionInfo);
-			System.out.println("missionId:"+missionInfo.getMissionId());
-			break;
-		default:
-			break;
-		}
-
+		MessageHandlerServer.getInstance().putMessageToMsgQueue(ctx.channel(), baseBean);
     }
 
     @Override
