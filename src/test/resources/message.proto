@@ -1,0 +1,33 @@
+package bean;
+import "mission.proto";
+import "player.proto";
+option java_package ="com.common.msg";
+option java_outer_classname = "BaseBean";
+
+message BaseMessage {
+ 		extensions 100 to max;
+		enum Type{
+			GLOBALMESSAGE=1;
+			PLAYERMESSAGE=2;
+		}
+		required Type type=1;
+		
+		enum MessageCode{
+			CGPLAYERCHECKLOGIN=1;
+			GCPLAYERCHECKLOGIN=2;
+			CGGETROLELIST=3;
+			GCGETROLELIST=4;
+		 	MISSIONINFO=5;
+		 	MISSIONREWARD=6;
+		}
+		required MessageCode messageCode=2;
+}
+
+extend BaseMessage {
+		optional CGPlayerCheckLogin cgPlayerCheckLogin = 100;
+		optional GCPlayerCheckLogin gcPlayerCheckLogin = 101;
+		optional CGGetRoleList cgGetRoleList = 102;
+		optional GCGetRoleList gcGetRoleList = 103;
+	  optional MissionInfo missionInfo = 200;
+	  optional MissionReward missionReward = 201;
+}

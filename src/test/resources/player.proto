@@ -1,13 +1,28 @@
 package bean;
-option java_package ="com.bean";
+option java_package ="com.common.msg";
 option java_outer_classname = "PlayerBean";
 
 message CGPlayerCheckLogin {
 	required int32 playerId = 1;
-	optional string userCode = 2 [default = null];
-	optional String deviceID = 3 [default = null];
+	optional string userCode = 2 [default = ""];
+	optional string deviceID = 3 [default = ""];
 }
 
 message GCPlayerCheckLogin {
 	required int32 playerId = 1;
+}
+
+message CGGetRoleList {
+	required int32 playerId = 1;
+}
+
+message GCGetRoleList {
+	required int32 playerId = 1;
+	repeated HumanInfo humanInfo=2;
+}
+
+message HumanInfo{
+	required int64 roleId = 1;
+	optional string roleName = 2 [default = ""];
+	optional int32 level=3 [default = 0];
 }

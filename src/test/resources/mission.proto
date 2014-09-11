@@ -1,0 +1,14 @@
+package bean;
+option java_package ="com.common.msg";
+option java_outer_classname = "MissionBean";
+
+message MissionInfo {
+	required int32 missionId = 1;
+	optional int32 star = 2 [default = 0];
+	optional int32 selfRecord = 3 [default = 0];
+}
+
+message MissionReward {
+	required int32 missionRewardId = 1;
+	optional int32 ifFetch = 2 [default = 0];
+}
