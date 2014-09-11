@@ -3,7 +3,6 @@ package com.common.operation;
 import org.slf4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Service;
 
 import com.common.constants.CommonErrorLogInfo;
 import com.common.constants.Loggers;
@@ -16,7 +15,6 @@ import com.db.model.BaseEntity;
  * @author Thinker
  * 
  */
-@Service
 public class SaveObjectOperation<E extends BaseEntity<?>, P extends PersistanceObject<?, E>>
 {
 	private static final Logger logger = Loggers.errorLogger;

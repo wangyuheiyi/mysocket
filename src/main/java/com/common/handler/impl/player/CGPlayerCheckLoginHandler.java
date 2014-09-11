@@ -3,7 +3,6 @@ package com.common.handler.impl.player;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.common.context.ContextFactiry;
 import com.common.globals.server.impl.OnLinePlayerServer;
 import com.common.globals.server.impl.ServerManager;
 import com.common.handler.IMessageHandler;

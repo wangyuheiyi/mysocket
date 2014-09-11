@@ -8,7 +8,6 @@ import com.common.globals.config.GameConfigServer;
 import com.common.globals.server.IBaseServer;
 import com.core.uuid.UUID64;
 import com.core.uuid.UUIDType;
-import com.db.dao.BaseDao;
 
 /**
  * UUID管理器
@@ -23,8 +22,6 @@ public class UuidService implements IBaseServer
 	private static final Logger logger = LoggerFactory.getLogger(UuidService.class);
 	/** 每次服务器启动跳过的ID数 */
 	private static final int UUID_STEP = 1000;
-	/** 查询名前缀 */
-	private static final String QUERY_PREFIX = "queryUUID";
 	/** UUID64 */
 	private final UUID64[] uuid64 = new UUID64[UUIDType.values().length];
 	/** 大区的ID */
@@ -33,8 +30,6 @@ public class UuidService implements IBaseServer
 	private int sid;
 	/** 线的ID */
 	private int lid;
-
-	private BaseDao dao;
 
 	public long getNextUUID(UUIDType uuidType)
 	{
@@ -76,19 +71,16 @@ public class UuidService implements IBaseServer
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	private long queryOId(final int typeIndex)
 	{
-		UUIDType _uuidType = UUIDType.valueOf(typeIndex);
 		UUID64 _uuid64 = UUID64.buildDefaultUUID(this.rid, this.sid, this.lid,
 				0);
-		final String _queryName = QUERY_PREFIX + "_" + _uuidType.toString();
 		final String[] _paramName = new String[] { "minId", "maxId" };
 		final Object[] _paramValues = new Object[] 
 		{
 			(long) _uuid64.getMinUUID(), (long) _uuid64.getMaxUUID()
 		};
-		long _curUUID = 0;
+		long _curUUID = ServerManager.getInstance().getDbServer().getMaxId(typeIndex, _paramName, _paramValues);
 		
 //		List _result = dbService.findByNamedQueryAndNamedParam(_queryName,
 //				_paramName, _paramValues);

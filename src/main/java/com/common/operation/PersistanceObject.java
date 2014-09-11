@@ -36,6 +36,13 @@ public interface PersistanceObject<IdType extends java.io.Serializable, T extend
 	 * @return true,已经在数据库;false,还未在数据库中
 	 */
 	boolean isInDb();
+	
+	/**
+	 * 取得Global Id的值
+	 * 
+	 * @return
+	 */
+	String getGUID();
 
 	/**
 	 * 设置对象已经在数据库中了
