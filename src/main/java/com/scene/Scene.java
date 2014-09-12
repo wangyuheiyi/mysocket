@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.aspectj.bridge.IMessage;
 import org.springframework.util.Assert;
 
 import com.common.constants.CommonErrorLogInfo;
@@ -21,6 +20,7 @@ import com.core.util.ErrorsUtil;
 import com.human.Human;
 import com.player.Player;
 import com.scene.manager.ScenePlayerManager;
+import com.scene.template.CityTemplate;
 
 /**
  * 场景

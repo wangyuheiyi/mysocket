@@ -1,5 +1,6 @@
 package com.scene.template;
 
+import com.common.exception.TemplateConfigException;
 import com.core.annotation.ExcelRowBinding;
 
 
