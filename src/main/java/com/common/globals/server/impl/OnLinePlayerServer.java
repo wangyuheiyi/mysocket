@@ -59,7 +59,7 @@ public class OnLinePlayerServer implements IBaseServer{
 	 * @param playerId
 	 * @return
 	 */
-	public Player getPlayerById(int playerId) 
+	public Player getPlayerById(Long playerId) 
 	{
 		readLock.lock();
 		try 

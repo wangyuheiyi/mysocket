@@ -27,6 +27,10 @@ public class ServerManager implements IBaseServer{
 	private SystemTimeService systemTimeService;
 	@Autowired
 	private UuidService uUIDService;
+	@Autowired
+	private UpdaterServer updaterServer;
+	@Autowired
+	private SceneUpdaterServer sceneUpdaterServer;
 	
 	private DbServer dbServer;
 	
@@ -38,6 +42,8 @@ public class ServerManager implements IBaseServer{
 		sceneService.init(config);
 		systemTimeService.init(config);
 		uUIDService.init(config);
+		updaterServer.init(config);
+		sceneUpdaterServer.init(config);
 		dbServer=ContextFactiry.getContext("dbContext").getBean(DbServer.class);
 	}
 	
@@ -80,6 +86,18 @@ public class ServerManager implements IBaseServer{
 
 	public DbServer getDbServer() {
 		return dbServer;
+	}
+
+	public UpdaterServer getUpdaterServer() {
+		return updaterServer;
+	}
+
+	public SceneUpdaterServer getSceneUpdaterServer() {
+		return sceneUpdaterServer;
+	}
+
+	public void setSceneUpdaterServer(SceneUpdaterServer sceneUpdaterServer) {
+		this.sceneUpdaterServer = sceneUpdaterServer;
 	}
 	
 	

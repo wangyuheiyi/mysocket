@@ -82,19 +82,6 @@ public class UuidService implements IBaseServer
 		};
 		long _curUUID = ServerManager.getInstance().getDbServer().getMaxId(typeIndex, _paramName, _paramValues);
 		
-//		List _result = dbService.findByNamedQueryAndNamedParam(_queryName,
-//				_paramName, _paramValues);
-//		if (_result == null || _result.isEmpty()) 
-//		{
-//			_curUUID = 0;
-//		} else
-//		{
-//			Object _oid = _result.get(0);
-//			if (_oid != null)
-//			{
-//				_curUUID = _uuid64.getOid(((Number) (_oid)).longValue());
-//			}
-//		}
 		_curUUID = _curUUID + UUID_STEP;
 		return _curUUID;
 	}

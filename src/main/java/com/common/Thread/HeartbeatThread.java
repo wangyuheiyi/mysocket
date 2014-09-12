@@ -13,6 +13,7 @@ import com.common.constants.Loggers;
 import com.common.constants.SharedConstants;
 import com.common.context.ContextFactiry;
 import com.common.globals.server.impl.GlobalLogicRunner;
+import com.common.globals.server.impl.ServerManager;
 import com.common.globals.server.impl.SystemTimeService;
 import com.core.util.ExecutorUtil;
 
@@ -58,11 +59,11 @@ public final class HeartbeatThread extends Thread
 			long beginTime=0;
 			while (isLive)
 			{
-				ContextFactiry.getContext("serverContext").getBean(SystemTimeService.class).heartBeat();// 更新缓存的时间为当前系统时间
-				SystemTimeService systemTimeService=ContextFactiry.getContext("serverContext").getBean(SystemTimeService.class);
+				ServerManager.getInstance().getSystemTimeService().heartBeat();// 更新缓存的时间为当前系统时间
+				SystemTimeService systemTimeService=ServerManager.getInstance().getSystemTimeService();
 				beginTime=systemTimeService.now();
 				futures.clear();
-				futures.add(pool.submit(ContextFactiry.getContext("serverContext").getBean(GlobalLogicRunner.class)));
+				futures.add(pool.submit(ServerManager.getInstance().getGlobalLogicRunner()));
 //				List<SceneRunner> sceneRunners = Globals.getSceneService().getAllSceneRunners();
 //				for (int i = 0; i < sceneRunners.size(); i++)
 //				{

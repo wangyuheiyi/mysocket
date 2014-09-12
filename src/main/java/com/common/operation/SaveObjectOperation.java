@@ -2,7 +2,6 @@ package com.common.operation;
 
 import org.slf4j.Logger;
 import org.springframework.dao.DataAccessException;
-import org.springframework.scheduling.annotation.Async;
 
 import com.common.constants.CommonErrorLogInfo;
 import com.common.constants.Loggers;
@@ -37,7 +36,7 @@ public class SaveObjectOperation<E extends BaseEntity<?>, P extends PersistanceO
 		this.dao = dao;
 	}
 
-	@Async
+
 	public void execute()
 	{
 		if (persistObject.getDbId() == null)

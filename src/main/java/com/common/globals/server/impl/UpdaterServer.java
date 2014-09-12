@@ -1,14 +1,19 @@
-package com.player.persistance;
+package com.common.globals.server.impl;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
+import com.common.context.ContextFactiry;
+import com.common.globals.config.GameConfigServer;
+import com.common.globals.server.IBaseServer;
 import com.common.operation.LifeCycle;
 import com.common.operation.PersistanceObject;
 import com.common.persistance.AbstractDataUpdater;
 import com.common.persistance.POUpdater;
+import com.common.persistance.impl.HumanUpdater;
 import com.human.Human;
-import com.human.HumanUpdater;
 
 /**
  * 
@@ -16,16 +21,12 @@ import com.human.HumanUpdater;
  * @author Thinker:异步存储必须这里注册
  * 
  */
-public class PlayerDataUpdater extends AbstractDataUpdater
+@Component
+public class UpdaterServer extends AbstractDataUpdater implements IBaseServer
 {
 	private static Map<Class<? extends PersistanceObject<?, ?>>, POUpdater> operationDbMap = new LinkedHashMap<Class<? extends PersistanceObject<?, ?>>, POUpdater>();
 
-	static
-	{
-		operationDbMap.put(Human.class, new HumanUpdater());
-	}
-
-	public PlayerDataUpdater()
+	public UpdaterServer()
 	{
 		super();
 		setUpdaterName("PlayerDataUpdater");
@@ -58,5 +59,10 @@ public class PlayerDataUpdater extends AbstractDataUpdater
 		}
 		PersistanceObject<?, ?> po = lc.getPO();
 		operationDbMap.get(po.getClass()).delete(po);
+	}
+
+	@Override
+	public void init(GameConfigServer config) {
+		operationDbMap.put(Human.class, ContextFactiry.getContext("operationContext").getBean(HumanUpdater.class));
 	}
 }

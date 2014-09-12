@@ -2,14 +2,15 @@ package com.common.globals.server.impl;
 
 import java.util.concurrent.Callable;
 
-import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import com.common.constants.Loggers;
 import com.common.globals.config.GameConfigServer;
 import com.common.globals.server.IBaseServer;
 import com.common.handler.IMessageHandler;
 import com.common.msg.MessageQueue;
+import com.core.heartbeat.HeartBeatAble;
 
 /**
  * 全局逻辑业务
@@ -18,7 +19,7 @@ import com.common.msg.MessageQueue;
  *
  */
 @Component
-public class GlobalLogicRunner implements Callable<Integer>,IBaseServer
+public class GlobalLogicRunner implements Callable<Integer>,IBaseServer,HeartBeatAble
 {
 	private final static int maxMsgCountProcess = 1024;
 
@@ -55,7 +56,7 @@ public class GlobalLogicRunner implements Callable<Integer>,IBaseServer
 				break;
 			}
 			IMessageHandler msgHandler = msgQueue.get();
-//			Assert.notNull(msg);
+			Assert.notNull(msgHandler);
 			long begin = System.nanoTime();
 			try{
 				msgHandler.execute();
@@ -78,5 +79,9 @@ public class GlobalLogicRunner implements Callable<Integer>,IBaseServer
 
 	public void put(IMessageHandler msg) {
 		this.msgQueue.put(msg);
+	}
+
+	@Override
+	public void heartBeat() {
 	}
 }
