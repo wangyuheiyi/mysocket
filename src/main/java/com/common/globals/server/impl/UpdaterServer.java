@@ -63,6 +63,6 @@ public class UpdaterServer extends AbstractDataUpdater implements IBaseServer
 
 	@Override
 	public void init(GameConfigServer config) {
-		operationDbMap.put(Human.class, ContextFactiry.getContext("operationContext").getBean(HumanUpdater.class));
+		operationDbMap.put(Human.class, (POUpdater)ContextFactiry.getContext("operationContext").getBean(HumanUpdater.class));
 	}
 }

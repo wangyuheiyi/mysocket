@@ -1,7 +1,8 @@
 package com.common.persistance.impl;
 
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 
 import com.common.globals.server.impl.ServerManager;
 import com.common.operation.PersistanceObject;
@@ -16,9 +17,10 @@ import com.human.Human;
  * @author Thinker
  */
 @Scope("prototype")
-@Service
+@Component
 public class HumanUpdater implements POUpdater{
 
+	@Async
 	@Override
 	public void save(PersistanceObject<?, ?> obj) {
 		HumanDao humanDao=ServerManager.getInstance().getDbServer().getHumanDao();
@@ -26,6 +28,7 @@ public class HumanUpdater implements POUpdater{
 		saveObjectOperation.execute();
 	}
 
+	@Async
 	@Override
 	public void delete(PersistanceObject<?, ?> obj) {
 	}

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import com.common.context.ContextFactiry;
 import com.common.globals.config.GameConfigServer;
 import com.common.globals.server.IBaseServer;
+import com.core.config.ConfigUtil;
+import com.core.template.TemplateService;
 import com.db.dao.impl.DbServer;
 @Component
 public class ServerManager implements IBaseServer{
@@ -34,8 +36,15 @@ public class ServerManager implements IBaseServer{
 	
 	private DbServer dbServer;
 	
+	/** 模板数据管理器 */
+	private TemplateService templateService;
+	
 	@Override
 	public void init(GameConfigServer config) {
+		//策划数据模板类
+		templateService = new TemplateService(config.getScriptDirFullPath(),config.isTemplateXorLoad());
+		templateService.init(ConfigUtil.getConfigURL("templates.xml"));
+		dbServer=ContextFactiry.getContext("dbContext").getBean(DbServer.class);
 		discardServer.init(config);
 		globalLogicRunner.init(config);
 		onLinePlayerServer.init(config);
@@ -44,7 +53,7 @@ public class ServerManager implements IBaseServer{
 		uUIDService.init(config);
 		updaterServer.init(config);
 		sceneUpdaterServer.init(config);
-		dbServer=ContextFactiry.getContext("dbContext").getBean(DbServer.class);
+
 	}
 	
 	public void start(){
@@ -98,6 +107,10 @@ public class ServerManager implements IBaseServer{
 
 	public void setSceneUpdaterServer(SceneUpdaterServer sceneUpdaterServer) {
 		this.sceneUpdaterServer = sceneUpdaterServer;
+	}
+
+	public TemplateService getTemplateService() {
+		return templateService;
 	}
 	
 	

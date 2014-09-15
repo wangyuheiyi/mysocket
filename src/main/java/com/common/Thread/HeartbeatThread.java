@@ -11,11 +11,10 @@ import java.util.concurrent.Future;
 
 import com.common.constants.Loggers;
 import com.common.constants.SharedConstants;
-import com.common.context.ContextFactiry;
-import com.common.globals.server.impl.GlobalLogicRunner;
 import com.common.globals.server.impl.ServerManager;
 import com.common.globals.server.impl.SystemTimeService;
 import com.core.util.ExecutorUtil;
+import com.scene.SceneRunner;
 
 /**
  * 自定义心跳线程
@@ -64,15 +63,15 @@ public final class HeartbeatThread extends Thread
 				beginTime=systemTimeService.now();
 				futures.clear();
 				futures.add(pool.submit(ServerManager.getInstance().getGlobalLogicRunner()));
-//				List<SceneRunner> sceneRunners = Globals.getSceneService().getAllSceneRunners();
-//				for (int i = 0; i < sceneRunners.size(); i++)
-//				{
-//					SceneRunner runner = sceneRunners.get(i);
-//					if (!undoneTasks.contains(runner.getSceneId()))
-//					{
-//						futures.add(pool.submit(runner));
-//					}
-//				}	
+				List<SceneRunner> sceneRunners = ServerManager.getInstance().getSceneService().getAllSceneRunners();
+				for (int i = 0; i < sceneRunners.size(); i++)
+				{
+					SceneRunner runner = sceneRunners.get(i);
+					if (!undoneTasks.contains(runner.getSceneId()))
+					{
+						futures.add(pool.submit(runner));
+					}
+				}	
 				if(systemTimeService.now()-beginTime>50)
 					Loggers.gameLogger.info("HeartbeatThread Run Time:"+(systemTimeService.now()-beginTime));
 				
