@@ -17,7 +17,7 @@ import com.human.Human;
  * @author Thinker
  */
 @Scope("prototype")
-@Component
+@Component("humanUpdater")
 public class HumanUpdater implements POUpdater{
 
 	@Async

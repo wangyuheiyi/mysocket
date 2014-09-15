@@ -3,6 +3,8 @@ package com.common.globals.server.impl;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Component;
 
 import com.common.context.ContextFactiry;
@@ -25,7 +27,8 @@ import com.human.Human;
 public class SceneUpdaterServer extends AbstractDataUpdater implements IBaseServer
 {
 	private static Map<Class<? extends PersistanceObject<?, ?>>, POUpdater> operationDbMap = new LinkedHashMap<Class<? extends PersistanceObject<?, ?>>, POUpdater>();
-
+	@Resource(name = "humanUpdater")
+	private POUpdater poHumanUpdater;
 	public SceneUpdaterServer()
 	{
 		super();
@@ -63,6 +66,6 @@ public class SceneUpdaterServer extends AbstractDataUpdater implements IBaseServ
 
 	@Override
 	public void init(GameConfigServer config) {
-		operationDbMap.put(Human.class, ContextFactiry.getContext("operationContext").getBean(HumanUpdater.class));
+		operationDbMap.put(Human.class, poHumanUpdater);
 	}
 }
