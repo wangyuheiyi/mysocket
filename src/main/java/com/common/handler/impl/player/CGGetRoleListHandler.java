@@ -38,6 +38,7 @@ public class CGGetRoleListHandler implements IMessageHandler{
 				humanInfo.setRoleId(humanEntity.getId());
 				humanInfo.setRoleName(humanEntity.getName());
 				humanInfo.setLevel(humanEntity.getLevel());
+				humanInfo.setAllianceTypeId(humanEntity.getAllianceTypeId());
 				gcGetRoleList.addHumanInfo(humanInfo.build());
 			}
 		}

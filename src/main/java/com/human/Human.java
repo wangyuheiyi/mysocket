@@ -29,10 +29,10 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 	private int vocationType;
 	/** 等级 */
 	private int level=1;
-	/** 阵营 */
+	/** 种族 */
 	private int allianceTypeId;
 	/** 玩家的战功 */
-	private int exploit;
+	private int control;
 	/** 钻石 */
 	private int diamond;
 	/** 金币 */
@@ -41,12 +41,6 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 	private int coupon;
 	/** 当前经验 */
 	private int curExp;
-	/** 当前精力  */
-	private int curVim;
-	/** 最后回复精力的时间  */
-	private long vimLastTime;
-	/** 所在城镇 ID */
-	private int cityId = -1;
 	/** 所在场景Id */
 	private int sceneId;
 	/** 主背包容量 */
@@ -71,8 +65,6 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 	private int totalMinute;
 	/** 在线状态 */
 	private int onlineStatus;
-	/** 空闲时间 */
-	private int idleTime;
 	/** 创建时间 */
 	private Timestamp createTime;
 	/** 是否已经被删除 */
@@ -125,8 +117,22 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 	
 	@Override
 	public HumanEntity toEntity() {
-		// TODO Auto-generated method stub
-		return null;
+		HumanEntity humanEntity=new HumanEntity();
+		humanEntity.setId(this.getDbId());
+		humanEntity.setPassportId(this.getPassportId());
+		humanEntity.setName(this.getName());
+		humanEntity.setVocationType(this.getVocationType());
+		humanEntity.setLevel(this.getLevel());
+		humanEntity.setAllianceTypeId(this.getAllianceTypeId());
+		humanEntity.setControl(this.getControl());
+		humanEntity.setDiamond(this.getDiamond());
+		humanEntity.setGold(this.getGold());
+		humanEntity.setCoupon(this.getCoupon());
+		humanEntity.setCurExp(this.getCurExp());
+		humanEntity.setSceneId(this.getSceneId());
+		humanEntity.setPrimBagCount(this.getPrimBagCount());
+		humanEntity.setStoryId(this.getStoryId());
+		return humanEntity;
 	}
 
 	@Override
@@ -194,14 +200,6 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 		this.allianceTypeId = allianceTypeId;
 	}
 
-	public int getExploit() {
-		return exploit;
-	}
-
-	public void setExploit(int exploit) {
-		this.exploit = exploit;
-	}
-
 	public int getDiamond() {
 		return diamond;
 	}
@@ -232,30 +230,6 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 
 	public void setCurExp(int curExp) {
 		this.curExp = curExp;
-	}
-
-	public int getCurVim() {
-		return curVim;
-	}
-
-	public void setCurVim(int curVim) {
-		this.curVim = curVim;
-	}
-
-	public long getVimLastTime() {
-		return vimLastTime;
-	}
-
-	public void setVimLastTime(long vimLastTime) {
-		this.vimLastTime = vimLastTime;
-	}
-
-	public int getCityId() {
-		return cityId;
-	}
-
-	public void setCityId(int cityId) {
-		this.cityId = cityId;
 	}
 
 	public int getSceneId() {
@@ -354,14 +328,6 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 		this.onlineStatus = onlineStatus;
 	}
 
-	public int getIdleTime() {
-		return idleTime;
-	}
-
-	public void setIdleTime(int idleTime) {
-		this.idleTime = idleTime;
-	}
-
 	public Timestamp getCreateTime() {
 		return createTime;
 	}
@@ -384,6 +350,14 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 
 	public void setDeleteTime(Timestamp deleteTime) {
 		this.deleteTime = deleteTime;
+	}
+
+	public int getControl() {
+		return control;
+	}
+
+	public void setControl(int control) {
+		this.control = control;
 	}
 
 	

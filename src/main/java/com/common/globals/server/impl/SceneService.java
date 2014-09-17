@@ -13,7 +13,6 @@ import com.common.Thread.HeartbeatThread;
 import com.common.constants.Loggers;
 import com.common.globals.config.GameConfigServer;
 import com.common.globals.server.IBaseServer;
-import com.core.template.TemplateService;
 import com.scene.Scene;
 import com.scene.SceneListener;
 import com.scene.SceneRunner;
