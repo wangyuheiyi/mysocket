@@ -6,12 +6,15 @@ import com.common.operation.LifeCycle;
 import com.common.operation.LifeCycleImpl;
 import com.common.operation.PersistanceObject;
 import com.db.model.impl.HumanEntity;
+import com.player.Player;
 
 public class Human implements PersistanceObject<Long, HumanEntity>{
 	/** 生命期 */
 	private LifeCycle lifeCycle;
-	
-	public Human() {
+	/** 角色所属玩家 */
+	private Player player;
+	public Human(Player player) {
+		this.player=player;
 		this.lifeCycle = new LifeCycleImpl(this);
 	}
 	/** 是否已经在数据库中 */
@@ -85,7 +88,6 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 
 	@Override
 	public Long getDbId() {
-		// TODO Auto-generated method stub
 		return id;
 	}
 
@@ -109,6 +111,18 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 		return this.id;
 	}
 
+	public Player getPlayer() {
+		return player;
+	}
+
+	/**
+	 * 激活此关系
+	 */
+	public void active() 
+	{
+		getLifeCycle().activate();
+	}
+	
 	@Override
 	public HumanEntity toEntity() {
 		// TODO Auto-generated method stub
@@ -123,16 +137,20 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 
 	@Override
 	public void setModified() {
-		// TODO Auto-generated method stub
-		
+		if (this != null) 
+		{
+			// TODO 为了防止发生一些错误的使用状况,暂时把此处的检查限制得很严格
+			this.lifeCycle.checkModifiable();
+			if (this.lifeCycle.isActive())
+			{
+				// 物品的生命期处于活动状态,并且该宠物不是空的,则执行通知更新机制进行
+				this.getPlayer().getDataUpdater().addUpdate(lifeCycle);
+			}
+		}
 	}
 
 	public LifeCycle getLifeCycle() {
 		return lifeCycle;
-	}
-
-	public void setLifeCycle(LifeCycle lifeCycle) {
-		this.lifeCycle = lifeCycle;
 	}
 
 

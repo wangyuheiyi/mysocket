@@ -7,14 +7,12 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
-import com.common.context.ContextFactiry;
 import com.common.globals.config.GameConfigServer;
 import com.common.globals.server.IBaseServer;
 import com.common.operation.LifeCycle;
 import com.common.operation.PersistanceObject;
 import com.common.persistance.AbstractDataUpdater;
 import com.common.persistance.POUpdater;
-import com.common.persistance.impl.HumanUpdater;
 import com.human.Human;
 
 /**

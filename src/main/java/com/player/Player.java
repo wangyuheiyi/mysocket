@@ -152,6 +152,12 @@ public class Player implements HeartBeatAble{
 	{
 		return this._stateManager.getState();
 	}
+	
+	public UpdaterServer getDataUpdater() {
+		return _dataUpdater;
+	}
+
+
 
 	/**
 	 * 更新数据
