@@ -11,7 +11,7 @@ import com.core.annotation.ExcelRowBinding;
  *
  */
 @ExcelRowBinding
-public class CityTemplate extends CityTemplateVO
+public class SceneTemplate extends SceneTemplateVO
 {
 	@Override
 	public void check() throws TemplateConfigException

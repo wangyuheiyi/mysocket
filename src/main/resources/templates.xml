@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <scripts>
-	<file name="missions.xls">
-		<sheet class="com.scene.template.CityTemplate" />
+	<file name="city.xls">
+		<sheet class="com.scene.template.SceneTemplate" />
 	</file>
 	
 </scripts>

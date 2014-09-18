@@ -20,7 +20,7 @@ import com.core.util.ErrorsUtil;
 import com.human.Human;
 import com.player.Player;
 import com.scene.manager.ScenePlayerManager;
-import com.scene.template.CityTemplate;
+import com.scene.template.SceneTemplate;
 
 /**
  * 场景
@@ -46,9 +46,9 @@ public class Scene implements HeartBeatAble, Listenable<SceneListener>
 	private List<SceneListener> listeners;
 	/** 场景数据更新器 */
 	private SceneUpdaterServer dataUpdater;
-	private CityTemplate sceneTmpl;
+	private SceneTemplate sceneTmpl;
 
-	public Scene(OnLinePlayerServer olserv,CityTemplate sceneTmpl)
+	public Scene(OnLinePlayerServer olserv,SceneTemplate sceneTmpl)
 	{
 		// 断言参数不为空
 		Assert.notNull(olserv);

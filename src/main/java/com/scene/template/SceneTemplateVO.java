@@ -16,80 +16,77 @@ import com.google.common.collect.Maps;
  * 
  */
 @ExcelRowBinding
-public abstract class CityTemplateVO extends TemplateObject {
+public abstract class SceneTemplateVO extends TemplateObject {
 
-	/** 城镇名称多语言Id */
+	/** 场景名称多语言Id */
 	@ExcelCellBinding(offset = 1)
-	protected int cityNameLangId;
+	protected int sceneNameLangId;
 
-	/** 城镇名称 */
+	/** 场景名称 */
 	@ExcelCellBinding(offset = 2)
-	protected String cityName;
+	protected String sceneName;
 
 	/** 下一个场景id */
 	@ExcelCellBinding(offset = 3)
-	protected int nextCityId;
+	protected int nextSceneId;
 
-	/** 城镇最低等级 */
+	/** 场景最低等级 */
 	@ExcelCellBinding(offset = 4)
 	protected int minLevel;
 
-	/** 城镇最高等级 */
+	/** 场景最高等级 */
 	@ExcelCellBinding(offset = 5)
 	protected int maxLevel;
 
-	/** 城镇场景名 */
-	@ExcelCellBinding(offset = 6)
-	protected String citySceneName;
-
 	/** 需求任务ID */
-	@ExcelCellBinding(offset = 7)
+	@ExcelCellBinding(offset = 6)
 	protected int needTaskId;
 
 	/** 背景场景 */
-	@ExcelCellBinding(offset = 8)
+	@ExcelCellBinding(offset = 7)
 	protected String backgroundScence;
-
-
-	public int getCityNameLangId() {
-		return this.cityNameLangId;
-	}
-
-
-
-	public void setCityNameLangId(int cityNameLangId) {
-		this.cityNameLangId = cityNameLangId;
-	}
 	
-	public String getCityName() {
-		return this.cityName;
+	public int getSceneNameLangId() {
+		return sceneNameLangId;
 	}
 
 
 
-	public void setCityName(String cityName) {
-		if (StringUtils.isEmpty(cityName)) {
+	public void setSceneNameLangId(int sceneNameLangId) {
+		this.sceneNameLangId = sceneNameLangId;
+	}
+
+
+
+	public String getSceneName() {
+		return this.sceneName;
+	}
+
+
+
+	public void setSceneName(String sceneName) {
+		if (StringUtils.isEmpty(sceneName)) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					3, "[城镇名称]cityName不可以为空");
+					3, "[场景名称]sceneName不可以为空");
 		}
-		this.cityName = cityName;
+		this.sceneName = sceneName;
 	}
 	
-	public int getNextCityId() {
-		return this.nextCityId;
+	public int getNextSceneId() {
+		return this.nextSceneId;
 	}
 
 
-	public final static int getNextCityIdMinLimit() {
+	public final static int getNextSceneIdMinLimit() {
 		return 0;
 	}
 
-	public void setNextCityId(int nextCityId) {
-		if (nextCityId < 0) {
+	public void setNextSceneId(int nextSceneId) {
+		if (nextSceneId < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
 					4, "[下一个场景id]nextCityId的值不得小于0");
 		}
-		this.nextCityId = nextCityId;
+		this.nextSceneId = nextSceneId;
 	}
 	
 	public int getMinLevel() {
@@ -126,19 +123,6 @@ public abstract class CityTemplateVO extends TemplateObject {
 		this.maxLevel = maxLevel;
 	}
 	
-	public String getCitySceneName() {
-		return this.citySceneName;
-	}
-
-
-
-	public void setCitySceneName(String citySceneName) {
-		if (StringUtils.isEmpty(citySceneName)) {
-			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					7, "[城镇场景名]citySceneName不可以为空");
-		}
-		this.citySceneName = citySceneName;
-	}
 	
 	public int getNeedTaskId() {
 		return this.needTaskId;
@@ -169,7 +153,7 @@ public abstract class CityTemplateVO extends TemplateObject {
 	
 
 	/** 模板字典 */
-	protected final static Map<Integer, CityTemplateVO> _templates = Maps.newTreeMap();
+	protected final static Map<Integer, SceneTemplateVO> _templates = Maps.newTreeMap();
 
 	@Override
 	public void check() 
@@ -177,7 +161,7 @@ public abstract class CityTemplateVO extends TemplateObject {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <T extends CityTemplateVO> T getTemplate(int templateID) {
+	public static <T extends SceneTemplateVO> T getTemplate(int templateID) {
 		return  (T)_templates.get(templateID);
 	}
 
@@ -185,12 +169,12 @@ public abstract class CityTemplateVO extends TemplateObject {
 	 * 获取模板列表
 	 * 
 	 */
-	public final static Map<Integer, CityTemplateVO> getTemplates() {
+	public final static Map<Integer, SceneTemplateVO> getTemplates() {
 		return _templates;
 	}
 
 	@Override
 	public String toString() {
-		return "CityTemplateVO [  cityNameLangId=" + cityNameLangId + ", cityName=" + cityName + ", nextCityId=" + nextCityId + ", minLevel=" + minLevel + ", maxLevel=" + maxLevel + ", citySceneName=" + citySceneName + ", needTaskId=" + needTaskId + ", backgroundScence=" + backgroundScence + ",]";
+		return "SceneTemplateVO [  sceneNameLangId=" + sceneNameLangId + ", sceneName=" + sceneName + ", nextSceneId=" + nextSceneId + ", minLevel=" + minLevel + ", maxLevel=" + maxLevel + ", needTaskId=" + needTaskId + ", backgroundScence=" + backgroundScence + ",]";
 	}
 }

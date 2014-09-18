@@ -21,8 +21,32 @@ message GCGetRoleList {
 	repeated HumanInfo humanInfo=2;
 }
 
+message CGCreatRole {
+	required int32 playerId = 1;
+	optional int32 avatar=2;
+}
+
+message GCCreatRole {
+	required int32 playerId = 1;
+	optional HumanInfo humanInfo=2;
+}
+
+
+message CGSelectRoleList {
+	required int32 playerId = 1;
+	optional int64 roleId=2;
+}
+
+message GCSelectRoleList {
+	required int32 playerId = 1;
+	optional HumanInfo humanInfo=2;
+}
+
 message HumanInfo{
 	required int64 roleId = 1;
 	optional string roleName = 2 [default = ""];
 	optional int32 level=3 [default = 0];
+	optional int32 vocationType=4 [default = 0];
+	optional int32 allianceTypeId=5 [default = 0];
+	optional int32 avatar=6 [default = 0];
 }

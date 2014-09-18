@@ -31,8 +31,6 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 	private int level=1;
 	/** 种族 */
 	private int allianceTypeId;
-	/** 玩家的战功 */
-	private int control;
 	/** 钻石 */
 	private int diamond;
 	/** 金币 */
@@ -124,7 +122,6 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 		humanEntity.setVocationType(this.getVocationType());
 		humanEntity.setLevel(this.getLevel());
 		humanEntity.setAllianceTypeId(this.getAllianceTypeId());
-		humanEntity.setControl(this.getControl());
 		humanEntity.setDiamond(this.getDiamond());
 		humanEntity.setGold(this.getGold());
 		humanEntity.setCoupon(this.getCoupon());
@@ -132,13 +129,48 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 		humanEntity.setSceneId(this.getSceneId());
 		humanEntity.setPrimBagCount(this.getPrimBagCount());
 		humanEntity.setStoryId(this.getStoryId());
+		humanEntity.setAvatar(this.getAvatar());
+		humanEntity.setGuideId(this.getGuideId());
+		humanEntity.setGuideState(this.getGuideState());
+		humanEntity.setRoleKind(this.getRoleKind());
+		humanEntity.setLastLoginIp(this.getLastLoginIp());
+		humanEntity.setLastLoginTime(this.getLastLoginTime());
+		humanEntity.setLastLogoutTime(this.getLastLogoutTime());
+		humanEntity.setOnlineStatus(this.getOnlineStatus());
+		humanEntity.setCreateTime(this.getCreateTime());
+		humanEntity.setDeleted(this.getDeleted());
+		humanEntity.setDeleteTime(this.getDeleteTime());
 		return humanEntity;
 	}
 
 	@Override
 	public void fromEntity(HumanEntity entity) {
-		// TODO Auto-generated method stub
-		
+		this.setDbId(entity.getId());
+		this.setPassportId(entity.getPassportId());
+		this.setName(entity.getName());
+		this.setVocationType(entity.getVocationType());
+		this.setLevel(entity.getLevel());
+		this.setAllianceTypeId(entity.getAllianceTypeId());
+		this.setDiamond(entity.getDiamond());
+		this.setGold(entity.getGold());
+		this.setCoupon(entity.getCoupon());
+		this.setCurExp(entity.getCurExp());
+		this.setSceneId(entity.getSceneId());
+		this.setPrimBagCount(entity.getPrimBagCount());
+		this.setStoryId(entity.getStoryId());
+		this.setAvatar(entity.getAvatar());
+		this.setGuideId(entity.getGuideId());
+		this.setGuideState(entity.getGuideState());
+		this.setRoleKind(entity.getRoleKind());
+		this.setLastLoginIp(entity.getLastLoginIp());
+		this.setLastLoginTime(entity.getLastLoginTime());
+		this.setLastLogoutTime(entity.getLastLogoutTime());
+		this.setOnlineStatus(entity.getOnlineStatus());
+		this.setCreateTime(entity.getCreateTime());
+		this.setDeleted(entity.getDeleted());
+		this.setDeleteTime(entity.getDeleteTime());
+		this.active();
+		this.setInDb(true);
 	}
 
 	@Override
@@ -350,14 +382,6 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 
 	public void setDeleteTime(Timestamp deleteTime) {
 		this.deleteTime = deleteTime;
-	}
-
-	public int getControl() {
-		return control;
-	}
-
-	public void setControl(int control) {
-		this.control = control;
 	}
 
 	

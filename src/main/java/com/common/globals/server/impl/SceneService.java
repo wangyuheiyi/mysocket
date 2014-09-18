@@ -16,7 +16,7 @@ import com.common.globals.server.IBaseServer;
 import com.scene.Scene;
 import com.scene.SceneListener;
 import com.scene.SceneRunner;
-import com.scene.template.CityTemplate;
+import com.scene.template.SceneTemplate;
 
 /**
  * 场景服务
@@ -53,18 +53,18 @@ public class SceneService implements IBaseServer{
 		sceneTaskScheduler = new HeartbeatThread();
 		ServerManager.getInstance();
 		// 获取场景模版字典
-		Map<Integer,CityTemplate> sceneTmplMap = ServerManager.getInstance().getTemplateService().getAll(CityTemplate.class);
+		Map<Integer,SceneTemplate> sceneTmplMap = ServerManager.getInstance().getTemplateService().getAll(SceneTemplate.class);
 		onLinePlayerServer=ServerManager.getInstance().getOnLinePlayerServer();
 		// 场景事件监听
 		List<SceneListener> listeners = Arrays.asList(new SceneListener[] {});
-		for(CityTemplate sceneTmpl:sceneTmplMap.values())
+		for(SceneTemplate sceneTmpl:sceneTmplMap.values())
 		{
 			// 初始化场景
 			this.initScene(sceneTmpl,listeners);
 		}
 	}
 	
-	private void initScene(CityTemplate sceneTmpl,List<SceneListener> listeners)
+	private void initScene(SceneTemplate sceneTmpl,List<SceneListener> listeners)
 	{
 		if(sceneTmpl==null) return;
 		// 创建场景对象
