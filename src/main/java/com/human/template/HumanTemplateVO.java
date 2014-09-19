@@ -38,12 +38,8 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	@ExcelCellBinding(offset = 5)
 	protected int head;
 
-	/** 资源缩放 */
+	/** 基础统帅 */
 	@ExcelCellBinding(offset = 6)
-	protected float modelScale;
-
-	/** 基础血量 */
-	@ExcelCellBinding(offset = 7)
 	protected int baseHp;
 
 	/** 基础攻击 */
@@ -265,15 +261,6 @@ public abstract class HumanTemplateVO extends TemplateObject {
 		this.head = head;
 	}
 	
-	public float getModelScale() {
-		return this.modelScale;
-	}
-
-
-
-	public void setModelScale(float modelScale) {
-		this.modelScale = modelScale;
-	}
 	
 	public int getBaseHp() {
 		return this.baseHp;
@@ -809,6 +796,6 @@ public abstract class HumanTemplateVO extends TemplateObject {
 
 	@Override
 	public String toString() {
-		return "HumanTemplateVO [  vocationNameLangId=" + vocationNameLangId + ", vocationName=" + vocationName + ", sex=" + sex + ", photo=" + photo + ", head=" + head + ", modelScale=" + modelScale + ", baseHp=" + baseHp + ", baseAttack=" + baseAttack + ", baseDefence=" + baseDefence + ", growthHp=" + growthHp + ", growthAttack=" + growthAttack + ", growthDefence=" + growthDefence + ", crit=" + crit + ", critResist=" + critResist + ", hit=" + hit + ", dodge=" + dodge + ", avoidDamage=" + avoidDamage + ", critDamage=" + critDamage + ", wreckArmorDamage=" + wreckArmorDamage + ", moveSpeed=" + moveSpeed + ", capEquip=" + capEquip + ", weaponEquip=" + weaponEquip + ", clothesEquip=" + clothesEquip + ", bootsEquip=" + bootsEquip + ", bracersEquip=" + bracersEquip + ", talismanEquip=" + talismanEquip + ", commonAttack=" + commonAttack + ", activeSkill1=" + activeSkill1 + ", activeSkill2=" + activeSkill2 + ", activeSkill3=" + activeSkill3 + ", activeSkill4=" + activeSkill4 + ", passiveSkill1=" + passiveSkill1 + ", passiveSkill2=" + passiveSkill2 + ", passiveSkill3=" + passiveSkill3 + ", collisionLength=" + collisionLength + ", collisionWidth=" + collisionWidth + ", collisionHeight=" + collisionHeight + ", open=" + open + ", vocationDescriptionLangId=" + vocationDescriptionLangId + ", roleInterfaceSort=" + roleInterfaceSort + ", roleInterfaceAppearance=" + roleInterfaceAppearance + ", stiffTime=" + stiffTime + ",]";
+		return "HumanTemplateVO [  vocationNameLangId=" + vocationNameLangId + ", vocationName=" + vocationName + ", sex=" + sex + ", photo=" + photo + ", head=" + head + ", baseHp=" + baseHp + ", baseAttack=" + baseAttack + ", baseDefence=" + baseDefence + ", growthHp=" + growthHp + ", growthAttack=" + growthAttack + ", growthDefence=" + growthDefence + ", crit=" + crit + ", critResist=" + critResist + ", hit=" + hit + ", dodge=" + dodge + ", avoidDamage=" + avoidDamage + ", critDamage=" + critDamage + ", wreckArmorDamage=" + wreckArmorDamage + ", moveSpeed=" + moveSpeed + ", capEquip=" + capEquip + ", weaponEquip=" + weaponEquip + ", clothesEquip=" + clothesEquip + ", bootsEquip=" + bootsEquip + ", bracersEquip=" + bracersEquip + ", talismanEquip=" + talismanEquip + ", commonAttack=" + commonAttack + ", activeSkill1=" + activeSkill1 + ", activeSkill2=" + activeSkill2 + ", activeSkill3=" + activeSkill3 + ", activeSkill4=" + activeSkill4 + ", passiveSkill1=" + passiveSkill1 + ", passiveSkill2=" + passiveSkill2 + ", passiveSkill3=" + passiveSkill3 + ", collisionLength=" + collisionLength + ", collisionWidth=" + collisionWidth + ", collisionHeight=" + collisionHeight + ", open=" + open + ", vocationDescriptionLangId=" + vocationDescriptionLangId + ", roleInterfaceSort=" + roleInterfaceSort + ", roleInterfaceAppearance=" + roleInterfaceAppearance + ", stiffTime=" + stiffTime + ",]";
 	}
 }
