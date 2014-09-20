@@ -17,8 +17,12 @@ message BaseMessage {
 			GCPLAYERCHECKLOGIN=2;
 			CGGETROLELIST=3;
 			GCGETROLELIST=4;
-		 	MISSIONINFO=5;
-		 	MISSIONREWARD=6;
+			CGCREATROLE=5;
+			GCCREATROLE=6;
+			CGSELECTROLELIST=7;
+			GCSELECTROLELIST=8;
+		 	MISSIONINFO=9;
+		 	MISSIONREWARD=10;
 		}
 		required MessageCode messageCode=2;
 }
@@ -28,6 +32,10 @@ extend BaseMessage {
 		optional GCPlayerCheckLogin gcPlayerCheckLogin = 101;
 		optional CGGetRoleList cgGetRoleList = 102;
 		optional GCGetRoleList gcGetRoleList = 103;
+		optional CGCreatRole cgCreatRole = 104;
+		optional GCCreatRole gcCreatRole = 105;
+		optional CGSelectRoleList cgSelectRoleList = 106;
+		optional GCSelectRoleList gcSelectRoleList = 107;
 	  optional MissionInfo missionInfo = 200;
 	  optional MissionReward missionReward = 201;
 }

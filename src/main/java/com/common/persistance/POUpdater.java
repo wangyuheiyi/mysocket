@@ -1,9 +1,5 @@
 package com.common.persistance;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Component;
-
 import com.common.operation.PersistanceObject;
 
 /**

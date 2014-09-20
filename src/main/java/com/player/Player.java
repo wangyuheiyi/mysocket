@@ -130,6 +130,8 @@ public class Player implements HeartBeatAble{
 	public int getSceneId() {
 		return this.human.getSceneId();
 	}
+	
+	
 
 	@Override
 	public void heartBeat() {
@@ -151,6 +153,16 @@ public class Player implements HeartBeatAble{
 	public PlayerState getState() 
 	{
 		return this._stateManager.getState();
+	}
+	
+	public boolean setState(PlayerState state)
+	{
+		if (state == PlayerState.logouting 
+				&& this.getState() == PlayerState.logouting)
+		{
+			return true;
+		}
+		return this._stateManager.setState(state);
 	}
 	
 	public UpdaterServer getDataUpdater() {

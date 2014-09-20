@@ -2,6 +2,7 @@ package com.common.globals.server.impl;
 
 import io.netty.channel.Channel;
 
+import java.sql.Timestamp;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
@@ -14,6 +15,9 @@ import org.springframework.util.Assert;
 import com.common.constants.Loggers;
 import com.common.globals.config.GameConfigServer;
 import com.common.globals.server.IBaseServer;
+import com.core.uuid.UUIDType;
+import com.db.model.impl.HumanEntity;
+import com.human.Human;
 import com.player.Player;
 
 @Component
@@ -81,6 +85,30 @@ public class OnLinePlayerServer implements IBaseServer{
 		} finally
 		{
 			readLock.unlock();
+		}
+	}
+	
+	/**
+	 * 创建角色
+	 * @param player
+	 * @param roleInfo
+	 * @return
+	 */
+	public boolean createRole(Player player, Human human) 
+	{
+		try 
+		{
+			//插入角色对象:UUID
+			human.setDbId(ServerManager.getInstance().getuUIDService().getNextUUID(UUIDType.HUMAN));
+			HumanEntity he = human.toEntity();
+			he.setCreateTime(new Timestamp(ServerManager.getInstance().getSystemTimeService().now()));
+			ServerManager.getInstance().getDbServer().getHumanDao().save(he);
+			return true;
+		} catch (org.springframework.dao.DataAccessException e)
+		{
+			e.printStackTrace();
+//			player.sendErrorMessage(Globals.getLangService().getSysLangSerivce().read(LangConstants.LOGIN_UNKOWN_ERROR));
+			return false;
 		}
 	}
 

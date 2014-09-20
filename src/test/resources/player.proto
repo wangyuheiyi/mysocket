@@ -23,7 +23,7 @@ message GCGetRoleList {
 
 message CGCreatRole {
 	required int32 playerId = 1;
-	optional int32 avatar=2;
+	required int32 avatar=2;
 }
 
 message GCCreatRole {
