@@ -61,8 +61,6 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 	private Timestamp lastLogoutTime;
 	/** 累计在线时长(分钟) */
 	private int totalMinute;
-	/** 在线状态 */
-	private int onlineStatus;
 	/** 创建时间 */
 	private Timestamp createTime;
 	/** 是否已经被删除 */
@@ -136,7 +134,6 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 		humanEntity.setLastLoginIp(this.getLastLoginIp());
 		humanEntity.setLastLoginTime(this.getLastLoginTime());
 		humanEntity.setLastLogoutTime(this.getLastLogoutTime());
-		humanEntity.setOnlineStatus(this.getOnlineStatus());
 		humanEntity.setCreateTime(this.getCreateTime());
 		humanEntity.setDeleted(this.getDeleted());
 		humanEntity.setDeleteTime(this.getDeleteTime());
@@ -165,7 +162,6 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 		this.setLastLoginIp(entity.getLastLoginIp());
 		this.setLastLoginTime(entity.getLastLoginTime());
 		this.setLastLogoutTime(entity.getLastLogoutTime());
-		this.setOnlineStatus(entity.getOnlineStatus());
 		this.setCreateTime(entity.getCreateTime());
 		this.setDeleted(entity.getDeleted());
 		this.setDeleteTime(entity.getDeleteTime());
@@ -350,14 +346,6 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 
 	public void setTotalMinute(int totalMinute) {
 		this.totalMinute = totalMinute;
-	}
-
-	public int getOnlineStatus() {
-		return onlineStatus;
-	}
-
-	public void setOnlineStatus(int onlineStatus) {
-		this.onlineStatus = onlineStatus;
 	}
 
 	public Timestamp getCreateTime() {

@@ -35,4 +35,11 @@ public class HumanTemplateSever implements ITemplates{
 	{
 		return this.templateService.getAll(HumanTemplate.class);
 	}
+	
+	public HumanTemplate getHumanTemplByAvatar(int avatar){
+		for(HumanTemplate humanTemplate:getAllHumanTempl().values()){
+			if(humanTemplate.getRoleInterfaceAppearance()==avatar) return humanTemplate;
+		}
+		return null;
+	}
 }

@@ -33,7 +33,8 @@ public class ServerManager implements IBaseServer{
 	private UpdaterServer updaterServer;
 	@Autowired
 	private SceneUpdaterServer sceneUpdaterServer;
-	
+	@Autowired
+	private GameAsyncService gameAsyncService;
 	private DbServer dbServer;
 	
 	/** 模板数据管理器 */
@@ -111,6 +112,10 @@ public class ServerManager implements IBaseServer{
 
 	public TemplateService getTemplateService() {
 		return templateService;
+	}
+
+	public GameAsyncService getGameAsyncService() {
+		return gameAsyncService;
 	}
 	
 	
