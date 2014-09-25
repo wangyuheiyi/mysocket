@@ -11,6 +11,7 @@ import com.common.context.ContextFactiry;
 import com.common.globals.server.impl.OnLinePlayerServer;
 import com.common.globals.server.impl.ServerManager;
 import com.common.handler.IMessageHandler;
+import com.common.handler.impl.player.CGCreateRoleHandler;
 import com.common.handler.impl.player.CGGetRoleListHandler;
 import com.common.handler.impl.player.CGPlayerCheckLoginHandler;
 import com.common.msg.BaseBean;
@@ -30,6 +31,7 @@ public class MessageHandlerServer{
 
     public IMessageHandler getMessageHandler(Channel channel,BaseMessage baseBean){
     	Player player=null;
+    	OnLinePlayerServer onLinePlayerServer = ServerManager.getInstance().getOnLinePlayerServer();
     	switch (baseBean.getMessageCode()){
     	case CGPLAYERCHECKLOGIN:
     		player=new Player();
@@ -38,11 +40,15 @@ public class MessageHandlerServer{
     		cgPlayerCheckLoginHandler.setMessage(baseBean, player);
     		return cgPlayerCheckLoginHandler;
     	case CGGETROLELIST:
-    		OnLinePlayerServer onLinePlayerServer = ServerManager.getInstance().getOnLinePlayerServer();
     		player=onLinePlayerServer.getPlayerByChannel(channel);
     		CGGetRoleListHandler cgGetRoleListHandler=ContextFactiry.getContext("handlerContext").getBean(CGGetRoleListHandler.class);
     		cgGetRoleListHandler.setMessage(baseBean, player);
     		return cgGetRoleListHandler;
+    	case CGCREATEROLE:
+    		player=onLinePlayerServer.getPlayerByChannel(channel);
+    		CGCreateRoleHandler cgCreateRoleHandler=ContextFactiry.getContext("handlerContext").getBean(CGCreateRoleHandler.class);
+    		cgCreateRoleHandler.setMessage(baseBean, player);
+    		return cgCreateRoleHandler;
     	}
 		return null;
     }

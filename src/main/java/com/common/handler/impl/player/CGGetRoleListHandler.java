@@ -50,7 +50,7 @@ public class CGGetRoleListHandler implements IMessageHandler{
 				gcGetRoleList.addHumanInfo(humanInfo.build());
 			}
 		}
-
+		gcGetRoleList.setPlayerId(cgGetRoleList.getPlayerId());
 		myMessage.setType(BaseMessage.Type.GLOBALMESSAGE);
 		myMessage.setMessageCode(BaseMessage.MessageCode.GCGETROLELIST);
 		myMessage.setExtension(BaseBean.gcGetRoleList, gcGetRoleList.build());

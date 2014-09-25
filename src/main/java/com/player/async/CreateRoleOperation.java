@@ -4,7 +4,7 @@ import com.common.async.IIoOperation;
 import com.common.globals.server.impl.ServerManager;
 import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
-import com.common.msg.PlayerBean.GCCreatRole;
+import com.common.msg.PlayerBean.GCCreateRole;
 import com.human.Human;
 import com.player.Player;
 import com.player.PlayerState;
@@ -57,10 +57,10 @@ public class CreateRoleOperation implements IIoOperation
 				player.setHuman(human);
 				player.setState(PlayerState.loadingrolelist);
 				player.setState(PlayerState.waitingselectrole);
-				GCCreatRole.Builder gcCreateRole=GCCreatRole.newBuilder();
+				GCCreateRole.Builder gcCreateRole=GCCreateRole.newBuilder();
 				myMessage.setType(BaseMessage.Type.GLOBALMESSAGE);
-				myMessage.setMessageCode(BaseMessage.MessageCode.GCCREATROLE);
-				myMessage.setExtension(BaseBean.gcCreatRole, gcCreateRole.build());
+				myMessage.setMessageCode(BaseMessage.MessageCode.GCCREATEROLE);
+				myMessage.setExtension(BaseBean.gcCreateRole, gcCreateRole.build());
 				player.sendMessage(myMessage.build());
 			} else
 			{

@@ -1,9 +1,12 @@
 package com.common.globals.server.impl;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.common.async.AsyncService;
 import com.common.context.ContextFactiry;
 import com.common.globals.config.GameConfigServer;
 import com.common.globals.server.IBaseServer;
@@ -33,8 +36,9 @@ public class ServerManager implements IBaseServer{
 	private UpdaterServer updaterServer;
 	@Autowired
 	private SceneUpdaterServer sceneUpdaterServer;
-	@Autowired
-	private GameAsyncService gameAsyncService;
+	@Resource(name = "gameAsyncService")
+	private AsyncService gameAsyncService;
+	
 	private DbServer dbServer;
 	
 	/** 模板数据管理器 */
@@ -114,7 +118,7 @@ public class ServerManager implements IBaseServer{
 		return templateService;
 	}
 
-	public GameAsyncService getGameAsyncService() {
+	public AsyncService getGameAsyncService() {
 		return gameAsyncService;
 	}
 	

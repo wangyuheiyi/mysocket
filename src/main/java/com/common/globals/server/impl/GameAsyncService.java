@@ -14,7 +14,7 @@ import com.common.globals.server.IBaseServer;
  * @author Administrator
  *
  */
-@Component
+@Component("gameAsyncService")
 public class GameAsyncService implements IBaseServer,AsyncService{
 
 	@Override
@@ -34,8 +34,9 @@ public class GameAsyncService implements IBaseServer,AsyncService{
 	}
 
 
-	@Async
+	
 	@Override
+	@Async
 	public AsyncOperation createOperationAndExecuteAtOnce(IIoOperation operation) {
 		// TODO Auto-generated method stub
 		return null;

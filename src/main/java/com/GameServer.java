@@ -40,6 +40,7 @@ public class GameServer {
 		GameServer gameServer=new GameServer();
 		gameServer.init();
 		gameServer.start();
+		System.out.println("game server start finished");
 	}
 
 }

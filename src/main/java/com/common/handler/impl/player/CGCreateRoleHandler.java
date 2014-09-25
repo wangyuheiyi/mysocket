@@ -10,8 +10,7 @@ import com.common.globals.server.impl.ServerManager;
 import com.common.handler.IMessageHandler;
 import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
-import com.common.msg.PlayerBean.CGCreatRole;
-import com.common.msg.PlayerBean.GCCreatRole;
+import com.common.msg.PlayerBean.CGCreateRole;
 import com.human.Human;
 import com.human.template.HumanTemplate;
 import com.player.Player;
@@ -25,14 +24,14 @@ import com.templates.TemplatesManager;
  */
 @Scope("prototype")
 @Component
-public class CGCreatRoleHandler implements IMessageHandler{
-	private CGCreatRole cgCreatRole;
+public class CGCreateRoleHandler implements IMessageHandler{
+	private CGCreateRole cgCreateRole;
 	private Player player;
 	@Override
 	public void execute() {
 		
-		int playerId=cgCreatRole.getPlayerId();
-		int avatar=cgCreatRole.getAvatar();
+		int playerId=cgCreateRole.getPlayerId();
+		int avatar=cgCreateRole.getAvatar();
 		//穿件角色信息
 		player.setState(PlayerState.creatingrole);
 		//获取human的模板数据
@@ -56,7 +55,7 @@ public class CGCreatRoleHandler implements IMessageHandler{
 
 	@Override
 	public void setMessage(BaseMessage baseMessage, Player player) {
-		this.cgCreatRole=baseMessage.getExtension(BaseBean.cgCreatRole);
+		this.cgCreateRole=baseMessage.getExtension(BaseBean.cgCreateRole);
 		this.player=player;
 	}
 
