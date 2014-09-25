@@ -13,6 +13,7 @@ import com.common.globals.server.IBaseServer;
 import com.core.config.ConfigUtil;
 import com.core.template.TemplateService;
 import com.db.dao.impl.DbServer;
+import com.templates.TemplatesManager;
 @Component
 public class ServerManager implements IBaseServer{
 	public static ServerManager getInstance() 
@@ -58,7 +59,7 @@ public class ServerManager implements IBaseServer{
 		uUIDService.init(config);
 		updaterServer.init(config);
 		sceneUpdaterServer.init(config);
-
+		TemplatesManager.getInstance().init(templateService);
 	}
 	
 	public void start(){

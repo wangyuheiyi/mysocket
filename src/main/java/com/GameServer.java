@@ -12,7 +12,9 @@ import com.common.globals.server.impl.OnLinePlayerServer;
 import com.common.globals.server.impl.SceneService;
 import com.common.globals.server.impl.ServerManager;
 import com.common.globals.server.impl.SystemTimeService;
+import com.core.config.ConfigUtil;
 import com.core.helper.ConfigHelper;
+import com.core.template.TemplateService;
 
 public class GameServer {
 	
@@ -24,6 +26,7 @@ public class GameServer {
 		URL url = classLoader.getResource("game_server.cfg.js");
 		config = ConfigHelper.buildConfig(GameConfigServer.class, url);
 		ServerManager.getInstance().init(config);
+		
 	}
 	
 	/**
