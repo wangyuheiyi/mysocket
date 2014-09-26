@@ -36,6 +36,7 @@ public class CGCreateRoleHandler implements IMessageHandler{
 		player.setState(PlayerState.creatingrole);
 		//获取human的模板数据
 		HumanTemplate humanTemplate=TemplatesManager.getInstance().getHumanTemplateServer().getHumanTemplByAvatar(avatar);
+		if(humanTemplate==null)return;
 		//创建human对象
 		Human human=new Human(player);
 		human.setAvatar(avatar);

@@ -274,7 +274,9 @@ public abstract class HumanTemplateVO extends TemplateObject {
 		return baseControl;
 	}
 
-
+	public final static int getBaseControlMinLimit() {
+		return 0;
+	}
 
 	public void setBaseControl(int baseControl) {
 		this.baseControl = baseControl;

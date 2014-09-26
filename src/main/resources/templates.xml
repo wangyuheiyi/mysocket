@@ -3,5 +3,7 @@
 	<file name="city.xls">
 		<sheet class="com.scene.template.SceneTemplate" />
 	</file>
-	
+	<file name="humans.xls">
+		<sheet class="com.human.template.HumanTemplate" />
+	</file>
 </scripts>

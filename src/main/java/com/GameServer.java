@@ -23,7 +23,7 @@ public class GameServer {
 	
 	public void init(){
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-		URL url = classLoader.getResource("game_server.cfg.js");
+		URL url = classLoader.getResource("my_game.cfg.js");
 		config = ConfigHelper.buildConfig(GameConfigServer.class, url);
 		ServerManager.getInstance().init(config);
 		

@@ -10,7 +10,7 @@ config.localHostId = "1002";
 config.serverGroupId = "2";
 config.serverIndex = 1;
 
-config.serverId = "100003";
+config.serverId = "200003";
 
 
 // 如果需要让其他人连接自己的机器, 可以修改这个 IP 地址
@@ -26,7 +26,7 @@ config.i18nDir = "i18n";
 
 // Excel 资源目录
 config.baseResourceDir = "../resources";
-config.scriptDir = "scripts";
+config.scriptDir = "my_scripts";
 
 // 战报文件存放目录
 config.battleReportRootPath = "/D:/Temp_Test/";

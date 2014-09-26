@@ -16,11 +16,11 @@ public class HumanTemplate extends HumanTemplateVO
 	@Override
 	public void check() throws TemplateConfigException
 	{
-		
+//		System.out.println("human 加载后检测");
 	}
 	@Override
 	public void patchUp()
 	{
-	
+//		System.out.println("human 加载检测");
 	}
 }
