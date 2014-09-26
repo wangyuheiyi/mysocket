@@ -42,14 +42,14 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	@ExcelCellBinding(offset = 6)
 	protected int baseControl;
 
-	/** 统帅成长*/
+	/** 统帅成长 */
 	@ExcelCellBinding(offset = 7)
 	protected int controlGrow;
-	
+
 	/** 基础攻击 */
 	@ExcelCellBinding(offset = 8)
 	protected int baseAttack;
-	
+
 	/** 攻击成长 */
 	@ExcelCellBinding(offset = 9)
 	protected int attackGrow;
@@ -57,31 +57,31 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	/** 基础防御 */
 	@ExcelCellBinding(offset = 10)
 	protected int baseDefence;
-	
+
 	/** 防御成长 */
 	@ExcelCellBinding(offset = 11)
 	protected int defenceGrow;
 
 	/** 基础法力 */
 	@ExcelCellBinding(offset = 12)
-	protected float baseMagic;
+	protected int baseMagic;
 
 	/** 法力成长 */
 	@ExcelCellBinding(offset = 13)
-	protected float magicGrow;
-	
+	protected int magicGrow;
+
 	/** 基础幸运 */
 	@ExcelCellBinding(offset = 14)
-	protected float baseLucky;
-	
+	protected int baseLucky;
+
 	/** 幸运成长 */
 	@ExcelCellBinding(offset = 15)
-	protected float luckyGrow;
+	protected int luckyGrow;
 
 	/** 基础命中 */
 	@ExcelCellBinding(offset = 16)
 	protected int baseHit;
-	
+
 	/** 命中成长 */
 	@ExcelCellBinding(offset = 17)
 	protected int hitGrow;
@@ -89,7 +89,7 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	/** 基础闪避 */
 	@ExcelCellBinding(offset = 18)
 	protected int baseDodge;
-	
+
 	/** 闪避成长 */
 	@ExcelCellBinding(offset = 19)
 	protected int dodgeGrow;
@@ -97,7 +97,7 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	/** 基础免伤 */
 	@ExcelCellBinding(offset = 20)
 	protected int baseAvoidDamage;
-	
+
 	/** 免伤成长 */
 	@ExcelCellBinding(offset = 21)
 	protected int avoidDamageGrow;
@@ -107,33 +107,32 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	protected int baseCrit;
 
 	/** 暴击成长 */
-	@ExcelCellBinding(offset = 22)
+	@ExcelCellBinding(offset = 23)
 	protected int critGrow;
 
 	/** 移动速度 */
-	@ExcelCellBinding(offset = 23)
+	@ExcelCellBinding(offset = 24)
 	protected int moveSpeed;
 
 	/** 职业类型 */
-	@ExcelCellBinding(offset = 24)
+	@ExcelCellBinding(offset = 25)
 	protected int vocationType;
 
 	/** 是否开放 */
-	@ExcelCellBinding(offset = 25)
+	@ExcelCellBinding(offset = 26)
 	protected int open;
 
 	/** 职业说明多语言Id */
-	@ExcelCellBinding(offset = 26)
+	@ExcelCellBinding(offset = 27)
 	protected int vocationDescriptionLangId;
 
 	/** 角色界面排序 */
-	@ExcelCellBinding(offset = 27)
+	@ExcelCellBinding(offset = 28)
 	protected int roleInterfaceSort;
 
 	/** 角色界面外观 */
-	@ExcelCellBinding(offset = 41)
+	@ExcelCellBinding(offset = 29)
 	protected int roleInterfaceAppearance;
-
 
 
 	public int getVocationNameLangId() {
@@ -214,78 +213,18 @@ public abstract class HumanTemplateVO extends TemplateObject {
 		this.head = head;
 	}
 	
-	
-	
-	public int getBaseAttack() {
-		return this.baseAttack;
-	}
-
-
-	public final static int getBaseAttackMinLimit() {
-		return 0;
-	}
-
-	public void setBaseAttack(int baseAttack) {
-		if (baseAttack < 0) {
-			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					9, "[基础攻击]baseAttack的值不得小于0");
-		}
-		this.baseAttack = baseAttack;
-	}
-	
-	public int getBaseDefence() {
-		return this.baseDefence;
-	}
-
-
-	public final static int getBaseDefenceMinLimit() {
-		return 0;
-	}
-
-	public void setBaseDefence(int baseDefence) {
-		if (baseDefence < 0) {
-			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					10, "[基础防御]baseDefence的值不得小于0");
-		}
-		this.baseDefence = baseDefence;
-	}
-	
-
-
-	
-	public int getAttackGrow() {
-		return this.attackGrow;
-	}
-
-
-	public final static int getAttackGrowMinLimit() {
-		return 0;
-	}
-
-	public void setAttackGrow(int growthAttack) {
-		if (growthAttack < 0) {
-			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					12, "[攻击成长]growthAttack的值不得小于0");
-		}
-		this.attackGrow = growthAttack;
-	}
-	
 	public int getBaseControl() {
-		return baseControl;
+		return this.baseControl;
 	}
 
-	public final static int getBaseControlMinLimit() {
-		return 0;
-	}
+
 
 	public void setBaseControl(int baseControl) {
 		this.baseControl = baseControl;
 	}
-
-
-
+	
 	public int getControlGrow() {
-		return controlGrow;
+		return this.controlGrow;
 	}
 
 
@@ -293,11 +232,39 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	public void setControlGrow(int controlGrow) {
 		this.controlGrow = controlGrow;
 	}
+	
+	public int getBaseAttack() {
+		return this.baseAttack;
+	}
 
 
 
+	public void setBaseAttack(int baseAttack) {
+		this.baseAttack = baseAttack;
+	}
+	
+	public int getAttackGrow() {
+		return this.attackGrow;
+	}
+
+
+
+	public void setAttackGrow(int attackGrow) {
+		this.attackGrow = attackGrow;
+	}
+	
+	public int getBaseDefence() {
+		return this.baseDefence;
+	}
+
+
+
+	public void setBaseDefence(int baseDefence) {
+		this.baseDefence = baseDefence;
+	}
+	
 	public int getDefenceGrow() {
-		return defenceGrow;
+		return this.defenceGrow;
 	}
 
 
@@ -305,59 +272,49 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	public void setDefenceGrow(int defenceGrow) {
 		this.defenceGrow = defenceGrow;
 	}
-
-
-
-	public float getBaseMagic() {
-		return baseMagic;
+	
+	public int getBaseMagic() {
+		return this.baseMagic;
 	}
 
 
 
-	public void setBaseMagic(float baseMagic) {
+	public void setBaseMagic(int baseMagic) {
 		this.baseMagic = baseMagic;
 	}
-
-
-
-	public float getMagicGrow() {
-		return magicGrow;
+	
+	public int getMagicGrow() {
+		return this.magicGrow;
 	}
 
 
 
-	public void setMagicGrow(float magicGrow) {
+	public void setMagicGrow(int magicGrow) {
 		this.magicGrow = magicGrow;
 	}
-
-
-
-	public float getBaseLucky() {
-		return baseLucky;
+	
+	public int getBaseLucky() {
+		return this.baseLucky;
 	}
 
 
 
-	public void setBaseLucky(float baseLucky) {
+	public void setBaseLucky(int baseLucky) {
 		this.baseLucky = baseLucky;
 	}
-
-
-
-	public float getLuckyGrow() {
-		return luckyGrow;
+	
+	public int getLuckyGrow() {
+		return this.luckyGrow;
 	}
 
 
 
-	public void setLuckyGrow(float luckyGrow) {
+	public void setLuckyGrow(int luckyGrow) {
 		this.luckyGrow = luckyGrow;
 	}
-
-
-
+	
 	public int getBaseHit() {
-		return baseHit;
+		return this.baseHit;
 	}
 
 
@@ -365,11 +322,9 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	public void setBaseHit(int baseHit) {
 		this.baseHit = baseHit;
 	}
-
-
-
+	
 	public int getHitGrow() {
-		return hitGrow;
+		return this.hitGrow;
 	}
 
 
@@ -377,11 +332,9 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	public void setHitGrow(int hitGrow) {
 		this.hitGrow = hitGrow;
 	}
-
-
-
+	
 	public int getBaseDodge() {
-		return baseDodge;
+		return this.baseDodge;
 	}
 
 
@@ -389,11 +342,9 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	public void setBaseDodge(int baseDodge) {
 		this.baseDodge = baseDodge;
 	}
-
-
-
+	
 	public int getDodgeGrow() {
-		return dodgeGrow;
+		return this.dodgeGrow;
 	}
 
 
@@ -401,11 +352,9 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	public void setDodgeGrow(int dodgeGrow) {
 		this.dodgeGrow = dodgeGrow;
 	}
-
-
-
+	
 	public int getBaseAvoidDamage() {
-		return baseAvoidDamage;
+		return this.baseAvoidDamage;
 	}
 
 
@@ -413,11 +362,9 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	public void setBaseAvoidDamage(int baseAvoidDamage) {
 		this.baseAvoidDamage = baseAvoidDamage;
 	}
-
-
-
+	
 	public int getAvoidDamageGrow() {
-		return avoidDamageGrow;
+		return this.avoidDamageGrow;
 	}
 
 
@@ -425,11 +372,9 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	public void setAvoidDamageGrow(int avoidDamageGrow) {
 		this.avoidDamageGrow = avoidDamageGrow;
 	}
-
-
-
+	
 	public int getBaseCrit() {
-		return baseCrit;
+		return this.baseCrit;
 	}
 
 
@@ -437,11 +382,9 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	public void setBaseCrit(int baseCrit) {
 		this.baseCrit = baseCrit;
 	}
-
-
-
+	
 	public int getCritGrow() {
-		return critGrow;
+		return this.critGrow;
 	}
 
 
@@ -449,11 +392,19 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	public void setCritGrow(int critGrow) {
 		this.critGrow = critGrow;
 	}
+	
+	public int getMoveSpeed() {
+		return this.moveSpeed;
+	}
 
 
 
+	public void setMoveSpeed(int moveSpeed) {
+		this.moveSpeed = moveSpeed;
+	}
+	
 	public int getVocationType() {
-		return vocationType;
+		return this.vocationType;
 	}
 
 
@@ -461,26 +412,6 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	public void setVocationType(int vocationType) {
 		this.vocationType = vocationType;
 	}
-
-
-
-	public int getMoveSpeed() {
-		return this.moveSpeed;
-	}
-
-
-	public final static int getMoveSpeedMinLimit() {
-		return 0;
-	}
-
-	public void setMoveSpeed(int moveSpeed) {
-		if (moveSpeed < 0) {
-			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					21, "[移动速度]moveSpeed的值不得小于0");
-		}
-		this.moveSpeed = moveSpeed;
-	}
-	
 	
 	public int getOpen() {
 		return this.open;
@@ -522,7 +453,7 @@ public abstract class HumanTemplateVO extends TemplateObject {
 		this.roleInterfaceAppearance = roleInterfaceAppearance;
 	}
 	
-	
+
 	/** 模板字典 */
 	protected final static Map<Integer, HumanTemplateVO> _templates = Maps.newTreeMap();
 
@@ -546,6 +477,6 @@ public abstract class HumanTemplateVO extends TemplateObject {
 
 	@Override
 	public String toString() {
-		return "HumanTemplateVO [  vocationNameLangId=" + vocationNameLangId + ", vocationName=" + vocationName + ", sex=" + sex + ", photo=" + photo + ", head=" + head+"]";
+		return "HumanTestTemplateVO [  vocationNameLangId=" + vocationNameLangId + ", vocationName=" + vocationName + ", sex=" + sex + ", photo=" + photo + ", head=" + head + ", baseControl=" + baseControl + ", controlGrow=" + controlGrow + ", baseAttack=" + baseAttack + ", attackGrow=" + attackGrow + ", baseDefence=" + baseDefence + ", defenceGrow=" + defenceGrow + ", baseMagic=" + baseMagic + ", magicGrow=" + magicGrow + ", baseLucky=" + baseLucky + ", luckyGrow=" + luckyGrow + ", baseHit=" + baseHit + ", hitGrow=" + hitGrow + ", baseDodge=" + baseDodge + ", dodgeGrow=" + dodgeGrow + ", baseAvoidDamage=" + baseAvoidDamage + ", avoidDamageGrow=" + avoidDamageGrow + ", baseCrit=" + baseCrit + ", critGrow=" + critGrow + ", moveSpeed=" + moveSpeed + ", vocationType=" + vocationType + ", open=" + open + ", vocationDescriptionLangId=" + vocationDescriptionLangId + ", roleInterfaceSort=" + roleInterfaceSort + ", roleInterfaceAppearance=" + roleInterfaceAppearance + ",]";
 	}
 }

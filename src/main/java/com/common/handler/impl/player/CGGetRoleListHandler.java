@@ -15,6 +15,7 @@ import com.common.msg.PlayerBean.GCGetRoleList;
 import com.common.msg.PlayerBean.HumanInfo;
 import com.db.model.impl.HumanEntity;
 import com.player.Player;
+import com.player.PlayerState;
 /**
  * 选择用户消息信息处理器
  * @author Administrator
@@ -30,6 +31,7 @@ public class CGGetRoleListHandler implements IMessageHandler{
 		BaseMessage.Builder myMessage=BaseMessage.newBuilder();
 		GCGetRoleList.Builder gcGetRoleList=GCGetRoleList.newBuilder();
 		HumanInfo.Builder humanInfo=null;
+		player.setState(PlayerState.loadingrolelist);
 		List<HumanEntity> humanEntityList=null;
 		try {
 			humanEntityList=ServerManager.getInstance().getDbServer().getHumanDao().getHumanAllList(cgGetRoleList.getPlayerId());
@@ -54,6 +56,7 @@ public class CGGetRoleListHandler implements IMessageHandler{
 		myMessage.setType(BaseMessage.Type.GLOBALMESSAGE);
 		myMessage.setMessageCode(BaseMessage.MessageCode.GCGETROLELIST);
 		myMessage.setExtension(BaseBean.gcGetRoleList, gcGetRoleList.build());
+		player.setState(PlayerState.waitingselectrole);
 		player.sendMessage(myMessage.build());
 	}
 

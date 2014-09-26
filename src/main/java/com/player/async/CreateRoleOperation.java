@@ -55,8 +55,6 @@ public class CreateRoleOperation implements IIoOperation
 			{
 				BaseMessage.Builder myMessage=BaseMessage.newBuilder();
 				player.setHuman(human);
-				player.setState(PlayerState.loadingrolelist);
-				player.setState(PlayerState.waitingselectrole);
 				GCCreateRole.Builder gcCreateRole=GCCreateRole.newBuilder();
 				myMessage.setType(BaseMessage.Type.GLOBALMESSAGE);
 				myMessage.setMessageCode(BaseMessage.MessageCode.GCCREATEROLE);

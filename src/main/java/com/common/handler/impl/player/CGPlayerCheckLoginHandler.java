@@ -11,6 +11,7 @@ import com.common.msg.BaseBean.BaseMessage;
 import com.common.msg.PlayerBean.CGPlayerCheckLogin;
 import com.common.msg.PlayerBean.GCPlayerCheckLogin;
 import com.player.Player;
+import com.player.PlayerState;
 @Scope("prototype")
 @Component
 public class CGPlayerCheckLoginHandler implements IMessageHandler{
@@ -22,11 +23,13 @@ public class CGPlayerCheckLoginHandler implements IMessageHandler{
 		GCPlayerCheckLogin.Builder gcPlayerCheckLogin=GCPlayerCheckLogin.newBuilder();
 		gcPlayerCheckLogin.setPlayerId(cgPlayerCheckLogin.getPlayerId());
 		player.setId(cgPlayerCheckLogin.getPlayerId());
+		player.setState(PlayerState.connected);
 		myMessage.setType(BaseMessage.Type.GLOBALMESSAGE);
 		myMessage.setMessageCode(BaseMessage.MessageCode.GCPLAYERCHECKLOGIN);
 		myMessage.setExtension(BaseBean.gcPlayerCheckLogin, gcPlayerCheckLogin.build());
 		 //连接成功后加载在线玩家
 		OnLinePlayerServer onLinePlayerServer = ServerManager.getInstance().getOnLinePlayerServer();
+		player.setState(PlayerState.auth);
 		onLinePlayerServer.onPlayerEnterServer(player.getId(), player);
 		player.sendMessage(myMessage.build());
 	}
