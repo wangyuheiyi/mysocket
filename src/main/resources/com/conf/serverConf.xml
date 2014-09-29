@@ -15,12 +15,9 @@
 		<context:include-filter type="regex" expression=".*.server.impl.*"/>
 	</context:component-scan>
 	
-	<context:component-scan base-package="com.gameserver.scene">
-		<context:include-filter type="regex" expression=".server.*"/>
-	</context:component-scan>
-	
-	<context:component-scan base-package="com.gameserver.human">
-		<context:include-filter type="regex" expression=".server.*"/>
+	<context:component-scan base-package="com.gameserver" >
+		<context:include-filter type="regex" expression=".scene.server.*"/>
+		<context:include-filter type="regex" expression=".human.server.*"/>
 	</context:component-scan>
 	
 	<context:component-scan base-package="com.common.persistance.impl" />
