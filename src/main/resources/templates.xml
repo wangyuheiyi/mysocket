@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <scripts>
 	<file name="city.xls">
-		<sheet class="com.scene.template.SceneTemplate" />
+		<sheet class="com.gameserver.scene.template.SceneTemplate" />
 	</file>
 	<file name="humans.xls">
-		<sheet class="com.human.template.HumanTemplate" />
+		<sheet class="com.gameserver.human.template.HumanTemplate" />
 	</file>
 </scripts>

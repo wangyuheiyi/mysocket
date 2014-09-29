@@ -2,19 +2,9 @@ package com;
 
 import java.net.URL;
 
-import org.springframework.beans.BeansException;
-
-import com.common.context.ContextFactiry;
-import com.common.globals.config.GameConfigServer;
-import com.common.globals.server.impl.DiscardServer;
-import com.common.globals.server.impl.GlobalLogicRunner;
-import com.common.globals.server.impl.OnLinePlayerServer;
-import com.common.globals.server.impl.SceneService;
-import com.common.globals.server.impl.ServerManager;
-import com.common.globals.server.impl.SystemTimeService;
-import com.core.config.ConfigUtil;
 import com.core.helper.ConfigHelper;
-import com.core.template.TemplateService;
+import com.gameserver.common.globals.config.GameConfigServer;
+import com.gameserver.common.globals.server.impl.ServerManager;
 
 public class GameServer {
 	
