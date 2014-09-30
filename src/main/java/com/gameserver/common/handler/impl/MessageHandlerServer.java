@@ -14,10 +14,10 @@ import com.common.msg.MissionBean.MissionInfo;
 import com.gameserver.common.globals.server.impl.OnLinePlayerServer;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.common.handler.IMessageHandler;
-import com.gameserver.common.handler.impl.player.CGCreateRoleHandler;
-import com.gameserver.common.handler.impl.player.CGGetRoleListHandler;
-import com.gameserver.common.handler.impl.player.CGPlayerCheckLoginHandler;
 import com.gameserver.player.Player;
+import com.gameserver.player.handler.CGCreateRoleHandler;
+import com.gameserver.player.handler.CGGetRoleListHandler;
+import com.gameserver.player.handler.CGPlayerCheckLoginHandler;
 @Service
 public class MessageHandlerServer{
 	

@@ -16,8 +16,7 @@
 	</context:component-scan>
 	
 	<context:component-scan base-package="com.gameserver" >
-		<context:include-filter type="regex" expression=".scene.server.*"/>
-		<context:include-filter type="regex" expression=".human.server.*"/>
+		<context:include-filter type="regex" expression="\.*\.server\.[^.]+(Server)"/>
 	</context:component-scan>
 	
 	<context:component-scan base-package="com.common.persistance.impl" />

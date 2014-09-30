@@ -1,4 +1,4 @@
-package com.gameserver.common.handler.impl.player;
+package com.gameserver.player.handler;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

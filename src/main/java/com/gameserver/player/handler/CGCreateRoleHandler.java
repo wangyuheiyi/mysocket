@@ -1,4 +1,4 @@
-package com.gameserver.common.handler.impl.player;
+package com.gameserver.player.handler;
 
 import java.sql.Timestamp;
 import java.util.Date;
