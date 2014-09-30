@@ -18,7 +18,7 @@ message CGGetRoleList {
 
 message GCGetRoleList {
 	required int64 playerId = 1;
-	repeated HumanInfo humanInfo=2;
+	repeated HumanInfo humanInfo=2; //这里返回了humaninfo的list
 }
 
 message CGCreateRole {
@@ -28,7 +28,7 @@ message CGCreateRole {
 
 message GCCreateRole {
 	required int64 playerId = 1;
-	optional HumanInfo humanInfo=2;
+	optional HumanInfo humanInfo=2; //这里嵌套humaninfo对象
 }
 
 
@@ -43,10 +43,32 @@ message GCSelectRoleList {
 }
 
 message HumanInfo{
-	required int64 roleId = 1;
-	optional string roleName = 2 [default = ""];
-	optional int32 level=3 [default = 0];
-	optional int32 vocationType=4 [default = 0];
-	optional int32 allianceTypeId=5 [default = 0];
-	optional int32 avatar=6 [default = 0];
+	required int64 roleId = 1; //角色id
+	optional string roleName = 2 [default = ""]; //角色名称
+	optional int32 level=3 [default = 1]; //角色等级
+	optional int32 vocationType=4 [default = 1]; //角色职业类型
+	optional int32 allianceTypeId=5 [default = 1]; //种族
+	optional int32 diamond=6 [default = 0]; //角色元宝数量
+	optional int32 gold=7 [default = 0]; //角色金币数量
+	optional int32 coupon=8 [default = 0]; //点卷数量
+	optional int32 curExp=9 [default = 0]; //当前经验
+	optional int32 maxExp=10 [default = 0]; //最大经验
+	optional int32 sceneId=11 [default = 0]; //所在场景
+	optional int32 primBagCount=12 [default = 0]; //主背包数量 
+	optional int32 storyId=13 [default = 0]; //所进行的剧情
+	optional int32 avatar=14 [default = 1]; //角色的AvatarId
+	optional int32 guideId=15 [default = 0]; //新手引导ID
+	optional int32 guideState=16 [default = 0]; //新手引导状态
+	optional int32 roleKind=17 [default = 0]; //角色类型:0正常角色1竞技场角色其它场景角色
+	optional int32 vipLevel=18 [default = 0]; //vip等级
+	optional int32 control=19 [default = 0]; //统帅
+	optional int32 attack=20 [default = 0]; //攻击力
+	optional int32 defence=21 [default = 0]; //防御力
+	optional int32 magic=22 [default = 0]; //法力
+	optional int32 lucky=23 [default = 0]; //幸运
+	optional int32 hit=24 [default = 0]; //命中
+	optional int32 dodge=25 [default = 0]; //闪避
+	optional int32 avoidDamage=26 [default = 0]; //免伤
+	optional int32 crit=27 [default = 0]; //暴击
+	optional int32 moveSpeed=28 [default = 0]; //移动速度
 }
