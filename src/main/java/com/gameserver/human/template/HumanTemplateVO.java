@@ -133,6 +133,14 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	/** 角色界面外观 */
 	@ExcelCellBinding(offset = 29)
 	protected int roleInterfaceAppearance;
+	
+	/** 角色技能A */
+	@ExcelCellBinding(offset = 30)
+	protected int roleSkillA;
+
+	/** 特殊建筑 */
+	@ExcelCellBinding(offset = 31)
+	protected int specialBuilding;
 
 
 	public int getVocationNameLangId() {
@@ -453,6 +461,29 @@ public abstract class HumanTemplateVO extends TemplateObject {
 		this.roleInterfaceAppearance = roleInterfaceAppearance;
 	}
 	
+
+	public int getRoleSkillA() {
+		return roleSkillA;
+	}
+
+
+
+	public void setRoleSkillA(int roleSkillA) {
+		this.roleSkillA = roleSkillA;
+	}
+
+
+	public int getSpecialBuilding() {
+		return specialBuilding;
+	}
+
+
+
+	public void setSpecialBuilding(int specialBuilding) {
+		this.specialBuilding = specialBuilding;
+	}
+
+
 
 	/** 模板字典 */
 	protected final static Map<Integer, HumanTemplateVO> _templates = Maps.newTreeMap();

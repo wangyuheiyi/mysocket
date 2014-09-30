@@ -12,6 +12,7 @@ import com.gameserver.common.globals.config.GameConfigServer;
 import com.gameserver.common.globals.server.IBaseServer;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.human.Human;
+import com.gameserver.human.template.ExperienceTemplate;
 import com.gameserver.human.template.HumanTemplate;
 @Component
 public class HumanSever implements IBaseServer{
@@ -50,6 +51,10 @@ public class HumanSever implements IBaseServer{
 		return null;
 	}
 	
+	public int getMaxExpByTempl(int level){
+		return templateService.get(level,ExperienceTemplate.class).getHumanExperience();
+	}
+	
 	///////////////////////////////////////数据转换辅助类///////////////////////////////////////////////
 	public HumanInfo getHumanInfo(Human human)
 	{
@@ -70,42 +75,35 @@ public class HumanSever implements IBaseServer{
 				if (human == null) return null;
 				HumanInfo.Builder humanInfo= HumanInfo.newBuilder();
 				humanInfo.setRoleId(human.getCharId());
-//				humanInfo.setName(human.getName());
-//				humanInfo.setVocation(human.getVocationType().intVal());				
-//				humanInfo.setSex(human.isGirl()?0:1);
-//				humanInfo.setLevel(human.getLevel());
-//				humanInfo.setDiamond(human.getAllDiamond());
-//				humanInfo.setGold(human.getGold());
-//				humanInfo.setExploit(human.getExploit());
-//				humanInfo.setFriendPoint(human.getFriendPoint());	
-//				humanInfo.setCurExp(human.getCurExp());
-//				humanInfo.setMaxExp(human.getMaxExp());
-//				humanInfo.setCurVim(human.getVim());
-//				humanInfo.setCityId(human.getSceneId());
-//				humanInfo.setStoryId(human.getStoryId());
-//				humanInfo.setAvatar(human.getAvatar());
-//				humanInfo.setFihterPower(human.getFihterPower());
-//				Pet fromArrayPet=human.getPetManager().getPetBySlotId(1);
-//				if(fromArrayPet!=null)humanInfo.setPetFihterPower(fromArrayPet.getFihterPower());
-//				humanInfo.setGuideId(human.getGuideId());
-//				humanInfo.setGuideState(human.getGuideState());
-//				humanInfo.setSoul(human.getSoul());
-//				humanInfo.setPetExpPool(human.getPetExpPool());
-//				humanInfo.setQuality(human.getQuality());
-//				humanInfo.setQualityStep(human.getQualityStep());
-//				humanInfo.setSkillPack(human.getSkillManager().toJsonProp());
-//				humanInfo.setMaxHp(human.getPropertyManager().getMaxHp());
-//				humanInfo.setAttack(human.getPropertyManager().getAttack());
-//				humanInfo.setDefence(human.getPropertyManager().getDefence());
-//				humanInfo.setCrit(human.getPropertyManager().getCrit());
-//				humanInfo.setCritResist(human.getPropertyManager().getCritResist());
-//				humanInfo.setDodge(human.getPropertyManager().getDodge());
-//				humanInfo.setHit(human.getPropertyManager().getHit());
-//				humanInfo.setAvoidDamge(human.getPropertyManager().getAvoidDamage());
-//				humanInfo.setCritDamage(human.getPropertyManager().getCritDamage());
-//				humanInfo.setWreckArmorDamage(human.getPropertyManager().getWreckArmorDamage());
-//				humanInfo.setVipLevel(human.getVipLevel());
-//				humanInfo.setGodEquipTemplId(human.getGodEquipManager().getDefaultGodEquipId());
+				humanInfo.setRoleName(human.getName());
+				humanInfo.setVocationType(human.getVocationType());
+				humanInfo.setLevel(human.getLevel());
+				humanInfo.setAllianceTypeId(human.getAllianceTypeId());
+				humanInfo.setDiamond(human.getDiamond());
+				humanInfo.setGold(human.getGold());
+				humanInfo.setCoupon(human.getCoupon());
+				humanInfo.setCurExp(human.getCurExp());
+				humanInfo.setMaxExp(human.getMaxExp());
+				humanInfo.setStoryId(human.getStoryId());
+				humanInfo.setSceneId(human.getSceneId());
+				humanInfo.setPrimBagCount(human.getPrimBagCount());
+				humanInfo.setAvatar(human.getAvatar());
+				humanInfo.setGuideId(human.getGuideId());
+				humanInfo.setGuideState(human.getGuideState());
+				humanInfo.setRoleKind(human.getRoleKind());
+				humanInfo.setVipLevel(human.getVipLevel());
+				humanInfo.setControl(human.getControl());
+				humanInfo.setAttack(human.getAttack());
+				humanInfo.setDefence(human.getDefence());
+				humanInfo.setMagic(human.getMagic());
+				humanInfo.setLucky(human.getLucky());
+				humanInfo.setHit(human.getHit());
+				humanInfo.setDodge(human.getDodge());
+				humanInfo.setAvoidDamage(human.getAvoidDamage());
+				humanInfo.setCrit(human.getCrit());
+				humanInfo.setMoveSpeed(human.getMoveSpeed());
+				humanInfo.setRoleSkillA(human.getRoleSkillA());
+				humanInfo.setSpecialBuilding(human.getSpecialBuilding());
 				return humanInfo.build();
 			}
 		};

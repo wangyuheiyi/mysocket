@@ -3,6 +3,7 @@ package com.gameserver.human;
 import java.sql.Timestamp;
 
 import com.db.model.impl.HumanEntity;
+import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.common.operation.LifeCycle;
 import com.gameserver.common.operation.LifeCycleImpl;
 import com.gameserver.common.operation.PersistanceObject;
@@ -372,5 +373,104 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 		this.deleteTime = deleteTime;
 	}
 
+	public int getMaxExp()
+	{
+		return ServerManager.getInstance().getHumanSever().getMaxExpByTempl(this.getLevel());
+	}
 	
+	//需要完善的属性
+	public int getVipLevel()
+	{
+		return 0;
+	}
+	
+	//统帅值
+	public int getControl(){
+		return 0;
+	}
+	
+	public void setControl(int control){
+		
+	}
+	
+	//攻击力
+	public int getAttack(){
+		return 0;
+	}
+	
+	public void setAttack(int attack){
+	}
+	
+	//防御力
+	public int getDefence(){
+		return 0;
+	}
+	
+	public void setDefence(int defence){
+	}
+	
+	//法力
+	public int getMagic(){
+		return 0;
+	}
+	
+	public void setMagic(int magic){
+	}
+	
+	//幸运
+	public int getLucky(){
+		return 0;
+	}
+	
+	public void setLucky(int lucky){
+	}
+	
+	//命中
+	public int getHit(){
+		return 0;
+	}
+	
+	public void setHit(int hit){
+	}
+	
+	//闪避
+	public int getDodge(){
+		return 0;
+	}
+	
+	public void setDodge(int dodge){
+	}
+	
+	//免伤
+	public int getAvoidDamage(){
+		return 0;
+	}
+	
+	public void setAvoidDamage(int avoidDamage){
+	}
+	
+	//暴击
+	public int getCrit(){
+		return 0;
+	}
+	
+	public void setCrit(int crit){
+	}
+	
+	//速度
+	public int getMoveSpeed(){
+		return ServerManager.getInstance().getHumanSever().getHumanTemplByAvatar(this.getAvatar()).getMoveSpeed();
+	}
+		
+	//主角技能
+	public int getRoleSkillA(){
+		return ServerManager.getInstance().getHumanSever().getHumanTemplByAvatar(this.getAvatar()).getRoleSkillA();
+	}
+	
+	//主角技能b
+	public int getSpecialBuilding(){
+		return ServerManager.getInstance().getHumanSever().getHumanTemplByAvatar(this.getAvatar()).getSpecialBuilding();
+	}
+
+		
 }
