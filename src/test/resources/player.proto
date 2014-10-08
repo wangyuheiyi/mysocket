@@ -32,12 +32,12 @@ message GCCreateRole {
 }
 
 
-message CGSelectRoleList {
+message CGSelectRole {
 	required int64 playerId = 1;
 	required int64 roleId=2;
 }
 
-message GCSelectRoleList {
+message GCSelectRole {
 	required int64 playerId = 1;
 	optional HumanInfo humanInfo=2;
 }

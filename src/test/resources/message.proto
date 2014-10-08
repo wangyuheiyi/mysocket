@@ -19,8 +19,8 @@ message BaseMessage {
 			GCGETROLELIST=4;
 			CGCREATEROLE=5;
 			GCCREATEROLE=6;
-			CGSELECTROLELIST=7;
-			GCSELECTROLELIST=8;
+			CGSELECTROLE=7;
+			GCSELECTROLE=8;
 		 	MISSIONINFO=9;
 		 	MISSIONREWARD=10;
 		}
@@ -34,8 +34,8 @@ extend BaseMessage {
 		optional GCGetRoleList gcGetRoleList = 103;
 		optional CGCreateRole cgCreateRole = 104;
 		optional GCCreateRole gcCreateRole = 105;
-		optional CGSelectRoleList cgSelectRoleList = 106;
-		optional GCSelectRoleList gcSelectRoleList = 107;
+		optional CGSelectRole cgSelectRole = 106;
+		optional GCSelectRole gcSelectRole = 107;
 	  optional MissionInfo missionInfo = 200;
 	  optional MissionReward missionReward = 201;
 }

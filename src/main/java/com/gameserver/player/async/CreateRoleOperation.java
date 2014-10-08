@@ -7,7 +7,6 @@ import com.common.msg.PlayerBean.GCCreateRole;
 import com.common.msg.PlayerBean.HumanInfo;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.human.Human;
-import com.gameserver.human.manager.HumanInitManager;
 import com.gameserver.player.Player;
 import com.gameserver.player.PlayerState;
 

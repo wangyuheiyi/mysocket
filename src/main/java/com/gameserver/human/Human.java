@@ -1,16 +1,20 @@
 package com.gameserver.human;
 
 import java.sql.Timestamp;
+import java.util.List;
 
+import com.core.util.KeyValuePair;
 import com.db.model.impl.HumanEntity;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.common.operation.LifeCycle;
 import com.gameserver.common.operation.LifeCycleImpl;
 import com.gameserver.common.operation.PersistanceObject;
 import com.gameserver.player.Player;
-import com.gameserver.properties.RoleBaseIntProperties;
+import com.gameserver.role.Role;
+import com.gameserver.role.properties.RoleBaseIntProperties;
+import com.gameserver.role.properties.RolePropertyManager;
 
-public class Human implements PersistanceObject<Long, HumanEntity>{
+public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 	/** 基础属性：整型 */
 	protected final RoleBaseIntProperties baseIntProperties;
 	/** 生命期 */
@@ -502,16 +506,21 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 		
 	}
 	
-	/**
-	 * 重置所有属性的修改标识
-	 * 
-	 * @param reset
-	 */
-	public void resetChange()
-	{
-//		this.getPropertyManager().resetChanged();
-//		this.finalProps.resetChanged();
-		this.baseIntProperties.resetChanged();
-//		this.baseStrProperties.resetChanged();
+
+	@Override
+	public RolePropertyManager<?, ?> getPropertyManager() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void onModified() {
+		setModified();
+	}
+
+	@Override
+	protected List<KeyValuePair<Integer, Integer>> changedNum() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

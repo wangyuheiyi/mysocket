@@ -1,4 +1,4 @@
-package com.gameserver.properties;
+package com.gameserver.role.properties;
 
 import java.util.BitSet;
 

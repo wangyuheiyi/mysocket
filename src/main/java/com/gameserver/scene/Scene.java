@@ -136,7 +136,7 @@ public class Scene implements HeartBeatAble, Listenable<SceneListener>
 //		human.sendMessage(gcEnter);
 //		
 //		human.SyncSceneHuman();
-		
+		System.out.println("player in scene!!");
 		// 监听器监听
 		for (SceneListener listener : listeners)
 		{
