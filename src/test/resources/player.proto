@@ -23,7 +23,7 @@ message GCGetRoleList {
 
 message CGCreateRole {
 	required int64 playerId = 1;
-	required int32 avatar=2;
+	required int32 templateId=2; //角色模板id
 }
 
 message GCCreateRole {
@@ -34,7 +34,7 @@ message GCCreateRole {
 
 message CGSelectRoleList {
 	required int64 playerId = 1;
-	optional int64 roleId=2;
+	required int64 roleId=2;
 }
 
 message GCSelectRoleList {
@@ -71,4 +71,6 @@ message HumanInfo{
 	optional int32 avoidDamage=26 [default = 0]; //免伤
 	optional int32 crit=27 [default = 0]; //暴击
 	optional int32 moveSpeed=28 [default = 0]; //移动速度
+	optional int32 roleSkillA=29 [default = 0]; //角色技能A
+	optional int32 specialBuilding=30 [default = 0]; //特殊建筑
 }

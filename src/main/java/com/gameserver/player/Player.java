@@ -188,4 +188,15 @@ public class Player implements HeartBeatAble{
 			}
 		}
 	}
+	
+	/**
+	 * 关闭用户连接, 解除和 session 的绑定
+	 * 
+	 * @see GameServerIoHandler#sessionClosed(IoSession)
+	 * 
+	 */
+	public void disconnect() 
+	{
+		
+	}
 }

@@ -7,7 +7,7 @@
 		<sheet class="com.gameserver.human.template.HumanTemplate" />
 	</file>
 	
-	<file name="humans.xls">
+	<file name="experience.xls">
 		<sheet class="com.gameserver.human.template.ExperienceTemplate" />
 	</file>
 </scripts>

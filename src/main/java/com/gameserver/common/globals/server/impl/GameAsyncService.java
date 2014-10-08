@@ -37,9 +37,10 @@ public class GameAsyncService implements IBaseServer,AsyncService{
 	
 	@Override
 	@Async
-	public AsyncOperation createOperationAndExecuteAtOnce(IIoOperation operation) {
-		// TODO Auto-generated method stub
-		return null;
+	public SyncOperation createOperationAndExecuteAtOnce(IIoOperation operation) {
+		SyncOperation _operation = new SyncOperation(operation);
+		_operation.execute();
+		return _operation;
 	}
 
 }

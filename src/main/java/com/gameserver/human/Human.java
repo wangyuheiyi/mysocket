@@ -8,13 +8,17 @@ import com.gameserver.common.operation.LifeCycle;
 import com.gameserver.common.operation.LifeCycleImpl;
 import com.gameserver.common.operation.PersistanceObject;
 import com.gameserver.player.Player;
+import com.gameserver.properties.RoleBaseIntProperties;
 
 public class Human implements PersistanceObject<Long, HumanEntity>{
+	/** 基础属性：整型 */
+	protected final RoleBaseIntProperties baseIntProperties;
 	/** 生命期 */
 	private LifeCycle lifeCycle;
 	/** 角色所属玩家 */
 	private Player player;
 	public Human(Player player) {
+		baseIntProperties=new RoleBaseIntProperties();
 		this.player=player;
 		this.lifeCycle = new LifeCycleImpl(this);
 	}
@@ -26,32 +30,12 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 	private long passportId;
 	/** 玩家的名字  */
 	private String name;
-	/** 职业类型 */
-	private int vocationType;
-	/** 等级 */
-	private int level=1;
+	
 	/** 种族 */
 	private int allianceTypeId;
-	/** 钻石 */
-	private int diamond;
-	/** 金币 */
-	private int gold;
-	/** 点券 */
-	private int coupon;
-	/** 当前经验 */
-	private int curExp;
-	/** 所在场景Id */
-	private int sceneId;
+
 	/** 主背包容量 */
 	private int primBagCount;
-	/** 剧情ID */
-	private int storyId;
-	/** 角色的AvatarId */
-	private int avatar;
-	/** 新手引导ID */
-	private int guideId;
-	/** 新手引导状态 */
-	private int guideState;
 	/** 角色类型:0正常角色1竞技场角色其它场景角色 */
 	private int roleKind;
 	/** 上次登陆IP */
@@ -206,19 +190,19 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 	}
 
 	public int getVocationType() {
-		return vocationType;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.VOCATIONTYPE);
 	}
 
 	public void setVocationType(int vocationType) {
-		this.vocationType = vocationType;
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.VOCATIONTYPE, vocationType);
 	}
 
 	public int getLevel() {
-		return level;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.LEVEL);
 	}
 
 	public void setLevel(int level) {
-		this.level = level;
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.LEVEL, level);
 	}
 
 	public int getAllianceTypeId() {
@@ -230,43 +214,43 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 	}
 
 	public int getDiamond() {
-		return diamond;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.DIAMOND);
 	}
 
 	public void setDiamond(int diamond) {
-		this.diamond = diamond;
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.DIAMOND, diamond);
 	}
 
 	public int getGold() {
-		return gold;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.GOLD);
 	}
 
 	public void setGold(int gold) {
-		this.gold = gold;
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.GOLD, gold);
 	}
 
 	public int getCoupon() {
-		return coupon;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.COUPON);
 	}
 
 	public void setCoupon(int coupon) {
-		this.coupon = coupon;
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.COUPON, coupon);
 	}
 
 	public int getCurExp() {
-		return curExp;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.CUR_EXP);
 	}
 
 	public void setCurExp(int curExp) {
-		this.curExp = curExp;
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.CUR_EXP, curExp);
 	}
 
 	public int getSceneId() {
-		return sceneId;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.SCENE_ID);
 	}
 
 	public void setSceneId(int sceneId) {
-		this.sceneId = sceneId;
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.SCENE_ID, sceneId);
 	}
 
 	public int getPrimBagCount() {
@@ -278,35 +262,43 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 	}
 
 	public int getStoryId() {
-		return storyId;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.STORY_ID);
 	}
 
 	public void setStoryId(int storyId) {
-		this.storyId = storyId;
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.STORY_ID, storyId);
 	}
 
 	public int getAvatar() {
-		return avatar;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.AVATAR);
 	}
 
 	public void setAvatar(int avatar) {
-		this.avatar = avatar;
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.AVATAR, avatar);
+	}
+	
+	public int getTemplateId() {
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.TEMPLATE_ID);
+	}
+
+	public void setTemplateId(int templateId) {
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.TEMPLATE_ID, templateId);
 	}
 
 	public int getGuideId() {
-		return guideId;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.GUIDEID);
 	}
 
 	public void setGuideId(int guideId) {
-		this.guideId = guideId;
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.GUIDEID, guideId);
 	}
 
 	public int getGuideState() {
-		return guideState;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.GUIDESTATE);
 	}
 
 	public void setGuideState(int guideState) {
-		this.guideState = guideState;
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.GUIDESTATE, guideState);
 	}
 
 	public int getRoleKind() {
@@ -384,77 +376,91 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 		return 0;
 	}
 	
-	//统帅值
-	public int getControl(){
+	//需要完善的属性
+	public int getVim()
+	{
 		return 0;
 	}
 	
+	//统帅值
+	public int getControl(){
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.CONTROL);
+	}
+	
 	public void setControl(int control){
-		
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.CONTROL, control);
 	}
 	
 	//攻击力
 	public int getAttack(){
-		return 0;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.ATTACK);
 	}
 	
 	public void setAttack(int attack){
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.ATTACK, attack);
 	}
 	
 	//防御力
 	public int getDefence(){
-		return 0;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.DEFENCE);
 	}
 	
 	public void setDefence(int defence){
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.DEFENCE, defence);
 	}
 	
 	//法力
 	public int getMagic(){
-		return 0;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.MAGIC);
 	}
 	
 	public void setMagic(int magic){
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.MAGIC, magic);
 	}
 	
 	//幸运
 	public int getLucky(){
-		return 0;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.LUCKY);
 	}
 	
 	public void setLucky(int lucky){
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.LUCKY, lucky);
 	}
 	
 	//命中
 	public int getHit(){
-		return 0;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.HIT);
 	}
 	
 	public void setHit(int hit){
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.HIT, hit);
 	}
 	
 	//闪避
 	public int getDodge(){
-		return 0;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.DODGE);
 	}
 	
 	public void setDodge(int dodge){
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.DODGE, dodge);
 	}
 	
 	//免伤
 	public int getAvoidDamage(){
-		return 0;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.AVOIDDAMAGE);
 	}
 	
 	public void setAvoidDamage(int avoidDamage){
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.AVOIDDAMAGE, avoidDamage);
 	}
 	
 	//暴击
 	public int getCrit(){
-		return 0;
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.CRIT);
 	}
 	
 	public void setCrit(int crit){
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.CRIT, crit);
 	}
 	
 	//速度
@@ -472,5 +478,40 @@ public class Human implements PersistanceObject<Long, HumanEntity>{
 		return ServerManager.getInstance().getHumanSever().getHumanTemplByAvatar(this.getAvatar()).getSpecialBuilding();
 	}
 
+	/**
+	 * 在数据加载完之后的登陆
+	 * 
+	 * @param isFirstLogin
+	 */
+	public void onLogin(boolean isFirstLogin)
+	{
 		
+	}
+	
+	public void checkAfterRoleLoad()
+	{
+		
+	}
+	
+	public void onInit(){
+		
+	}
+	
+	public void afterLogin()
+	{
+		
+	}
+	
+	/**
+	 * 重置所有属性的修改标识
+	 * 
+	 * @param reset
+	 */
+	public void resetChange()
+	{
+//		this.getPropertyManager().resetChanged();
+//		this.finalProps.resetChanged();
+		this.baseIntProperties.resetChanged();
+//		this.baseStrProperties.resetChanged();
+	}
 }

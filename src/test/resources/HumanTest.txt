@@ -1,0 +1,32 @@
+int vocationNameLangId;[notNull=false] // 职业名称多语言Id
+String vocationName; // 职业名称
+int sex;[notNull=false;minValue=0;maxValue=1] //性别
+int photo;[notNull=false;minValue=0] // 头像
+int head;[notNull=false;minValue=0] // 全身像
+int baseControl;[notNull=false;minValue=0] // 基础统帅
+int controlGrow;[notNull=false;minValue=0] // 统帅成长
+int baseAttack;[notNull=false;minValue=0] // 基础攻击
+int attackGrow;[notNull=false;minValue=0] // 攻击成长
+int baseDefence;[notNull=false;minValue=0] // 基础防御
+int defenceGrow;[notNull=false;minValue=0] // 防御成长
+int baseMagic;[notNull=false;minValue=0] // 基础法力
+int magicGrow;[notNull=false;minValue=0] // 法力成长
+int baseLucky;[notNull=false;minValue=0] // 基础幸运
+int luckyGrow;[notNull=false;minValue=0] // 幸运成长
+int baseHit;[notNull=false;minValue=0] // 基础命中
+int hitGrow;[notNull=false;minValue=0] // 命中成长
+int baseDodge;[notNull=false;minValue=0] // 基础闪避
+int dodgeGrow;[notNull=false;minValue=0] // 闪避成长
+int baseAvoidDamage;[notNull=false;minValue=0] // 基础免伤
+int avoidDamageGrow;[notNull=false;minValue=0] // 免伤成长
+int baseCrit;[notNull=false;minValue=0] // 基础暴击
+int critGrow;[notNull=false;minValue=0] // 暴击成长
+int moveSpeed;[notNull=false;minValue=0] // 移动速度
+int vocationType;[notNull=false;minValue=0] // 职业类型
+int allianceType;[notNull=false;minValue=0] // 种族
+int open;[notNull=false] //是否开放
+int vocationDescriptionLangId;[notNull=false] // 职业说明多语言Id
+int roleInterfaceSort;[notNull=false] //角色界面排序
+int roleInterfaceAppearance;[notNull=false] //角色界面外观
+int roleSkillA;[notNull=false] //角色技能A
+int specialBuilding;[notNull=false] //特殊建筑

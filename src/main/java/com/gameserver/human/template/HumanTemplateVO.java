@@ -118,28 +118,32 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	@ExcelCellBinding(offset = 25)
 	protected int vocationType;
 
-	/** 是否开放 */
+	/** 种族 */
 	@ExcelCellBinding(offset = 26)
+	protected int allianceType;
+
+	/** 是否开放 */
+	@ExcelCellBinding(offset = 27)
 	protected int open;
 
 	/** 职业说明多语言Id */
-	@ExcelCellBinding(offset = 27)
+	@ExcelCellBinding(offset = 28)
 	protected int vocationDescriptionLangId;
 
 	/** 角色界面排序 */
-	@ExcelCellBinding(offset = 28)
+	@ExcelCellBinding(offset = 29)
 	protected int roleInterfaceSort;
 
 	/** 角色界面外观 */
-	@ExcelCellBinding(offset = 29)
-	protected int roleInterfaceAppearance;
-	
-	/** 角色技能A */
 	@ExcelCellBinding(offset = 30)
+	protected int roleInterfaceAppearance;
+
+	/** 角色技能A */
+	@ExcelCellBinding(offset = 31)
 	protected int roleSkillA;
 
 	/** 特殊建筑 */
-	@ExcelCellBinding(offset = 31)
+	@ExcelCellBinding(offset = 32)
 	protected int specialBuilding;
 
 
@@ -226,8 +230,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getBaseControlMinLimit() {
+		return 0;
+	}
 
 	public void setBaseControl(int baseControl) {
+		if (baseControl < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					7, "[基础统帅]baseControl的值不得小于0");
+		}
 		this.baseControl = baseControl;
 	}
 	
@@ -236,8 +247,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getControlGrowMinLimit() {
+		return 0;
+	}
 
 	public void setControlGrow(int controlGrow) {
+		if (controlGrow < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					8, "[统帅成长]controlGrow的值不得小于0");
+		}
 		this.controlGrow = controlGrow;
 	}
 	
@@ -246,8 +264,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getBaseAttackMinLimit() {
+		return 0;
+	}
 
 	public void setBaseAttack(int baseAttack) {
+		if (baseAttack < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					9, "[基础攻击]baseAttack的值不得小于0");
+		}
 		this.baseAttack = baseAttack;
 	}
 	
@@ -256,8 +281,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getAttackGrowMinLimit() {
+		return 0;
+	}
 
 	public void setAttackGrow(int attackGrow) {
+		if (attackGrow < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					10, "[攻击成长]attackGrow的值不得小于0");
+		}
 		this.attackGrow = attackGrow;
 	}
 	
@@ -266,8 +298,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getBaseDefenceMinLimit() {
+		return 0;
+	}
 
 	public void setBaseDefence(int baseDefence) {
+		if (baseDefence < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					11, "[基础防御]baseDefence的值不得小于0");
+		}
 		this.baseDefence = baseDefence;
 	}
 	
@@ -276,8 +315,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getDefenceGrowMinLimit() {
+		return 0;
+	}
 
 	public void setDefenceGrow(int defenceGrow) {
+		if (defenceGrow < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					12, "[防御成长]defenceGrow的值不得小于0");
+		}
 		this.defenceGrow = defenceGrow;
 	}
 	
@@ -286,8 +332,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getBaseMagicMinLimit() {
+		return 0;
+	}
 
 	public void setBaseMagic(int baseMagic) {
+		if (baseMagic < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					13, "[基础法力]baseMagic的值不得小于0");
+		}
 		this.baseMagic = baseMagic;
 	}
 	
@@ -296,8 +349,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getMagicGrowMinLimit() {
+		return 0;
+	}
 
 	public void setMagicGrow(int magicGrow) {
+		if (magicGrow < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					14, "[法力成长]magicGrow的值不得小于0");
+		}
 		this.magicGrow = magicGrow;
 	}
 	
@@ -306,8 +366,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getBaseLuckyMinLimit() {
+		return 0;
+	}
 
 	public void setBaseLucky(int baseLucky) {
+		if (baseLucky < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					15, "[基础幸运]baseLucky的值不得小于0");
+		}
 		this.baseLucky = baseLucky;
 	}
 	
@@ -316,8 +383,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getLuckyGrowMinLimit() {
+		return 0;
+	}
 
 	public void setLuckyGrow(int luckyGrow) {
+		if (luckyGrow < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					16, "[幸运成长]luckyGrow的值不得小于0");
+		}
 		this.luckyGrow = luckyGrow;
 	}
 	
@@ -326,8 +400,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getBaseHitMinLimit() {
+		return 0;
+	}
 
 	public void setBaseHit(int baseHit) {
+		if (baseHit < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					17, "[基础命中]baseHit的值不得小于0");
+		}
 		this.baseHit = baseHit;
 	}
 	
@@ -336,8 +417,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getHitGrowMinLimit() {
+		return 0;
+	}
 
 	public void setHitGrow(int hitGrow) {
+		if (hitGrow < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					18, "[命中成长]hitGrow的值不得小于0");
+		}
 		this.hitGrow = hitGrow;
 	}
 	
@@ -346,8 +434,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getBaseDodgeMinLimit() {
+		return 0;
+	}
 
 	public void setBaseDodge(int baseDodge) {
+		if (baseDodge < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					19, "[基础闪避]baseDodge的值不得小于0");
+		}
 		this.baseDodge = baseDodge;
 	}
 	
@@ -356,8 +451,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getDodgeGrowMinLimit() {
+		return 0;
+	}
 
 	public void setDodgeGrow(int dodgeGrow) {
+		if (dodgeGrow < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					20, "[闪避成长]dodgeGrow的值不得小于0");
+		}
 		this.dodgeGrow = dodgeGrow;
 	}
 	
@@ -366,8 +468,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getBaseAvoidDamageMinLimit() {
+		return 0;
+	}
 
 	public void setBaseAvoidDamage(int baseAvoidDamage) {
+		if (baseAvoidDamage < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					21, "[基础免伤]baseAvoidDamage的值不得小于0");
+		}
 		this.baseAvoidDamage = baseAvoidDamage;
 	}
 	
@@ -376,8 +485,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getAvoidDamageGrowMinLimit() {
+		return 0;
+	}
 
 	public void setAvoidDamageGrow(int avoidDamageGrow) {
+		if (avoidDamageGrow < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					22, "[免伤成长]avoidDamageGrow的值不得小于0");
+		}
 		this.avoidDamageGrow = avoidDamageGrow;
 	}
 	
@@ -386,8 +502,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getBaseCritMinLimit() {
+		return 0;
+	}
 
 	public void setBaseCrit(int baseCrit) {
+		if (baseCrit < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					23, "[基础暴击]baseCrit的值不得小于0");
+		}
 		this.baseCrit = baseCrit;
 	}
 	
@@ -396,8 +519,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getCritGrowMinLimit() {
+		return 0;
+	}
 
 	public void setCritGrow(int critGrow) {
+		if (critGrow < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					24, "[暴击成长]critGrow的值不得小于0");
+		}
 		this.critGrow = critGrow;
 	}
 	
@@ -406,8 +536,15 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getMoveSpeedMinLimit() {
+		return 0;
+	}
 
 	public void setMoveSpeed(int moveSpeed) {
+		if (moveSpeed < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					25, "[移动速度]moveSpeed的值不得小于0");
+		}
 		this.moveSpeed = moveSpeed;
 	}
 	
@@ -416,9 +553,33 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	}
 
 
+	public final static int getVocationTypeMinLimit() {
+		return 0;
+	}
 
 	public void setVocationType(int vocationType) {
+		if (vocationType < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					26, "[职业类型]vocationType的值不得小于0");
+		}
 		this.vocationType = vocationType;
+	}
+	
+	public int getAllianceType() {
+		return this.allianceType;
+	}
+
+
+	public final static int getAllianceTypeMinLimit() {
+		return 0;
+	}
+
+	public void setAllianceType(int allianceType) {
+		if (allianceType < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					27, "[种族]allianceType的值不得小于0");
+		}
+		this.allianceType = allianceType;
 	}
 	
 	public int getOpen() {
@@ -461,9 +622,8 @@ public abstract class HumanTemplateVO extends TemplateObject {
 		this.roleInterfaceAppearance = roleInterfaceAppearance;
 	}
 	
-
 	public int getRoleSkillA() {
-		return roleSkillA;
+		return this.roleSkillA;
 	}
 
 
@@ -471,10 +631,9 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	public void setRoleSkillA(int roleSkillA) {
 		this.roleSkillA = roleSkillA;
 	}
-
-
+	
 	public int getSpecialBuilding() {
-		return specialBuilding;
+		return this.specialBuilding;
 	}
 
 
@@ -482,8 +641,7 @@ public abstract class HumanTemplateVO extends TemplateObject {
 	public void setSpecialBuilding(int specialBuilding) {
 		this.specialBuilding = specialBuilding;
 	}
-
-
+	
 
 	/** 模板字典 */
 	protected final static Map<Integer, HumanTemplateVO> _templates = Maps.newTreeMap();
@@ -508,6 +666,6 @@ public abstract class HumanTemplateVO extends TemplateObject {
 
 	@Override
 	public String toString() {
-		return "HumanTestTemplateVO [  vocationNameLangId=" + vocationNameLangId + ", vocationName=" + vocationName + ", sex=" + sex + ", photo=" + photo + ", head=" + head + ", baseControl=" + baseControl + ", controlGrow=" + controlGrow + ", baseAttack=" + baseAttack + ", attackGrow=" + attackGrow + ", baseDefence=" + baseDefence + ", defenceGrow=" + defenceGrow + ", baseMagic=" + baseMagic + ", magicGrow=" + magicGrow + ", baseLucky=" + baseLucky + ", luckyGrow=" + luckyGrow + ", baseHit=" + baseHit + ", hitGrow=" + hitGrow + ", baseDodge=" + baseDodge + ", dodgeGrow=" + dodgeGrow + ", baseAvoidDamage=" + baseAvoidDamage + ", avoidDamageGrow=" + avoidDamageGrow + ", baseCrit=" + baseCrit + ", critGrow=" + critGrow + ", moveSpeed=" + moveSpeed + ", vocationType=" + vocationType + ", open=" + open + ", vocationDescriptionLangId=" + vocationDescriptionLangId + ", roleInterfaceSort=" + roleInterfaceSort + ", roleInterfaceAppearance=" + roleInterfaceAppearance + ",]";
+		return "HumanTestTemplateVO [  vocationNameLangId=" + vocationNameLangId + ", vocationName=" + vocationName + ", sex=" + sex + ", photo=" + photo + ", head=" + head + ", baseControl=" + baseControl + ", controlGrow=" + controlGrow + ", baseAttack=" + baseAttack + ", attackGrow=" + attackGrow + ", baseDefence=" + baseDefence + ", defenceGrow=" + defenceGrow + ", baseMagic=" + baseMagic + ", magicGrow=" + magicGrow + ", baseLucky=" + baseLucky + ", luckyGrow=" + luckyGrow + ", baseHit=" + baseHit + ", hitGrow=" + hitGrow + ", baseDodge=" + baseDodge + ", dodgeGrow=" + dodgeGrow + ", baseAvoidDamage=" + baseAvoidDamage + ", avoidDamageGrow=" + avoidDamageGrow + ", baseCrit=" + baseCrit + ", critGrow=" + critGrow + ", moveSpeed=" + moveSpeed + ", vocationType=" + vocationType + ", allianceType=" + allianceType + ", open=" + open + ", vocationDescriptionLangId=" + vocationDescriptionLangId + ", roleInterfaceSort=" + roleInterfaceSort + ", roleInterfaceAppearance=" + roleInterfaceAppearance + ", roleSkillA=" + roleSkillA + ", specialBuilding=" + specialBuilding + ",]";
 	}
 }

@@ -30,21 +30,25 @@ public class CGCreateRoleHandler implements IMessageHandler{
 	public void execute() {
 		
 		long playerId=cgCreateRole.getPlayerId();
-		int avatar=cgCreateRole.getAvatar();
+		int templateId=cgCreateRole.getTemplateId();
 		//穿件角色信息
 		player.setState(PlayerState.creatingrole);
 		//获取human的模板数据
-		HumanTemplate humanTemplate=ServerManager.getInstance().getHumanSever().getHumanTemplByAvatar(avatar);
+		HumanTemplate humanTemplate=ServerManager.getInstance().getHumanSever().getHumanTemplById(templateId);
 		if(humanTemplate==null)return;
 		//创建human对象
 		Human human=new Human(player);
-		human.setAvatar(avatar);
-		human.setAllianceTypeId(humanTemplate.getVocationType());
+		human.setAvatar(humanTemplate.getRoleInterfaceAppearance());
+		human.setVocationType(humanTemplate.getVocationType());
+		human.setAllianceTypeId(humanTemplate.getAllianceType());
+		human.setTemplateId(templateId);
 		human.setInDb(false);
 		human.setLevel(1);
 		human.setName("");
+		human.setControl(humanTemplate.getBaseControl());
+		human.setAttack(humanTemplate.getBaseAttack());
 		human.setPassportId(playerId);
-		human.setLastLoginTime(new Timestamp(new Date().getTime()));
+		human.setLastLoginTime(null);
 		human.setLastLoginIp("");
 		human.setDeleteTime(null);
 		human.setCreateTime(new Timestamp(new Date().getTime()));

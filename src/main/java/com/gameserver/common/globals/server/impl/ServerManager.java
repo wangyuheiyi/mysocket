@@ -14,6 +14,7 @@ import com.db.dao.impl.DbServer;
 import com.gameserver.common.globals.config.GameConfigServer;
 import com.gameserver.common.globals.server.IBaseServer;
 import com.gameserver.human.sever.HumanSever;
+import com.gameserver.player.server.PlayerServer;
 import com.gameserver.scene.server.SceneService;
 @Component
 public class ServerManager implements IBaseServer{
@@ -48,6 +49,8 @@ public class ServerManager implements IBaseServer{
 	/** 角色服务*/
 	@Autowired
 	private HumanSever humanSever;
+	@Autowired
+	private PlayerServer playerServer;
 	
 	@Override
 	public void init(GameConfigServer config) {
@@ -129,6 +132,10 @@ public class ServerManager implements IBaseServer{
 
 	public HumanSever getHumanSever() {
 		return humanSever;
+	}
+
+	public PlayerServer getPlayerServer() {
+		return playerServer;
 	}
 	
 	

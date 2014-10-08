@@ -10,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Component;
 
 import com.common.constants.Loggers;
+import com.core.templates.TemplateService;
 import com.gameserver.common.Thread.HeartbeatThread;
 import com.gameserver.common.globals.config.GameConfigServer;
 import com.gameserver.common.globals.server.IBaseServer;
@@ -32,7 +33,8 @@ public class SceneService implements IBaseServer{
 	private OnLinePlayerServer onLinePlayerServer;
 	private Map<Integer, Scene> sceneMap;
 	private Map<Integer, SceneRunner> sceneRunners;
-	
+	/** 模版服务 */
+	private TemplateService templateService;
 	public void start()
 	{
 		Loggers.gameLogger.info("begin start heartBeatThread");
@@ -64,6 +66,7 @@ public class SceneService implements IBaseServer{
 			// 初始化场景
 			this.initScene(sceneTmpl,listeners);
 		}
+		templateService=ServerManager.getInstance().getTemplateService();
 	}
 	
 	private void initScene(SceneTemplate sceneTmpl,List<SceneListener> listeners)
@@ -136,5 +139,24 @@ public class SceneService implements IBaseServer{
 			runnerList.add(runner);
 		}
 		return runnerList;
+	}
+	
+	/**
+	 * 获取第一次登陆时的城市 Id
+	 * 
+	 * @param human 
+	 * @return
+	 * 
+	 */
+	public int getFirstSceneId()
+	{
+		SceneTemplate firstScene = null;
+		Map<Integer,SceneTemplate> sceneTmplMap = this.templateService.getAll(SceneTemplate.class);
+		for(SceneTemplate sceneTmpl:sceneTmplMap.values())
+		{
+			if(firstScene==null) firstScene=sceneTmpl;
+			if(sceneTmpl.getId()<firstScene.getId()) firstScene=sceneTmpl;
+		}
+		return firstScene.getId();
 	}
 }

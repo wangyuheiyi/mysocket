@@ -4,8 +4,10 @@ import com.common.async.IIoOperation;
 import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
 import com.common.msg.PlayerBean.GCCreateRole;
+import com.common.msg.PlayerBean.HumanInfo;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.human.Human;
+import com.gameserver.human.manager.HumanInitManager;
 import com.gameserver.player.Player;
 import com.gameserver.player.PlayerState;
 
@@ -57,11 +59,16 @@ public class CreateRoleOperation implements IIoOperation
 				player.setHuman(human);
 				GCCreateRole.Builder gcCreateRole=GCCreateRole.newBuilder();
 				gcCreateRole.setPlayerId(human.getPassportId());
+				HumanInfo humanInfo=ServerManager.getInstance().getHumanSever().getHumanInfo(human);
+				gcCreateRole.setHumanInfo(humanInfo);
+				//玩家选择角色登录
+				ServerManager.getInstance().getPlayerServer().selectRole(player, human.getCharId(), human);
 				//将玩家的角色信息发送给玩家
 				myMessage.setType(BaseMessage.Type.GLOBALMESSAGE);
 				myMessage.setMessageCode(BaseMessage.MessageCode.GCCREATEROLE);
 				myMessage.setExtension(BaseBean.gcCreateRole, gcCreateRole.build());
 				player.sendMessage(myMessage.build());
+				
 			} else
 			{
 				player.setState(PlayerState.waitingselectrole);
