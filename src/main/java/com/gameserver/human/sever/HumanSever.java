@@ -44,12 +44,6 @@ public class HumanSever implements IBaseServer{
 		return this.templateService.getAll(HumanTemplate.class);
 	}
 	
-	public HumanTemplate getHumanTemplByAvatar(int avatar){
-		for(HumanTemplate humanTemplate:getAllHumanTempl().values()){
-			if(humanTemplate.getRoleInterfaceAppearance()==avatar) return humanTemplate;
-		}
-		return null;
-	}
 	
 	public int getMaxExpByTempl(int level){
 		return templateService.get(level,ExperienceTemplate.class).getHumanExperience();
@@ -76,7 +70,6 @@ public class HumanSever implements IBaseServer{
 				HumanInfo.Builder humanInfo= HumanInfo.newBuilder();
 				humanInfo.setRoleId(human.getCharId());
 				humanInfo.setRoleName(human.getName());
-				humanInfo.setVocationType(human.getVocationType());
 				humanInfo.setLevel(human.getLevel());
 				humanInfo.setAllianceTypeId(human.getAllianceTypeId());
 				humanInfo.setDiamond(human.getDiamond());
@@ -87,23 +80,10 @@ public class HumanSever implements IBaseServer{
 				humanInfo.setStoryId(human.getStoryId());
 				humanInfo.setSceneId(human.getSceneId());
 				humanInfo.setPrimBagCount(human.getPrimBagCount());
-				humanInfo.setAvatar(human.getAvatar());
 				humanInfo.setGuideId(human.getGuideId());
 				humanInfo.setGuideState(human.getGuideState());
 				humanInfo.setRoleKind(human.getRoleKind());
 				humanInfo.setVipLevel(human.getVipLevel());
-				humanInfo.setControl(human.getControl());
-				humanInfo.setAttack(human.getAttack());
-				humanInfo.setDefence(human.getDefence());
-				humanInfo.setMagic(human.getMagic());
-				humanInfo.setLucky(human.getLucky());
-				humanInfo.setHit(human.getHit());
-				humanInfo.setDodge(human.getDodge());
-				humanInfo.setAvoidDamage(human.getAvoidDamage());
-				humanInfo.setCrit(human.getCrit());
-				humanInfo.setMoveSpeed(human.getMoveSpeed());
-				humanInfo.setRoleSkillA(human.getRoleSkillA());
-				humanInfo.setSpecialBuilding(human.getSpecialBuilding());
 				return humanInfo.build();
 			}
 		};

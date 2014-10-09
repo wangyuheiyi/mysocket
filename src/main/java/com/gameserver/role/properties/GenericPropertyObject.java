@@ -10,14 +10,16 @@ import com.core.util.KeyValuePair;
  * 泛型的属性对象
  * @author Thinker
  */
-public class GenericPropertyObject<T> 
+public class GenericPropertyObject 
 {
-	protected final GenericPropertyArray<T> props;
+	protected final GenericPropertyArray props;
 	protected final int propertyType;
+	/** 是否可以修改 */
+	protected boolean isReadOnly = false;
 
-	public GenericPropertyObject(Class<T> clazz, int size, int properType) 
+	public GenericPropertyObject( int size, int properType) 
 	{
-		this.props = new GenericPropertyArray<T>(clazz, size);
+		this.props = new GenericPropertyArray(size);
 		this.propertyType = properType;
 	}
 
@@ -52,7 +54,7 @@ public class GenericPropertyObject<T>
 	 * @param index
 	 * @param value
 	 */
-	public void setPropertyValue(int index, T value)
+	public void setPropertyValue(int index, int value)
 	{
 		props.set(index, value);
 	}
@@ -63,7 +65,7 @@ public class GenericPropertyObject<T>
 	 * @param index
 	 * @return
 	 */
-	public T getPropertyValue(int index) 
+	public int getPropertyValue(int index) 
 	{
 		return props.get(index);
 	}
@@ -73,13 +75,29 @@ public class GenericPropertyObject<T>
 	 * 
 	 * @return
 	 */
-	public KeyValuePair<Integer, T>[] getChanged()
+	public KeyValuePair<Integer, Integer>[] getChanged()
 	{
-		KeyValuePair<Integer, T>[] changes= props.getChanged();
+		KeyValuePair<Integer, Integer>[] changes= props.getChanged();
 		for(int i=0;i<changes.length;i++)
 		{
 			changes[i].setKey(PropertyType.genPropertyKey(changes[i].getKey(), propertyType));
 		}
 		return changes;
+	}
+	
+	public void clear()
+	{
+		if (!isReadOnly) 
+		{
+			this.props.clear();
+		} else
+		{
+			throw new IllegalStateException("Read only");
+		}
+	}
+	
+	public KeyValuePair<Integer,Float>[] getIndexValuePairs()
+	{
+		return props.getIndexValuePairs();
 	}
 }

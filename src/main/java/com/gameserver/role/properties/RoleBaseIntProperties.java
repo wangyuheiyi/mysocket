@@ -11,7 +11,7 @@ import com.core.annotation.Type;
  * @author Thinker
  * 
  */
-public class RoleBaseIntProperties extends GenericPropertyObject<Integer>
+public class RoleBaseIntProperties extends GenericPropertyObject
 {
 	/** 基础整型属性索引开始值 */
 	public static int _BEGIN = 0;
@@ -19,10 +19,6 @@ public class RoleBaseIntProperties extends GenericPropertyObject<Integer>
 	/** 基础整型属性索引结束值 */
 	public static int _END = _BEGIN;
 	
-	/** 职业类型 */
-	@Comment(content = "职业类型")
-	@Type(Integer.class)
-	public static final int VOCATIONTYPE = ++_END;
 	
 	/** 等级 */
 	@Comment(content = "等级")
@@ -69,11 +65,6 @@ public class RoleBaseIntProperties extends GenericPropertyObject<Integer>
 	@Type(Integer.class)
 	public static final int STORY_ID = ++_END;
 	
-	/** 角色的AvatarId */
-	@Comment(content = "角色的AvatarId")
-	@Type(Integer.class)
-	public static final int AVATAR = ++_END;
-	
 	/** 新手引导ID */
 	@Comment(content = "新手引导ID")
 	@Type(Integer.class)
@@ -84,45 +75,6 @@ public class RoleBaseIntProperties extends GenericPropertyObject<Integer>
 	@Type(Integer.class)
 	public static final int GUIDESTATE = ++_END;
 
-	/** 统帅值 */
-	@Comment(content = "统帅值")
-	@Type(Integer.class)
-	public static final int CONTROL = ++_END;
-	/** 攻击 */
-	@Comment(content = "攻击")
-	@Type(Integer.class)
-	public static final int ATTACK = ++_END;
-	/** 防御 */
-	@Comment(content = "防御")
-	@Type(Integer.class)
-	public static final int DEFENCE = ++_END;
-	/** 法力 */
-	@Comment(content = "法力")
-	@Type(Integer.class)
-	public static final int MAGIC = ++_END;
-	/** 幸运 */
-	@Comment(content = "幸运")
-	@Type(Integer.class)
-	public static final int LUCKY = ++_END;
-	/** 命中 */
-	@Comment(content = "命中")
-	@Type(Integer.class)
-	public static final int HIT = ++_END;
-	
-	/** 闪避 */
-	@Comment(content = "闪避")
-	@Type(Integer.class)
-	public static final int DODGE = ++_END;
-	
-	/** 免伤 */
-	@Comment(content = "免伤")
-	@Type(Integer.class)
-	public static final int AVOIDDAMAGE = ++_END;
-	
-	/** 暴击 */
-	@Comment(content = "暴击")
-	@Type(Integer.class)
-	public static final int CRIT = ++_END;
 
 	/** 基础整型属性的个数 */
 	public static final int _SIZE = _END - _BEGIN + 1;
@@ -134,7 +86,7 @@ public class RoleBaseIntProperties extends GenericPropertyObject<Integer>
 
 	public RoleBaseIntProperties() 
 	{
-		super(Integer.class, _SIZE, TYPE);
+		super(_SIZE, TYPE);
 		this.shadowBitSet = new BitSet(this.size());
 	}
 
@@ -192,7 +144,7 @@ public class RoleBaseIntProperties extends GenericPropertyObject<Integer>
 	 * @return
 	 */
 	@Override
-	public Integer getPropertyValue(int index)
+	public int getPropertyValue(int index)
 	{
 		Integer value = props.get(index);
 		if (value != null)
@@ -201,6 +153,79 @@ public class RoleBaseIntProperties extends GenericPropertyObject<Integer>
 		} else
 		{
 			return 0;
+		}
+	}
+	
+	/**
+	 * 将指定参数中的数据加到本身对应索引中
+	 * 
+	 * @param src
+	 * @exception IllegalArgumentException
+	 *                如果src的对象类型与该类型不一致
+	 * @exception IllegalStateException
+	 *                如果该对象处于只读状态
+	 */
+	public void add(RoleBaseIntProperties src)
+	{
+		addBySign(src, 1);
+	}
+	
+	/**
+	 * 将指定索引<tt>index</tt>的属性值加<tt>value</tt>
+	 * 
+	 * @param index
+	 * @param value
+	 * @return 返回相加后的结果
+	 */
+	public final float add(int index, int value) 
+	{
+		if (!isReadOnly)
+		{
+			return props.add(index, value);
+		} else
+		{
+			throw new IllegalStateException("Read only");
+		}
+	}
+	
+	/**
+	 * 取得指定索引的float值
+	 * 
+	 * @param index
+	 *            属性索引
+	 * @return
+	 */
+	public final int get(int index) 
+	{
+		return props.get(index);
+	}
+	
+	/**
+	 * 为本身加上或减去将指定参数中的数据
+	 * 
+	 * @param src
+	 * @param sign
+	 *            1 or -1 (加/减)
+	 * @exception IllegalArgumentException
+	 *                如果src的对象类型与该类型不一致
+	 * @exception IllegalStateException
+	 *                如果该对象处于只读状态
+	 */
+	private void addBySign(RoleBaseIntProperties src, int sign)
+	{
+		if (src.propertyType != this.propertyType)
+		{
+			throw new IllegalArgumentException("Not the same property type.");
+		}
+		if (!isReadOnly) 
+		{
+			for (int i = 0; i < size(); i++)
+			{
+				add(i, sign * src.get(i));
+			}
+		} else 
+		{
+			throw new IllegalStateException("Read only");
 		}
 	}
 }

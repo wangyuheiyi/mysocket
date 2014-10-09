@@ -13,15 +13,27 @@ import com.gameserver.role.properties.RolePropertyManager;
  */
 public abstract class Role 
 {
+	/** 角色类型 */
+	protected short roleType;
 	/** 基础属性：整型 */
 	protected final RoleBaseIntProperties baseIntProperties;
 
-	public Role()
+	public Role(short roleType)
 	{
+		this.roleType = roleType;
 		baseIntProperties = new RoleBaseIntProperties();
 	}
 	
+	public void setRoleType(short roleType)
+	{
+		this.roleType = roleType;
+	}
 
+	public short getRoleType() 
+	{
+		return roleType;
+	}
+	
 	/**
 	 * 重置所有属性的修改标识
 	 * 

@@ -18,6 +18,7 @@ import com.gameserver.player.Player;
 import com.gameserver.player.handler.CGCreateRoleHandler;
 import com.gameserver.player.handler.CGGetRoleListHandler;
 import com.gameserver.player.handler.CGPlayerCheckLoginHandler;
+import com.gameserver.player.handler.CGSelectRoleHandler;
 @Service
 public class MessageHandlerServer{
 	
@@ -32,6 +33,7 @@ public class MessageHandlerServer{
     public IMessageHandler getMessageHandler(Channel channel,BaseMessage baseBean){
     	Player player=null;
     	OnLinePlayerServer onLinePlayerServer = ServerManager.getInstance().getOnLinePlayerServer();
+    	player=onLinePlayerServer.getPlayerByChannel(channel);
     	switch (baseBean.getMessageCode()){
     	case CGPLAYERCHECKLOGIN:
     		player=new Player();
@@ -40,15 +42,17 @@ public class MessageHandlerServer{
     		cgPlayerCheckLoginHandler.setMessage(baseBean, player);
     		return cgPlayerCheckLoginHandler;
     	case CGGETROLELIST:
-    		player=onLinePlayerServer.getPlayerByChannel(channel);
     		CGGetRoleListHandler cgGetRoleListHandler=ContextFactiry.getContext("handlerContext").getBean(CGGetRoleListHandler.class);
     		cgGetRoleListHandler.setMessage(baseBean, player);
     		return cgGetRoleListHandler;
     	case CGCREATEROLE:
-    		player=onLinePlayerServer.getPlayerByChannel(channel);
     		CGCreateRoleHandler cgCreateRoleHandler=ContextFactiry.getContext("handlerContext").getBean(CGCreateRoleHandler.class);
     		cgCreateRoleHandler.setMessage(baseBean, player);
     		return cgCreateRoleHandler;
+    	case CGSELECTROLE:
+    		CGSelectRoleHandler cgSelectRoleHandler=ContextFactiry.getContext("handlerContext").getBean(CGSelectRoleHandler.class);
+    		cgSelectRoleHandler.setMessage(baseBean, player);
+    		return cgSelectRoleHandler;
     	}
 		return null;
     }

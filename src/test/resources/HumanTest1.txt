@@ -1,0 +1,12 @@
+int vocationNameLangId;[notNull=false] // 种族名称多语言Id
+String vocationName; // 种族名称
+int allianceType;[notNull=false;minValue=0] // 种族
+int logo;[notNull=false;minValue=0] // 标志
+int flags;[notNull=false;minValue=0] // 旗帜
+int open;[notNull=false] //是否开放
+int allianceDescriptionLangId;[notNull=false] // 种族说明多语言Id
+int roleInterfaceSort;[notNull=false] //角色界面排序
+int allianceAppearance;[notNull=false] //种族界面外观
+int allianceSkill;[notNull=false] //种族技能
+int specialBuilding;[notNull=false] //特殊建筑
+int specialResource;[notNull=false] //特殊资源

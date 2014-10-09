@@ -1,6 +1,5 @@
 int vocationNameLangId;[notNull=false] // 职业名称多语言Id
 String vocationName; // 职业名称
-int sex;[notNull=false;minValue=0;maxValue=1] //性别
 int photo;[notNull=false;minValue=0] // 头像
 int head;[notNull=false;minValue=0] // 全身像
 int baseControl;[notNull=false;minValue=0] // 基础统帅

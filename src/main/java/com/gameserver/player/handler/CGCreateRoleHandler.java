@@ -38,15 +38,11 @@ public class CGCreateRoleHandler implements IMessageHandler{
 		if(humanTemplate==null)return;
 		//创建human对象
 		Human human=new Human(player);
-		human.setAvatar(humanTemplate.getRoleInterfaceAppearance());
-		human.setVocationType(humanTemplate.getVocationType());
 		human.setAllianceTypeId(humanTemplate.getAllianceType());
 		human.setTemplateId(templateId);
 		human.setInDb(false);
 		human.setLevel(1);
 		human.setName("");
-		human.setControl(humanTemplate.getBaseControl());
-		human.setAttack(humanTemplate.getBaseAttack());
 		human.setPassportId(playerId);
 		human.setLastLoginTime(null);
 		human.setLastLoginIp("");

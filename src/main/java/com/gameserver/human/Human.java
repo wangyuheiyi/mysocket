@@ -9,20 +9,27 @@ import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.common.operation.LifeCycle;
 import com.gameserver.common.operation.LifeCycleImpl;
 import com.gameserver.common.operation.PersistanceObject;
+import com.gameserver.human.manager.HumanPropertyManager;
 import com.gameserver.player.Player;
 import com.gameserver.role.Role;
+import com.gameserver.role.RoleType;
 import com.gameserver.role.properties.RoleBaseIntProperties;
 import com.gameserver.role.properties.RolePropertyManager;
 
 public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 	/** 基础属性：整型 */
 	protected final RoleBaseIntProperties baseIntProperties;
+	/** 属性管理器 */
+	private HumanPropertyManager propertyManager;
+	
 	/** 生命期 */
 	private LifeCycle lifeCycle;
 	/** 角色所属玩家 */
 	private Player player;
 	public Human(Player player) {
+		super(RoleType.HUMAN);
 		baseIntProperties=new RoleBaseIntProperties();
+		propertyManager = new HumanPropertyManager(this);
 		this.player=player;
 		this.lifeCycle = new LifeCycleImpl(this);
 	}
@@ -106,7 +113,6 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 		humanEntity.setId(this.getDbId());
 		humanEntity.setPassportId(this.getPassportId());
 		humanEntity.setName(this.getName());
-		humanEntity.setVocationType(this.getVocationType());
 		humanEntity.setLevel(this.getLevel());
 		humanEntity.setAllianceTypeId(this.getAllianceTypeId());
 		humanEntity.setDiamond(this.getDiamond());
@@ -116,7 +122,6 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 		humanEntity.setSceneId(this.getSceneId());
 		humanEntity.setPrimBagCount(this.getPrimBagCount());
 		humanEntity.setStoryId(this.getStoryId());
-		humanEntity.setAvatar(this.getAvatar());
 		humanEntity.setGuideId(this.getGuideId());
 		humanEntity.setGuideState(this.getGuideState());
 		humanEntity.setRoleKind(this.getRoleKind());
@@ -134,7 +139,6 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 		this.setDbId(entity.getId());
 		this.setPassportId(entity.getPassportId());
 		this.setName(entity.getName());
-		this.setVocationType(entity.getVocationType());
 		this.setLevel(entity.getLevel());
 		this.setAllianceTypeId(entity.getAllianceTypeId());
 		this.setDiamond(entity.getDiamond());
@@ -144,7 +148,6 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 		this.setSceneId(entity.getSceneId());
 		this.setPrimBagCount(entity.getPrimBagCount());
 		this.setStoryId(entity.getStoryId());
-		this.setAvatar(entity.getAvatar());
 		this.setGuideId(entity.getGuideId());
 		this.setGuideState(entity.getGuideState());
 		this.setRoleKind(entity.getRoleKind());
@@ -193,13 +196,6 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 		this.name = name;
 	}
 
-	public int getVocationType() {
-		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.VOCATIONTYPE);
-	}
-
-	public void setVocationType(int vocationType) {
-		baseIntProperties.setPropertyValue(RoleBaseIntProperties.VOCATIONTYPE, vocationType);
-	}
 
 	public int getLevel() {
 		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.LEVEL);
@@ -271,14 +267,6 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 
 	public void setStoryId(int storyId) {
 		baseIntProperties.setPropertyValue(RoleBaseIntProperties.STORY_ID, storyId);
-	}
-
-	public int getAvatar() {
-		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.AVATAR);
-	}
-
-	public void setAvatar(int avatar) {
-		baseIntProperties.setPropertyValue(RoleBaseIntProperties.AVATAR, avatar);
 	}
 	
 	public int getTemplateId() {
@@ -385,101 +373,20 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 	{
 		return 0;
 	}
-	
-	//统帅值
-	public int getControl(){
-		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.CONTROL);
-	}
-	
-	public void setControl(int control){
-		baseIntProperties.setPropertyValue(RoleBaseIntProperties.CONTROL, control);
-	}
-	
-	//攻击力
-	public int getAttack(){
-		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.ATTACK);
-	}
-	
-	public void setAttack(int attack){
-		baseIntProperties.setPropertyValue(RoleBaseIntProperties.ATTACK, attack);
-	}
-	
-	//防御力
-	public int getDefence(){
-		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.DEFENCE);
-	}
-	
-	public void setDefence(int defence){
-		baseIntProperties.setPropertyValue(RoleBaseIntProperties.DEFENCE, defence);
-	}
-	
-	//法力
-	public int getMagic(){
-		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.MAGIC);
-	}
-	
-	public void setMagic(int magic){
-		baseIntProperties.setPropertyValue(RoleBaseIntProperties.MAGIC, magic);
-	}
-	
-	//幸运
-	public int getLucky(){
-		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.LUCKY);
-	}
-	
-	public void setLucky(int lucky){
-		baseIntProperties.setPropertyValue(RoleBaseIntProperties.LUCKY, lucky);
-	}
-	
-	//命中
-	public int getHit(){
-		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.HIT);
-	}
-	
-	public void setHit(int hit){
-		baseIntProperties.setPropertyValue(RoleBaseIntProperties.HIT, hit);
-	}
-	
-	//闪避
-	public int getDodge(){
-		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.DODGE);
-	}
-	
-	public void setDodge(int dodge){
-		baseIntProperties.setPropertyValue(RoleBaseIntProperties.DODGE, dodge);
-	}
-	
-	//免伤
-	public int getAvoidDamage(){
-		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.AVOIDDAMAGE);
-	}
-	
-	public void setAvoidDamage(int avoidDamage){
-		baseIntProperties.setPropertyValue(RoleBaseIntProperties.AVOIDDAMAGE, avoidDamage);
-	}
-	
-	//暴击
-	public int getCrit(){
-		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.CRIT);
-	}
-	
-	public void setCrit(int crit){
-		baseIntProperties.setPropertyValue(RoleBaseIntProperties.CRIT, crit);
-	}
-	
-	//速度
-	public int getMoveSpeed(){
-		return ServerManager.getInstance().getHumanSever().getHumanTemplByAvatar(this.getAvatar()).getMoveSpeed();
-	}
 		
 	//主角技能
-	public int getRoleSkillA(){
-		return ServerManager.getInstance().getHumanSever().getHumanTemplByAvatar(this.getAvatar()).getRoleSkillA();
+	public int getAllianceSkill(){
+		return ServerManager.getInstance().getHumanSever().getHumanTemplById(this.getTemplateId()).getAllianceSkill();
 	}
 	
-	//主角技能b
+	//种族特殊建筑
 	public int getSpecialBuilding(){
-		return ServerManager.getInstance().getHumanSever().getHumanTemplByAvatar(this.getAvatar()).getSpecialBuilding();
+		return ServerManager.getInstance().getHumanSever().getHumanTemplById(this.getTemplateId()).getSpecialBuilding();
+	}
+	
+	//种族特殊资源
+	public int getSpecialResource(){
+		return ServerManager.getInstance().getHumanSever().getHumanTemplById(this.getTemplateId()).getSpecialResource();
 	}
 
 	/**
@@ -509,8 +416,7 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 
 	@Override
 	public RolePropertyManager<?, ?> getPropertyManager() {
-		// TODO Auto-generated method stub
-		return null;
+		return propertyManager;
 	}
 
 	@Override
