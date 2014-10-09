@@ -171,6 +171,20 @@ public class RoleBaseIntProperties extends GenericPropertyObject
 	}
 	
 	/**
+	 * 从本身减去将指定参数中的数据
+	 * 
+	 * @param src
+	 * @exception IllegalArgumentException
+	 *                如果src的对象类型与该类型不一致
+	 * @exception IllegalStateException
+	 *                如果该对象处于只读状态
+	 */
+	public void dec(RoleBaseIntProperties src) 
+	{
+		addBySign(src, -1);
+	}
+	
+	/**
 	 * 将指定索引<tt>index</tt>的属性值加<tt>value</tt>
 	 * 
 	 * @param index

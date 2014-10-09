@@ -130,7 +130,7 @@ public class HumanProperty
 	private void normalizeProperty(RoleBaseIntProperties properties) {
 		for (int _index = properties.size() - 1; _index >= 0; _index--) {
 			if (properties.get(_index) < 0) {
-				properties.set(_index, 0f);
+				properties.set(_index, 0);
 			}
 		}
 	}

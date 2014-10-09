@@ -100,4 +100,26 @@ public class GenericPropertyObject
 	{
 		return props.getIndexValuePairs();
 	}
+	
+	/**
+	 * 设定指定索引的float值
+	 * 
+	 * @param index
+	 *            属性索引
+	 * @param value
+	 *            新值
+	 * @return true,值被修改;false,值未修改
+	 * @exception IllegalStateException
+	 *                如果该对象处于只读状态
+	 */
+	public final void set(int index, int value)
+	{
+		if (!isReadOnly)
+		{
+			props.set(index, value);
+		} else
+		{
+			throw new IllegalStateException("Read only");
+		}
+	}
 }
