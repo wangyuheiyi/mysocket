@@ -15,7 +15,7 @@ import com.gameserver.role.Role;
  * @param <T>
  * @param <V>
  */
-public abstract class RolePropertyManager<T extends Role,V>
+public abstract class RolePropertyManager<T extends Role>
 {
 	/** 影响属性值的影响器标志 */
 	/** ALL */
@@ -87,7 +87,7 @@ public abstract class RolePropertyManager<T extends Role,V>
 	 * 获取所有改变
 	 * @return
 	 */
-	abstract public KeyValuePair<Integer, V>[] getChanged();
+	abstract public KeyValuePair<Integer, Integer>[] getChanged();
 	
 	/**
 	 * 一、二级或抗性是否有改变

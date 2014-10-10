@@ -87,7 +87,6 @@ public abstract class Role
 	{
 		return baseIntProperties;
 	}
-
 	
 	/**
 	 * 将有改动的数值数据发送到客户端
@@ -99,12 +98,11 @@ public abstract class Role
 	public void snapChangedProperty(boolean reset)
 	{
 		// 如果 LevelA,LevelB,DynamicNumProp,DynamicOtherProp 均无变化，则返回NULL
-//		if (!this.getPropertyManager().isChanged()
-//				&& !this.baseIntProperties.isChanged()
-//				&& !this.baseStrProperties.isChanged())
-//		{
-//			return;
-//		}
+		if (!this.getPropertyManager().isChanged()
+				&& !this.baseIntProperties.isChanged())
+		{
+			return;
+		}
 //		// 保存数值类属性变化
 //		List<KeyValuePair<Integer, Integer>> _numChanged = changedNum();
 //		// 保存字符串类属性变化
@@ -156,7 +154,7 @@ public abstract class Role
 	 * 角色的属性管理器
 	 * @return
 	 */
-	abstract public RolePropertyManager<?,?> getPropertyManager();
+	abstract public RolePropertyManager<?> getPropertyManager();
 	
 	/**
 	 * 当属性被修改时调用

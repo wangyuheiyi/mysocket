@@ -3,7 +3,7 @@ package com.gameserver.human.manager;
 import com.core.util.KeyValuePair;
 import com.gameserver.human.Human;
 import com.gameserver.human.effector.HumanAPropFromType;
-import com.gameserver.role.properties.PetAProperty;
+import com.gameserver.human.effector.HumanProperty;
 import com.gameserver.role.properties.PropertyType;
 import com.gameserver.role.properties.RoleBaseIntProperties;
 import com.gameserver.role.properties.RolePropertyManager;
@@ -14,14 +14,14 @@ import com.gameserver.role.properties.RolePropertyManager;
  * @author Thinker
  *
  */
-public class HumanPropertyManager extends RolePropertyManager<Human,Float>
+public class HumanPropertyManager extends RolePropertyManager<Human>
 {
 	
-	private RoleBaseIntProperties[] property;
+	private HumanProperty property;
 	public HumanPropertyManager(Human role)
 	{
 		super(role,5);	
-		property = new RoleBaseIntProperties[HumanAPropFromType.values().length];
+		property = new HumanProperty(HumanAPropFromType.values().length);
 	}
 	
 	/**
@@ -30,7 +30,7 @@ public class HumanPropertyManager extends RolePropertyManager<Human,Float>
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public KeyValuePair<Integer, Float>[] getChanged()
+	public KeyValuePair<Integer, Integer>[] getChanged()
 	{
 		if (propChangeSet.isEmpty())
 		{
@@ -44,11 +44,11 @@ public class HumanPropertyManager extends RolePropertyManager<Human,Float>
 			_length += RoleBaseIntProperties._SIZE;
 		}
 
-		KeyValuePair<Integer, Float>[] valuePairs = new KeyValuePair[_length];
+		KeyValuePair<Integer, Integer>[] valuePairs = new KeyValuePair[_length];
 		int i = 0;
 		if (_aPropChange)
 		{
-			for (KeyValuePair<Integer, Float> valuePair : this.battleProperty.getAPropValuePairs())
+			for (KeyValuePair<Integer, Integer> valuePair : this.property.getAPropValuePairs())
 			{
 				valuePairs[i] = valuePair;
 				valuePairs[i].setKey(PropertyType.genPropertyKey(valuePairs[i].getKey(), PropertyType.PET_PROP_A));
@@ -56,15 +56,6 @@ public class HumanPropertyManager extends RolePropertyManager<Human,Float>
 			}
 		}
 		
-		if (_bPropChange)
-		{
-			for (KeyValuePair<Integer, Float> valuePair : this.battleProperty.getBPropValuePairs())
-			{
-				valuePairs[i] = valuePair;
-				valuePairs[i].setKey(PropertyType.genPropertyKey(valuePairs[i].getKey(), PropertyType.PET_PROP_B));
-				i++;
-			}
-		}
 		return valuePairs;
 	}
 	
@@ -78,7 +69,7 @@ public class HumanPropertyManager extends RolePropertyManager<Human,Float>
 		{
 			if ((fromType.mark & effectMask) != 0) 
 			{
-				property = this.battleProperty.getAPropSegment(fromType.index);
+				property = this.property.getAPropSegment(fromType.index);
 				fromType.effector.effect(property, role);
 				if (property.isChanged())
 				{
@@ -89,7 +80,7 @@ public class HumanPropertyManager extends RolePropertyManager<Human,Float>
 		}
 		if (_changed)
 		{
-			this.battleProperty.updateAProperty();
+			this.property.updateAProperty();
 			role.setModified();
 			return true;
 		}
@@ -100,26 +91,26 @@ public class HumanPropertyManager extends RolePropertyManager<Human,Float>
 	@Override
 	protected boolean updateBProperty(Human role, int effectMask) 
 	{
-		boolean _changed = false;
-		for (PetBPropFromType fromType : PetBPropFromType.values())
-		{
-			if ((fromType.mark & effectMask) != 0)
-			{
-				PetBProperty property = this.battleProperty.getBPropSegment(fromType.index);
-				//fromType.effector.effect(property, role);
-				if (property.isChanged()) 
-				{
-					_changed = true;
-					property.resetChanged();
-				}
-			}
-		}
-		if (_changed)
-		{
-			this.battleProperty.updateBProperty();
-			role.setModified();
-			return true;
-		}
+//		boolean _changed = false;
+//		for (PetBPropFromType fromType : PetBPropFromType.values())
+//		{
+//			if ((fromType.mark & effectMask) != 0)
+//			{
+//				PetBProperty property = this.battleProperty.getBPropSegment(fromType.index);
+//				//fromType.effector.effect(property, role);
+//				if (property.isChanged()) 
+//				{
+//					_changed = true;
+//					property.resetChanged();
+//				}
+//			}
+//		}
+//		if (_changed)
+//		{
+//			this.battleProperty.updateBProperty();
+//			role.setModified();
+//			return true;
+//		}
 		return false;
 	}
 

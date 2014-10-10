@@ -114,7 +114,7 @@ public class HumanProperty
 	 * 获得所有的数据对
 	 * @return
 	 */
-	public KeyValuePair<Integer, Float>[] getAPropValuePairs()
+	public KeyValuePair<Integer, Integer>[] getAPropValuePairs()
 	{
 		return this.aProperty.getIndexValuePairs();
 	}

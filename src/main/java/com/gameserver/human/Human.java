@@ -1,6 +1,7 @@
 package com.gameserver.human;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.core.util.KeyValuePair;
@@ -13,12 +14,11 @@ import com.gameserver.human.manager.HumanPropertyManager;
 import com.gameserver.player.Player;
 import com.gameserver.role.Role;
 import com.gameserver.role.RoleType;
+import com.gameserver.role.properties.PropertyType;
 import com.gameserver.role.properties.RoleBaseIntProperties;
 import com.gameserver.role.properties.RolePropertyManager;
 
 public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
-	/** 基础属性：整型 */
-	protected final RoleBaseIntProperties baseIntProperties;
 	/** 属性管理器 */
 	private HumanPropertyManager propertyManager;
 	
@@ -28,7 +28,6 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 	private Player player;
 	public Human(Player player) {
 		super(RoleType.HUMAN);
-		baseIntProperties=new RoleBaseIntProperties();
 		propertyManager = new HumanPropertyManager(this);
 		this.player=player;
 		this.lifeCycle = new LifeCycleImpl(this);
@@ -196,15 +195,6 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 		this.name = name;
 	}
 
-
-	public int getLevel() {
-		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.LEVEL);
-	}
-
-	public void setLevel(int level) {
-		baseIntProperties.setPropertyValue(RoleBaseIntProperties.LEVEL, level);
-	}
-
 	public int getAllianceTypeId() {
 		return allianceTypeId;
 	}
@@ -237,12 +227,9 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 		baseIntProperties.setPropertyValue(RoleBaseIntProperties.COUPON, coupon);
 	}
 
-	public int getCurExp() {
-		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.CUR_EXP);
-	}
-
-	public void setCurExp(int curExp) {
-		baseIntProperties.setPropertyValue(RoleBaseIntProperties.CUR_EXP, curExp);
+	public int getAllDiamond()
+	{
+		return getDiamond() + getCoupon();
 	}
 
 	public int getSceneId() {
@@ -415,7 +402,7 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 	
 
 	@Override
-	public RolePropertyManager<?, ?> getPropertyManager() {
+	public RolePropertyManager<?> getPropertyManager() {
 		return propertyManager;
 	}
 
@@ -426,7 +413,37 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 
 	@Override
 	protected List<KeyValuePair<Integer, Integer>> changedNum() {
-		// TODO Auto-generated method stub
-		return null;
+		// 保存数值类属性变化
+		List<KeyValuePair<Integer, Integer>> intNumChanged = new ArrayList<KeyValuePair<Integer, Integer>>();
+
+		// 处理 一二级属性
+		if (this.getPropertyManager().isChanged())
+		{
+			KeyValuePair<Integer, Integer>[] _numChanged =this.getPropertyManager().getChanged();
+			for (KeyValuePair<Integer, Integer> pair : _numChanged) 
+			{
+				intNumChanged.add(new KeyValuePair<Integer, Integer>(pair.getKey(),pair.getValue()));
+			}
+		}
+		
+		// 处理 baseIntProps
+		if (this.baseIntProperties.isChanged()) 
+		{
+			KeyValuePair<Integer, Integer>[] changes = this.baseIntProperties.getChanged();
+			for (KeyValuePair<Integer, Integer> pair : changes)
+			{
+				//特殊处理钻石
+				if(pair.getKey() == PropertyType.genPropertyKey(RoleBaseIntProperties.COUPON, PropertyType.BASE_ROLE_PROPS_INT)) 
+				{
+					pair.setKey(PropertyType.genPropertyKey(RoleBaseIntProperties.DIAMOND, PropertyType.BASE_ROLE_PROPS_INT));
+				}
+				if(pair.getKey() == PropertyType.genPropertyKey(RoleBaseIntProperties.DIAMOND, PropertyType.BASE_ROLE_PROPS_INT)) 
+				{
+					pair.setValue(getAllDiamond());
+				}
+				intNumChanged.add(pair);
+			}
+		}
+		return intNumChanged;
 	}
 }

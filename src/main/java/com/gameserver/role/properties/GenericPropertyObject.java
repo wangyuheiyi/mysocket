@@ -96,7 +96,7 @@ public class GenericPropertyObject
 		}
 	}
 	
-	public KeyValuePair<Integer,Float>[] getIndexValuePairs()
+	public KeyValuePair<Integer,Integer>[] getIndexValuePairs()
 	{
 		return props.getIndexValuePairs();
 	}
