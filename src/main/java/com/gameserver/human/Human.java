@@ -193,6 +193,7 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 
 	public void setName(String name) {
 		this.name = name;
+		this.setModified();
 	}
 
 	public int getAllianceTypeId() {

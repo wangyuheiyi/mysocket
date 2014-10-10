@@ -97,6 +97,7 @@ public final class HumanInitManager
 		BaseMessage.Builder myMessage=BaseMessage.newBuilder();
 		GCEnterScene.Builder gcEnterScene=GCEnterScene.newBuilder();
 		gcEnterScene.setSceneId(sceneId);
+		gcEnterScene.setRoleId(human.getDbId());
 		myMessage.setType(BaseMessage.Type.PLAYERMESSAGE);
 		myMessage.setMessageCode(BaseMessage.MessageCode.GCENTERSCENE);
 		myMessage.setExtension(BaseBean.gcEnterScene, gcEnterScene.build());

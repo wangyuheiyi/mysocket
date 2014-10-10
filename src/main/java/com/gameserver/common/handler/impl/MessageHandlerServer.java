@@ -18,6 +18,7 @@ import com.gameserver.player.Player;
 import com.gameserver.player.handler.CGCreateRoleHandler;
 import com.gameserver.player.handler.CGGetRoleListHandler;
 import com.gameserver.player.handler.CGPlayerCheckLoginHandler;
+import com.gameserver.player.handler.CGRoleReNameHandler;
 import com.gameserver.player.handler.CGSelectRoleHandler;
 @Service
 public class MessageHandlerServer{
@@ -53,21 +54,29 @@ public class MessageHandlerServer{
     		CGSelectRoleHandler cgSelectRoleHandler=ContextFactiry.getContext("handlerContext").getBean(CGSelectRoleHandler.class);
     		cgSelectRoleHandler.setMessage(baseBean, player);
     		return cgSelectRoleHandler;
+    	case CGROLERENAME:
+    		CGRoleReNameHandler cgRoleReNameHandler=ContextFactiry.getContext("handlerContext").getBean(CGRoleReNameHandler.class);
+    		cgRoleReNameHandler.setMessage(baseBean, player);
+    		return cgRoleReNameHandler;
     	}
 		return null;
     }
     
     @Async
     public void putMessageToMsgQueue(Channel channel,BaseMessage baseBean){
+    	IMessageHandler iHandler=null;
     	switch (baseBean.getType()) {
 		case GLOBALMESSAGE:
 			//设置对象
-			IMessageHandler iHandler=MessageHandlerServer.getInstance().getMessageHandler(channel, baseBean);
+			iHandler=MessageHandlerServer.getInstance().getMessageHandler(channel, baseBean);
 			ServerManager.getInstance().getGlobalLogicRunner().put(iHandler);
 			break;
 		case PLAYERMESSAGE:
-			MissionInfo missionInfo=baseBean.getExtension(BaseBean.missionInfo);
-			System.out.println("missionId:"+missionInfo.getMissionId());
+			Player player=ServerManager.getInstance().getOnLinePlayerServer().getPlayerByChannel(channel);
+			//设置对象
+			iHandler=MessageHandlerServer.getInstance().getMessageHandler(channel, baseBean);
+			player.putMessage(iHandler);
+//			System.out.println("missionId:"+missionInfo.getMissionId());
 			break;
 		default:
 			break;
