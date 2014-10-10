@@ -238,6 +238,7 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 
 	public void setSceneId(int sceneId) {
 		baseIntProperties.setPropertyValue(RoleBaseIntProperties.SCENE_ID, sceneId);
+		this.setModified();
 	}
 
 	public int getPrimBagCount() {
@@ -445,5 +446,14 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 			}
 		}
 		return intNumChanged;
+	}
+	
+	/**
+	 * 将消息发送给Player
+	 * @param msg
+	 */
+	public void sendMessage(Object msg)
+	{
+		this.getPlayer().sendMessage(msg);
 	}
 }

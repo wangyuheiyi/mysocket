@@ -37,9 +37,22 @@ message CGSelectRole {
 	required int64 roleId=2;
 }
 
-message GCSelectRole {
-	required int64 playerId = 1;
-	optional HumanInfo humanInfo=2;
+message CGRoleReName{
+	required int64 roleId=1;
+	required string roleName=2;
+}
+
+message GCRoleReName {
+	required string roleName=1;
+}
+
+message CGEnterScene{
+	required int64 roleId=1;
+	required int32 sceneId=2; //³¡¾°id
+}
+
+message GCEnterScene {
+	required int32 sceneId=2; //³¡¾°id
 }
 
 message HumanInfo{

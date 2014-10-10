@@ -4,6 +4,10 @@ package com.gameserver.human.manager;
 import org.slf4j.Logger;
 
 import com.common.constants.Loggers;
+import com.common.msg.BaseBean;
+import com.common.msg.BaseBean.BaseMessage;
+import com.common.msg.PlayerBean.GCCreateRole;
+import com.common.msg.PlayerBean.GCEnterScene;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.human.Human;
 import com.gameserver.player.Player;
@@ -84,5 +88,18 @@ public final class HumanInitManager
 	private void noticeHuman(Human human)
 	{		
 		logger.info("玩家id["+human.getCharId()+"]玩家名["+human.getName()+"]初始消息发送成功");
+		//发送进入场景的消息
+		sendEnterSceneMessage(human,human.getSceneId());
+		
+	}
+	
+	public void sendEnterSceneMessage(Human human,int sceneId){
+		BaseMessage.Builder myMessage=BaseMessage.newBuilder();
+		GCEnterScene.Builder gcEnterScene=GCEnterScene.newBuilder();
+		gcEnterScene.setSceneId(sceneId);
+		myMessage.setType(BaseMessage.Type.PLAYERMESSAGE);
+		myMessage.setMessageCode(BaseMessage.MessageCode.GCENTERSCENE);
+		myMessage.setExtension(BaseBean.gcEnterScene, gcEnterScene.build());
+		human.sendMessage(myMessage.build());
 	}
 }

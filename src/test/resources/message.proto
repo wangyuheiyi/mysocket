@@ -20,9 +20,12 @@ message BaseMessage {
 			CGCREATEROLE=5;
 			GCCREATEROLE=6;
 			CGSELECTROLE=7;
-			GCSELECTROLE=8;
-		 	MISSIONINFO=9;
-		 	MISSIONREWARD=10;
+			CGROLERENAME=8;
+			GCROLERENAME=9;
+			CGENTERSCENE=10;
+			GCENTERSCENE=11;
+		 	MISSIONINFO=12;
+		 	MISSIONREWARD=13;
 		}
 		required MessageCode messageCode=2;
 }
@@ -35,7 +38,10 @@ extend BaseMessage {
 		optional CGCreateRole cgCreateRole = 104;
 		optional GCCreateRole gcCreateRole = 105;
 		optional CGSelectRole cgSelectRole = 106;
-		optional GCSelectRole gcSelectRole = 107;
+		optional CGRoleReName cgRoleReName = 107;
+		optional GCRoleReName gcRoleReName = 108;
+		optional CGEnterScene cgEnterScene = 109;
+		optional GCEnterScene gcEnterScene = 110;
 	  optional MissionInfo missionInfo = 200;
 	  optional MissionReward missionReward = 201;
 }
