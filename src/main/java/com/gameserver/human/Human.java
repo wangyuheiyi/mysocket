@@ -453,8 +453,14 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 	 * 将消息发送给Player
 	 * @param msg
 	 */
+	@Override
 	public void sendMessage(Object msg)
 	{
 		this.getPlayer().sendMessage(msg);
+	}
+
+	@Override
+	public long getUUID() {
+		return this.getDbId();
 	}
 }

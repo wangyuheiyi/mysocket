@@ -9,6 +9,6 @@ message GCRoleSymbolChangedInt {
 }
 
 message KeyValueData{
-	required int32 level=1 [default = 1]; //属性key
-	required int32 allianceTypeId=2 [default = 1]; //属性值
+	required int32 key=1 [default = 1]; //属性key
+	required int32 value=2 [default = 1]; //属性值
 }

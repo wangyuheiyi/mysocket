@@ -2,7 +2,12 @@ package com.gameserver.role;
 
 import java.util.List;
 
+import com.common.msg.BaseBean;
+import com.common.msg.BaseBean.BaseMessage;
+import com.common.msg.HumanBean.GCRoleSymbolChangedInt;
+import com.common.msg.HumanBean.KeyValueData;
 import com.core.util.KeyValuePair;
+import com.gameserver.human.Human;
 import com.gameserver.role.properties.RoleBaseIntProperties;
 import com.gameserver.role.properties.RolePropertyManager;
 
@@ -112,8 +117,22 @@ public abstract class Role
 		
 		if (_numChanged != null && !_numChanged.isEmpty())
 		{
+			BaseMessage.Builder myMessage=BaseMessage.newBuilder();
+			GCRoleSymbolChangedInt.Builder gcRoleSymbolChangedInt=GCRoleSymbolChangedInt.newBuilder();
+			gcRoleSymbolChangedInt.setType(roleType);
+			gcRoleSymbolChangedInt.setRoleId(this.getUUID());
 			//发送底层同步消息
-//			sendMessage(new GCRoleSymbolChangedInt(getRoleType(), this.getUUID(), _numChanged.toArray(empty)));
+			KeyValueData.Builder keyValueData =null;
+			for(KeyValuePair<Integer, Integer> keyValuePair:_numChanged){
+				keyValueData=KeyValueData.newBuilder();
+				keyValueData.setKey(keyValuePair.getKey());
+				keyValueData.setValue(keyValuePair.getValue());
+				gcRoleSymbolChangedInt.addKeyValueData(keyValueData.build());
+			}
+			myMessage.setType(BaseMessage.Type.PLAYERMESSAGE);
+			myMessage.setMessageCode(BaseMessage.MessageCode.GCROLESYMBOLCHANGEDINT);
+			myMessage.setExtension(BaseBean.gcRoleSymbolChangedInt, gcRoleSymbolChangedInt.build());
+			sendMessage(myMessage.build());
 		}
 
 		if (_strChanged != null && _strChanged.length > 0)
@@ -157,10 +176,18 @@ public abstract class Role
 	 */
 	abstract public RolePropertyManager<?> getPropertyManager();
 	
+	abstract public long getUUID();
 	/**
 	 * 当属性被修改时调用
 	 */
 	abstract protected void onModified();
 	
 	abstract protected List<KeyValuePair<Integer, Integer>> changedNum();
+	
+	/**
+	 * 向前端发送消息
+	 * 
+	 * @see Human#sendMessage(GCMessage)
+	 */
+	abstract protected void sendMessage(Object msg) ;
 }
