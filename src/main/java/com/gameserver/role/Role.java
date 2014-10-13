@@ -110,10 +110,11 @@ public abstract class Role
 		
 		KeyValuePair<Integer, Integer>[] empty = KeyValuePair.newKeyValuePairArray(0);
 		
-//		if (_numChanged != null && !_numChanged.isEmpty())
-//		{
+		if (_numChanged != null && !_numChanged.isEmpty())
+		{
+			//发送底层同步消息
 //			sendMessage(new GCRoleSymbolChangedInt(getRoleType(), this.getUUID(), _numChanged.toArray(empty)));
-//		}
+		}
 
 		if (_strChanged != null && _strChanged.length > 0)
 		{
