@@ -1,10 +1,10 @@
-package com.gameserver.human.sever;
+package com.gameserver.human.server;
 
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.common.msg.PlayerBean.HumanInfo;
+import com.common.msg.DataBean.HumanInfo;
 import com.core.converter.AbstractConverter;
 import com.core.converter.Converter;
 import com.core.templates.TemplateService;

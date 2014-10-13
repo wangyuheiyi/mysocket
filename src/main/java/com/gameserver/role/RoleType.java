@@ -9,9 +9,10 @@ public final class RoleType
 {
 	/** 玩家角色 */
 	public static final short HUMAN = 1;
-	/** 武将 */
+	/** 英雄 */
 	public static final short PET = 2;
-	
+	/** 怪兽 */
+	public static final short MONSTER = 2;
 	private RoleType()
 	{
 	}

@@ -13,7 +13,7 @@ import com.core.templates.TemplateService;
 import com.db.dao.impl.DbServer;
 import com.gameserver.common.globals.config.GameConfigServer;
 import com.gameserver.common.globals.server.IBaseServer;
-import com.gameserver.human.sever.HumanSever;
+import com.gameserver.human.server.HumanSever;
 import com.gameserver.player.server.PlayerServer;
 import com.gameserver.scene.server.SceneService;
 @Component

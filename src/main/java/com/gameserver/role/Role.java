@@ -103,27 +103,27 @@ public abstract class Role
 		{
 			return;
 		}
-//		// 保存数值类属性变化
-//		List<KeyValuePair<Integer, Integer>> _numChanged = changedNum();
-//		// 保存字符串类属性变化
-//		KeyValuePair<Integer, String>[] _strChanged = changedStr();
-//		
-//		KeyValuePair<Integer, Integer>[] empty = KeyValuePair.newKeyValuePairArray(0);
-//		
+		// 保存数值类属性变化
+		List<KeyValuePair<Integer, Integer>> _numChanged = changedNum();
+		// 保存字符串类属性变化
+		KeyValuePair<Integer, String>[] _strChanged = changedStr();
+		
+		KeyValuePair<Integer, Integer>[] empty = KeyValuePair.newKeyValuePairArray(0);
+		
 //		if (_numChanged != null && !_numChanged.isEmpty())
 //		{
 //			sendMessage(new GCRoleSymbolChangedInt(getRoleType(), this.getUUID(), _numChanged.toArray(empty)));
 //		}
-//
-//		if (_strChanged != null && _strChanged.length > 0)
-//		{
-//			//sendMessage(new GCRoleSymbolChangedLong(getRoleType(), this.getUUID(), _strChanged));
-//		}
-//
-//		if (reset)
-//		{
-//			resetChange();
-//		}
+
+		if (_strChanged != null && _strChanged.length > 0)
+		{
+			//sendMessage(new GCRoleSymbolChangedLong(getRoleType(), this.getUUID(), _strChanged));
+		}
+
+		if (reset)
+		{
+			resetChange();
+		}
 	}
 
 	protected KeyValuePair<Integer, String>[] changedStr() 

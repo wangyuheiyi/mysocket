@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 
 import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
+import com.common.msg.DataBean.HumanInfo;
 import com.common.msg.PlayerBean.CGGetRoleList;
 import com.common.msg.PlayerBean.GCGetRoleList;
-import com.common.msg.PlayerBean.HumanInfo;
 import com.db.model.impl.HumanEntity;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.common.handler.IMessageHandler;
