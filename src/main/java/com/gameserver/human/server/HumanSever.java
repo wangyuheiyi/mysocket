@@ -70,6 +70,7 @@ public class HumanSever implements IBaseServer{
 				HumanInfo.Builder humanInfo= HumanInfo.newBuilder();
 				humanInfo.setRoleId(human.getCharId());
 				humanInfo.setRoleName(human.getName());
+				humanInfo.setTemplateId(human.getTemplateId());
 				humanInfo.setLevel(human.getLevel());
 				humanInfo.setAllianceTypeId(human.getAllianceTypeId());
 				humanInfo.setDiamond(human.getDiamond());

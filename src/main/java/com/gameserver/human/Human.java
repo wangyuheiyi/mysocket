@@ -112,6 +112,7 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 		humanEntity.setId(this.getDbId());
 		humanEntity.setPassportId(this.getPassportId());
 		humanEntity.setName(this.getName());
+		humanEntity.setTemplateId(this.getTemplateId());
 		humanEntity.setLevel(this.getLevel());
 		humanEntity.setAllianceTypeId(this.getAllianceTypeId());
 		humanEntity.setDiamond(this.getDiamond());
@@ -138,6 +139,7 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 		this.setDbId(entity.getId());
 		this.setPassportId(entity.getPassportId());
 		this.setName(entity.getName());
+		this.setTemplateId(entity.getTemplateId());
 		this.setLevel(entity.getLevel());
 		this.setAllianceTypeId(entity.getAllianceTypeId());
 		this.setDiamond(entity.getDiamond());
