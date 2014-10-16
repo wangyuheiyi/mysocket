@@ -1,0 +1,32 @@
+int buildNameLangId;[notNull=false] // 建筑名称多语言Id
+String buildName; // 建筑名称
+int allianceType;[notNull=false;minValue=0] // 种族
+int appearance;[notNull=false;minValue=0] // 外观
+int level;[notNull=false;minValue=1] // 等级
+int levelUpdateId;[notNull=false;minValue=0] // 升级后id
+int consumeGold;[notNull=false;minValue=0] // 消耗金币
+int consumeDiamond;[notNull=false;minValue=0] // 消耗钻石
+int consumeWood;[notNull=false;minValue=0] // 消耗木材
+int consumeStone;[notNull=false;minValue=0] // 消耗石头
+int consumeCrystal;[notNull=false;minValue=0] // 消耗水晶
+int consumeSpecial;[notNull=false;minValue=0] // 消耗特殊资源
+int open;[notNull=false] //是否开放
+int outputType;[notNull=false] //产出类型
+
+int baseMagic;[notNull=false;minValue=0] // 基础法力
+int magicGrow;[notNull=false;minValue=0] // 法力成长
+int baseLucky;[notNull=false;minValue=0] // 基础幸运
+int luckyGrow;[notNull=false;minValue=0] // 幸运成长
+int baseHit;[notNull=false;minValue=0] // 基础命中
+int hitGrow;[notNull=false;minValue=0] // 命中成长
+int baseDodge;[notNull=false;minValue=0] // 基础闪避
+int dodgeGrow;[notNull=false;minValue=0] // 闪避成长
+int baseAvoidDamage;[notNull=false;minValue=0] // 基础免伤
+int avoidDamageGrow;[notNull=false;minValue=0] // 免伤成长
+int baseCrit;[notNull=false;minValue=0] // 基础暴击
+int critGrow;[notNull=false;minValue=0] // 暴击成长
+int moveSpeed;[notNull=false;minValue=0] // 移动速度
+
+int vocationDescriptionLangId;[notNull=false] // 职业说明多语言Id
+int passiveSkillA;[notNull=false] //被动技能A
+int passiveSkillB;[notNull=false] //被动技能B
