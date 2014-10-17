@@ -1,0 +1,3 @@
+int minLevel;[notNull=false;minValue=0] // 等级下限
+int maxLevel;[notNull=false;minValue=0] // 等级上限
+int queueCount;[notNull=false;minValue=1] // 队列数量

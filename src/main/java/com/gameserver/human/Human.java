@@ -175,7 +175,8 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 			}
 		}
 	}
-
+	
+	@Override
 	public LifeCycle getLifeCycle() {
 		return lifeCycle;
 	}

@@ -75,4 +75,11 @@ public interface PersistanceObject<IdType extends java.io.Serializable, T extend
 	 * 设置当前对象为已修改状态
 	 */
 	void setModified();
+	
+	/**
+	 * 获得此持久化业务多谢的生命周期
+	 * 
+	 * @return
+	 */
+	LifeCycle getLifeCycle();
 }

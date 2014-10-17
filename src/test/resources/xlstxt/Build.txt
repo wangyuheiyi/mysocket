@@ -1,0 +1,24 @@
+int buildNameLangId;[notNull=false] // 建筑名称多语言Id
+String buildName; // 建筑名称
+int allianceType;[notNull=false;minValue=0] // 种族
+int appearance;[notNull=false;minValue=0] // 外观
+int level;[notNull=false;minValue=1] // 等级
+int levelUpdateId;[notNull=false;minValue=0] // 升级后id
+int consumeGold;[notNull=false;minValue=0] // 消耗金币
+int consumeDiamond;[notNull=false;minValue=0] // 消耗钻石
+int consumeWood;[notNull=false;minValue=0] // 消耗木材
+int consumeStone;[notNull=false;minValue=0] // 消耗石头
+int consumeCrystal;[notNull=false;minValue=0] // 消耗水晶
+int consumeSpecial;[notNull=false;minValue=0] // 消耗特殊资源
+int buildTime;[notNull=false;minValue=0] // 建筑时间
+int open;[notNull=false] //是否开放
+int outputType;[notNull=false] //产出类型
+int outputCount;[notNull=false] //产出数量
+int outputId;[notNull=false] //产出物品id
+int outputInterval;[notNull=false] //产出间隔（秒）
+int outputMax;[notNull=false] //产出最大容量
+int descriptionLangId;[notNull=false] // 建筑简介多语言Id
+int effectType;[notNull=false] // 效果类型
+int effectId;[notNull=false] // 效果id
+int humanLevel;[notNull=false] // 玩家需求等级
+int buildTimes;[notNull=false] // 可建造数量

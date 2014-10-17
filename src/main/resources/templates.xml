@@ -10,4 +10,9 @@
 	<file name="experience.xls">
 		<sheet class="com.gameserver.human.template.ExperienceTemplate" />
 	</file>
+	
+	<file name="build.xls">
+		<sheet class="com.gameserver.building.template.BuildTemplate" />
+		<sheet class="com.gameserver.building.template.BuildQueueTemplate" />
+	</file>
 </scripts>
