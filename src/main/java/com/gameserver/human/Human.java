@@ -4,12 +4,15 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.core.util.KeyValuePair;
 import com.db.model.impl.HumanEntity;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.common.operation.LifeCycle;
 import com.gameserver.common.operation.LifeCycleImpl;
 import com.gameserver.common.operation.PersistanceObject;
+import com.gameserver.human.manager.HumanBuildManager;
 import com.gameserver.human.manager.HumanPropertyManager;
 import com.gameserver.player.Player;
 import com.gameserver.role.Role;
@@ -22,6 +25,10 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 	/** 属性管理器 */
 	private HumanPropertyManager propertyManager;
 	
+	/** 建筑物管理器*/
+	@Autowired 
+	private HumanBuildManager humanBuildManager;
+	
 	/** 生命期 */
 	private LifeCycle lifeCycle;
 	/** 角色所属玩家 */
@@ -31,6 +38,7 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 		propertyManager = new HumanPropertyManager(this);
 		this.player=player;
 		this.lifeCycle = new LifeCycleImpl(this);
+		humanBuildManager.getBuild();
 	}
 	/** 是否已经在数据库中 */
 	private boolean inDb;

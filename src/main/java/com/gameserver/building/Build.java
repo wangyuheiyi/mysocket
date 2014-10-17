@@ -97,13 +97,35 @@ public class Build implements PersistanceObject<Long, BuildEntity>{
 	
 	@Override
 	public BuildEntity toEntity() {
-		// TODO Auto-generated method stub
-		return null;
+		BuildEntity buildEntity=new BuildEntity();
+		buildEntity.setId(this.getDbId());
+		buildEntity.setCharId(this.getCharId());
+		buildEntity.setWood(this.getWood());
+		buildEntity.setStone(this.getStone());
+		buildEntity.setCrystal(this.getCrystal());
+		buildEntity.setSpecial(this.getSpecial());
+		buildEntity.setBuildPack(toJsonPropBuildData());
+		buildEntity.setBuildIngPack(toJsonPropBuildIngData());
+		buildEntity.setCreateTime(this.getCreateTime());
+		buildEntity.setDeleted(this.getDeleted());
+		buildEntity.setDeleteTime(this.getDeleteTime());
+		return buildEntity;
 	}
 	@Override
 	public void fromEntity(BuildEntity entity) {
-		// TODO Auto-generated method stub
-		
+		this.setDbId(entity.getId());
+		this.setCharId(entity.getCharId());
+		this.setWood(entity.getWood());
+		this.setStone(entity.getStone());
+		this.setCrystal(entity.getCrystal());
+		this.setSpecial(entity.getSpecial());
+		loadJsonPropBuildData(entity.getBuildPack());
+		loadJsonPropBuildIngData(entity.getBuildIngPack());
+		this.setCreateTime(entity.getCreateTime());
+		this.setDeleted(entity.getDeleted());
+		this.setDeleteTime(entity.getDeleteTime());
+		this.active();
+		this.setInDb(true);
 	}
 	
 	/**
