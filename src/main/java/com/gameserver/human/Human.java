@@ -25,9 +25,14 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 	/** 属性管理器 */
 	private HumanPropertyManager propertyManager;
 	
+	/**//// 各个功能的管理器/////*/
 	/** 建筑物管理器*/
-	@Autowired 
 	private HumanBuildManager humanBuildManager;
+	
+	public HumanBuildManager getHumanBuildManager() {
+		return humanBuildManager;
+	}
+	
 	
 	/** 生命期 */
 	private LifeCycle lifeCycle;
@@ -38,7 +43,8 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 		propertyManager = new HumanPropertyManager(this);
 		this.player=player;
 		this.lifeCycle = new LifeCycleImpl(this);
-		humanBuildManager.getBuild();
+		humanBuildManager=new HumanBuildManager(this);
+		
 	}
 	/** 是否已经在数据库中 */
 	private boolean inDb;
