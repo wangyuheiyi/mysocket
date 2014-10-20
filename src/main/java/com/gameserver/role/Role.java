@@ -113,8 +113,6 @@ public abstract class Role
 		// 保存字符串类属性变化
 		KeyValuePair<Integer, String>[] _strChanged = changedStr();
 		
-		KeyValuePair<Integer, Integer>[] empty = KeyValuePair.newKeyValuePairArray(0);
-		
 		if (_numChanged != null && !_numChanged.isEmpty())
 		{
 			BaseMessage.Builder myMessage=BaseMessage.newBuilder();

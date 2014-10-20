@@ -51,7 +51,7 @@ public class LoadPlayerRoleOperation implements IIoOperation
 //				human.initInventory();
 				
 				player.setHuman(human);
-				
+				human.getHumanAllManager().load();
 				// 初始化武将装备包裹
 //				human.getInventory().initPetBags();	
 //				

@@ -6,11 +6,11 @@ import java.util.List;
 
 import org.springframework.util.Assert;
 
+import com.common.msg.BuildBean.BuildData;
+import com.common.msg.BuildBean.BuildIngData;
 import com.core.helper.LLJsonHelper;
 import com.core.util.StringUtils;
 import com.db.model.impl.BuildEntity;
-import com.gameserver.building.data.BuildData;
-import com.gameserver.building.data.BuildIngData;
 import com.gameserver.common.operation.LifeCycle;
 import com.gameserver.common.operation.LifeCycleImpl;
 import com.gameserver.common.operation.PersistanceObject;

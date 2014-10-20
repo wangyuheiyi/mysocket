@@ -1,0 +1,40 @@
+package bean;
+option java_package ="com.common.msg";
+option java_outer_classname = "BuildBean";
+
+message GCGetBuildList {
+	required int64 roleId = 1;
+	optional int32 wood=2;
+	optional int32 stone=3;
+	optional int32 crystal=4;
+	optional int32 special=5;
+	repeated BuildData buildData=6;
+	repeated BuildIngData BuildIngData=7;
+}
+
+message CGCreatBuild {
+	required int64 roleId = 1;
+	optional int32 templateId = 2;
+}
+
+message GCCreatBuild {
+}
+
+message GCUpdateBuildData{
+	required BuildData buildData = 1;
+}
+
+message GCUpdateBuildIngData{
+	required BuildIngData BuildIngData = 1;
+}
+
+
+message BuildData{
+	required int32 templateId = 1; //模板id
+	optional int64 outPutTime = 2; //产出的最后时间
+}
+
+message BuildIngData{
+	required int32 templateId = 1; //模板id
+	optional int64 buildStartTime = 2; //开始建筑时间
+}

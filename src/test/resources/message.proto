@@ -2,6 +2,7 @@ package bean;
 import "mission.proto";
 import "player.proto";
 import "human.proto";
+import "build.proto";
 option java_package ="com.common.msg";
 option java_outer_classname = "BaseBean";
 
@@ -26,8 +27,13 @@ message BaseMessage {
 			CGENTERSCENE=10;
 			GCENTERSCENE=11;
 			GCROLESYMBOLCHANGEDINT=12;
-		 	MISSIONINFO=13;
-		 	MISSIONREWARD=14;
+			GCGETBUILDLIST=13;
+			CGCREATBUILD=14;
+			GCCREATBUILD=15;
+			GCUPDATEBUILDDATA=16;
+			GCUPDATEBUILDINGDATA=17;
+		 	MISSIONINFO=18;
+		 	MISSIONREWARD=19;
 		}
 		required MessageCode messageCode=2;
 }
@@ -45,6 +51,11 @@ extend BaseMessage {
 		optional CGEnterScene cgEnterScene = 109;
 		optional GCEnterScene gcEnterScene = 110;
 		optional GCRoleSymbolChangedInt gcRoleSymbolChangedInt = 200;
-	  optional MissionInfo missionInfo = 300;
-	  optional MissionReward missionReward = 301;
+		optional GCGetBuildList gcGetBuildList = 300;
+		optional CGCreatBuild cgCreatBuild = 301;
+		optional GCCreatBuild gcCreatBuild = 302;
+		optional GCUpdateBuildData gcUpdateBuildData = 303;
+		optional GCUpdateBuildIngData gcUpdateBuildIngData = 304;
+	  optional MissionInfo missionInfo = 400;
+	  optional MissionReward missionReward = 401;
 }

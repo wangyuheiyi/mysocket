@@ -6,8 +6,11 @@ import org.slf4j.Logger;
 import com.common.constants.Loggers;
 import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
-import com.common.msg.PlayerBean.GCCreateRole;
+import com.common.msg.BuildBean.BuildData;
+import com.common.msg.BuildBean.BuildIngData;
+import com.common.msg.BuildBean.GCGetBuildList;
 import com.common.msg.PlayerBean.GCEnterScene;
+import com.gameserver.building.Build;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.human.Human;
 import com.gameserver.player.Player;
@@ -90,9 +93,15 @@ public final class HumanInitManager
 		logger.info("玩家id["+human.getCharId()+"]玩家名["+human.getName()+"]初始消息发送成功");
 		//发送进入场景的消息
 		sendEnterSceneMessage(human,human.getSceneId());
-		
+		//发送建筑物列表
+		sendBuildMessage(human);
 	}
 	
+	/**
+	 * 发送进入场景消息
+	 * @param human
+	 * @param sceneId
+	 */
 	public void sendEnterSceneMessage(Human human,int sceneId){
 		BaseMessage.Builder myMessage=BaseMessage.newBuilder();
 		GCEnterScene.Builder gcEnterScene=GCEnterScene.newBuilder();
@@ -101,6 +110,30 @@ public final class HumanInitManager
 		myMessage.setType(BaseMessage.Type.PLAYERMESSAGE);
 		myMessage.setMessageCode(BaseMessage.MessageCode.GCENTERSCENE);
 		myMessage.setExtension(BaseBean.gcEnterScene, gcEnterScene.build());
+		human.sendMessage(myMessage.build());
+	}
+	
+	/**
+	 * 发送建筑列表消息
+	 * @param human
+	 */
+	public void sendBuildMessage(Human human){
+		BaseMessage.Builder myMessage=BaseMessage.newBuilder();
+		GCGetBuildList.Builder gcGetBuildList=GCGetBuildList.newBuilder();
+		gcGetBuildList.setRoleId(human.getCharId());
+		Build build=human.getHumanAllManager().getHumanBuildManager().getBuild();
+		gcGetBuildList.setWood(build.getWood());
+		gcGetBuildList.setStone(build.getStone());
+		gcGetBuildList.setCrystal(build.getCrystal());
+		for(BuildData buildData:build.getBuildDataList()){
+			gcGetBuildList.addBuildData(buildData);
+		}
+		for(BuildIngData buildIngData:build.getBuildIngDataList()){
+			gcGetBuildList.addBuildIngData(buildIngData);
+		}
+		myMessage.setType(BaseMessage.Type.PLAYERMESSAGE);
+		myMessage.setMessageCode(BaseMessage.MessageCode.GCGETBUILDLIST);
+		myMessage.setExtension(BaseBean.gcGetBuildList, gcGetBuildList.build());
 		human.sendMessage(myMessage.build());
 	}
 }
