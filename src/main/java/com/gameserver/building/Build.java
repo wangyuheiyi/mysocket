@@ -1,15 +1,9 @@
 package com.gameserver.building;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.util.Assert;
 
-import com.common.msg.BuildBean.BuildData;
-import com.common.msg.BuildBean.BuildIngData;
-import com.core.helper.LLJsonHelper;
-import com.core.util.StringUtils;
 import com.db.model.impl.BuildEntity;
 import com.gameserver.common.operation.LifeCycle;
 import com.gameserver.common.operation.LifeCycleImpl;
@@ -27,18 +21,16 @@ public class Build implements PersistanceObject<Long, BuildEntity>{
 	private long charId;
 	/** 是否已经在数据库中 */
 	private boolean inDb;
-	/** 木材资源*/
-	private int wood;
-	/** 石头资源*/
-	private int stone;
-	/** 水晶资源*/
-	private int crystal;
-	/** 特殊资源*/
-	private int special;
-	/** 建筑列表*/
-	private List<BuildData> buildDataList=new ArrayList<BuildData>();
-	/** 正在建筑的列表*/
-	private List<BuildIngData> buildIngDataList=new ArrayList<BuildIngData>();
+	/** 玩家模板id*/
+	private int templateId;
+	
+	/** 是否建筑完成*/
+	private int isFinish;
+	
+	/** 产出的最后时间*/
+	private long outPutTime;
+	/** 开始建筑时间*/
+	private long buildStartTime;
 	/** 创建时间 */
 	private Timestamp createTime;
 	/** 是否已经被删除 */
@@ -100,12 +92,10 @@ public class Build implements PersistanceObject<Long, BuildEntity>{
 		BuildEntity buildEntity=new BuildEntity();
 		buildEntity.setId(this.getDbId());
 		buildEntity.setCharId(this.getCharId());
-		buildEntity.setWood(this.getWood());
-		buildEntity.setStone(this.getStone());
-		buildEntity.setCrystal(this.getCrystal());
-		buildEntity.setSpecial(this.getSpecial());
-		buildEntity.setBuildPack(toJsonPropBuildData());
-		buildEntity.setBuildIngPack(toJsonPropBuildIngData());
+		buildEntity.setTemplateId(this.getTemplateId());
+		buildEntity.setIsFinish(this.getIsFinish());
+		buildEntity.setOutPutTime(this.getOutPutTime());
+		buildEntity.setBuildStartTime(this.getBuildStartTime());
 		buildEntity.setCreateTime(this.getCreateTime());
 		buildEntity.setDeleted(this.getDeleted());
 		buildEntity.setDeleteTime(this.getDeleteTime());
@@ -115,12 +105,10 @@ public class Build implements PersistanceObject<Long, BuildEntity>{
 	public void fromEntity(BuildEntity entity) {
 		this.setDbId(entity.getId());
 		this.setCharId(entity.getCharId());
-		this.setWood(entity.getWood());
-		this.setStone(entity.getStone());
-		this.setCrystal(entity.getCrystal());
-		this.setSpecial(entity.getSpecial());
-		loadJsonPropBuildData(entity.getBuildPack());
-		loadJsonPropBuildIngData(entity.getBuildIngPack());
+		this.setTemplateId(entity.getTemplateId());
+		this.setIsFinish(entity.getIsFinish());
+		this.setOutPutTime(entity.getOutPutTime());
+		this.setBuildStartTime(entity.getBuildStartTime());
 		this.setCreateTime(entity.getCreateTime());
 		this.setDeleted(entity.getDeleted());
 		this.setDeleteTime(entity.getDeleteTime());
@@ -155,38 +143,6 @@ public class Build implements PersistanceObject<Long, BuildEntity>{
 		}
 	}
 
-	public int getWood() {
-		return wood;
-	}
-
-	public void setWood(int wood) {
-		this.wood = wood;
-	}
-
-	public int getStone() {
-		return stone;
-	}
-
-	public void setStone(int stone) {
-		this.stone = stone;
-	}
-
-	public int getCrystal() {
-		return crystal;
-	}
-
-	public void setCrystal(int crystal) {
-		this.crystal = crystal;
-	}
-
-	public int getSpecial() {
-		return special;
-	}
-
-	public void setSpecial(int special) {
-		this.special = special;
-	}
-
 	public Timestamp getCreateTime() {
 		return createTime;
 	}
@@ -211,41 +167,39 @@ public class Build implements PersistanceObject<Long, BuildEntity>{
 		this.deleteTime = deleteTime;
 	}
 
-	public List<BuildData> getBuildDataList() {
-		return buildDataList;
+	public int getTemplateId() {
+		return templateId;
 	}
 
-	public List<BuildIngData> getBuildIngDataList() {
-		return buildIngDataList;
+	public void setTemplateId(int templateId) {
+		this.templateId = templateId;
 	}
-	
-	
-	public String toJsonPropBuildData() {
-		return LLJsonHelper.getJsonStringFromCollection(this.buildDataList);
+
+	public int getIsFinish() {
+		return isFinish;
 	}
-	
-	public String toJsonPropBuildIngData() {
-		return LLJsonHelper.getJsonStringFromCollection(this.buildIngDataList);
+
+	public void setIsFinish(int isFinish) {
+		this.isFinish = isFinish;
+	}
+
+	public long getOutPutTime() {
+		return outPutTime;
+	}
+
+	public void setOutPutTime(long outPutTime) {
+		this.outPutTime = outPutTime;
+	}
+
+	public long getBuildStartTime() {
+		return buildStartTime;
+	}
+
+	public void setBuildStartTime(long buildStartTime) {
+		this.buildStartTime = buildStartTime;
 	}
 
 	
-	public void loadJsonPropBuildData(String value) {
-		if(StringUtils.isEmpty(value)) return;
-		BuildData[] tempList = LLJsonHelper.getObjectArrayFromJson(value,BuildData.class);
-		this.buildDataList.clear();
-		for (int i = 0; i < tempList.length; i++)
-		{
-			this.buildDataList.add(tempList[i]);
-		}
-	}
 	
-	public void loadJsonPropBuildIngData(String value) {
-		if(StringUtils.isEmpty(value)) return;
-		BuildIngData[] tempList = LLJsonHelper.getObjectArrayFromJson(value,BuildIngData.class);
-		this.buildIngDataList.clear();
-		for (int i = 0; i < tempList.length; i++)
-		{
-			this.buildIngDataList.add(tempList[i]);
-		}
-	}
+	
 }

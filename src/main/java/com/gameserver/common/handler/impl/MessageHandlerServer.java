@@ -8,9 +8,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.common.context.ContextFactiry;
-import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
-import com.common.msg.MissionBean.MissionInfo;
+import com.gameserver.building.handler.CGCreateBuildHandler;
 import com.gameserver.common.globals.server.impl.OnLinePlayerServer;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.common.handler.IMessageHandler;
@@ -58,6 +57,10 @@ public class MessageHandlerServer{
     		CGRoleReNameHandler cgRoleReNameHandler=ContextFactiry.getContext("handlerContext").getBean(CGRoleReNameHandler.class);
     		cgRoleReNameHandler.setMessage(baseBean, player);
     		return cgRoleReNameHandler;
+    	case CGCREATBUILD:
+    		CGCreateBuildHandler cgCreateBuildHandler=ContextFactiry.getContext("handlerContext").getBean(CGCreateBuildHandler.class);
+    		cgCreateBuildHandler.setMessage(baseBean, player);
+    		return null;
     	}
 		return null;
     }
@@ -76,7 +79,6 @@ public class MessageHandlerServer{
 			//设置对象
 			iHandler=MessageHandlerServer.getInstance().getMessageHandler(channel, baseBean);
 			player.putMessage(iHandler);
-//			System.out.println("missionId:"+missionInfo.getMissionId());
 			break;
 		default:
 			break;

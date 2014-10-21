@@ -42,76 +42,84 @@ public abstract class BuildTemplateVO extends TemplateObject {
 	@ExcelCellBinding(offset = 6)
 	protected int levelUpdateId;
 
-	/** 消耗金币 */
+	/** 转型等级 */
 	@ExcelCellBinding(offset = 7)
+	protected int transitionLevel;
+
+	/** 转型后id */
+	@ExcelCellBinding(offset = 8)
+	protected int transitionId;
+
+	/** 消耗金币 */
+	@ExcelCellBinding(offset = 9)
 	protected int consumeGold;
 
 	/** 消耗钻石 */
-	@ExcelCellBinding(offset = 8)
+	@ExcelCellBinding(offset = 10)
 	protected int consumeDiamond;
 
 	/** 消耗木材 */
-	@ExcelCellBinding(offset = 9)
+	@ExcelCellBinding(offset = 11)
 	protected int consumeWood;
 
 	/** 消耗石头 */
-	@ExcelCellBinding(offset = 10)
+	@ExcelCellBinding(offset = 12)
 	protected int consumeStone;
 
 	/** 消耗水晶 */
-	@ExcelCellBinding(offset = 11)
+	@ExcelCellBinding(offset = 13)
 	protected int consumeCrystal;
 
 	/** 消耗特殊资源 */
-	@ExcelCellBinding(offset = 12)
+	@ExcelCellBinding(offset = 14)
 	protected int consumeSpecial;
 
 	/** 建筑时间 */
-	@ExcelCellBinding(offset = 13)
+	@ExcelCellBinding(offset = 15)
 	protected int buildTime;
 
 	/** 是否开放 */
-	@ExcelCellBinding(offset = 14)
+	@ExcelCellBinding(offset = 16)
 	protected int open;
 
 	/** 产出类型 */
-	@ExcelCellBinding(offset = 15)
+	@ExcelCellBinding(offset = 17)
 	protected int outputType;
 
 	/** 产出数量 */
-	@ExcelCellBinding(offset = 16)
+	@ExcelCellBinding(offset = 18)
 	protected int outputCount;
 
 	/** 产出物品id */
-	@ExcelCellBinding(offset = 17)
+	@ExcelCellBinding(offset = 19)
 	protected int outputId;
 
 	/** 产出间隔（秒） */
-	@ExcelCellBinding(offset = 18)
+	@ExcelCellBinding(offset = 20)
 	protected int outputInterval;
 
 	/** 产出最大容量 */
-	@ExcelCellBinding(offset = 19)
+	@ExcelCellBinding(offset = 21)
 	protected int outputMax;
 
 	/** 建筑简介多语言Id */
-	@ExcelCellBinding(offset = 20)
+	@ExcelCellBinding(offset = 22)
 	protected int descriptionLangId;
 
 	/** 效果类型 */
-	@ExcelCellBinding(offset = 21)
+	@ExcelCellBinding(offset = 23)
 	protected int effectType;
 
 	/** 效果id */
-	@ExcelCellBinding(offset = 22)
+	@ExcelCellBinding(offset = 24)
 	protected int effectId;
 
 	/** 玩家需求等级 */
-	@ExcelCellBinding(offset = 23)
+	@ExcelCellBinding(offset = 25)
 	protected int humanLevel;
 
 	/** 可建造数量 */
-	@ExcelCellBinding(offset = 24)
+	@ExcelCellBinding(offset = 26)
 	protected int buildTimes;
 
 
@@ -207,6 +215,40 @@ public abstract class BuildTemplateVO extends TemplateObject {
 		this.levelUpdateId = levelUpdateId;
 	}
 	
+	public int getTransitionLevel() {
+		return this.transitionLevel;
+	}
+
+
+	public final static int getTransitionLevelMinLimit() {
+		return 0;
+	}
+
+	public void setTransitionLevel(int transitionLevel) {
+		if (transitionLevel < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					8, "[转型等级]transitionLevel的值不得小于0");
+		}
+		this.transitionLevel = transitionLevel;
+	}
+	
+	public int getTransitionId() {
+		return this.transitionId;
+	}
+
+
+	public final static int getTransitionIdMinLimit() {
+		return 0;
+	}
+
+	public void setTransitionId(int transitionId) {
+		if (transitionId < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					9, "[转型后id]transitionId的值不得小于0");
+		}
+		this.transitionId = transitionId;
+	}
+	
 	public int getConsumeGold() {
 		return this.consumeGold;
 	}
@@ -219,7 +261,7 @@ public abstract class BuildTemplateVO extends TemplateObject {
 	public void setConsumeGold(int consumeGold) {
 		if (consumeGold < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					8, "[消耗金币]consumeGold的值不得小于0");
+					10, "[消耗金币]consumeGold的值不得小于0");
 		}
 		this.consumeGold = consumeGold;
 	}
@@ -236,7 +278,7 @@ public abstract class BuildTemplateVO extends TemplateObject {
 	public void setConsumeDiamond(int consumeDiamond) {
 		if (consumeDiamond < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					9, "[消耗钻石]consumeDiamond的值不得小于0");
+					11, "[消耗钻石]consumeDiamond的值不得小于0");
 		}
 		this.consumeDiamond = consumeDiamond;
 	}
@@ -253,7 +295,7 @@ public abstract class BuildTemplateVO extends TemplateObject {
 	public void setConsumeWood(int consumeWood) {
 		if (consumeWood < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					10, "[消耗木材]consumeWood的值不得小于0");
+					12, "[消耗木材]consumeWood的值不得小于0");
 		}
 		this.consumeWood = consumeWood;
 	}
@@ -270,7 +312,7 @@ public abstract class BuildTemplateVO extends TemplateObject {
 	public void setConsumeStone(int consumeStone) {
 		if (consumeStone < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					11, "[消耗石头]consumeStone的值不得小于0");
+					13, "[消耗石头]consumeStone的值不得小于0");
 		}
 		this.consumeStone = consumeStone;
 	}
@@ -287,7 +329,7 @@ public abstract class BuildTemplateVO extends TemplateObject {
 	public void setConsumeCrystal(int consumeCrystal) {
 		if (consumeCrystal < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					12, "[消耗水晶]consumeCrystal的值不得小于0");
+					14, "[消耗水晶]consumeCrystal的值不得小于0");
 		}
 		this.consumeCrystal = consumeCrystal;
 	}
@@ -304,7 +346,7 @@ public abstract class BuildTemplateVO extends TemplateObject {
 	public void setConsumeSpecial(int consumeSpecial) {
 		if (consumeSpecial < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					13, "[消耗特殊资源]consumeSpecial的值不得小于0");
+					15, "[消耗特殊资源]consumeSpecial的值不得小于0");
 		}
 		this.consumeSpecial = consumeSpecial;
 	}
@@ -321,7 +363,7 @@ public abstract class BuildTemplateVO extends TemplateObject {
 	public void setBuildTime(int buildTime) {
 		if (buildTime < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					14, "[建筑时间]buildTime的值不得小于0");
+					16, "[建筑时间]buildTime的值不得小于0");
 		}
 		this.buildTime = buildTime;
 	}
@@ -460,6 +502,6 @@ public abstract class BuildTemplateVO extends TemplateObject {
 
 	@Override
 	public String toString() {
-		return "BuildTemplateVO [  buildNameLangId=" + buildNameLangId + ", buildName=" + buildName + ", allianceType=" + allianceType + ", appearance=" + appearance + ", level=" + level + ", levelUpdateId=" + levelUpdateId + ", consumeGold=" + consumeGold + ", consumeDiamond=" + consumeDiamond + ", consumeWood=" + consumeWood + ", consumeStone=" + consumeStone + ", consumeCrystal=" + consumeCrystal + ", consumeSpecial=" + consumeSpecial + ", buildTime=" + buildTime + ", open=" + open + ", outputType=" + outputType + ", outputCount=" + outputCount + ", outputId=" + outputId + ", outputInterval=" + outputInterval + ", outputMax=" + outputMax + ", descriptionLangId=" + descriptionLangId + ", effectType=" + effectType + ", effectId=" + effectId + ", humanLevel=" + humanLevel + ", buildTimes=" + buildTimes + ",]";
+		return "BuildTemplateVO [  buildNameLangId=" + buildNameLangId + ", buildName=" + buildName + ", allianceType=" + allianceType + ", appearance=" + appearance + ", level=" + level + ", levelUpdateId=" + levelUpdateId + ", transitionLevel=" + transitionLevel + ", transitionId=" + transitionId + ", consumeGold=" + consumeGold + ", consumeDiamond=" + consumeDiamond + ", consumeWood=" + consumeWood + ", consumeStone=" + consumeStone + ", consumeCrystal=" + consumeCrystal + ", consumeSpecial=" + consumeSpecial + ", buildTime=" + buildTime + ", open=" + open + ", outputType=" + outputType + ", outputCount=" + outputCount + ", outputId=" + outputId + ", outputInterval=" + outputInterval + ", outputMax=" + outputMax + ", descriptionLangId=" + descriptionLangId + ", effectType=" + effectType + ", effectId=" + effectId + ", humanLevel=" + humanLevel + ", buildTimes=" + buildTimes + ",]";
 	}
 }

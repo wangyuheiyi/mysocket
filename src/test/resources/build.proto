@@ -8,8 +8,8 @@ message GCGetBuildList {
 	optional int32 stone=3;
 	optional int32 crystal=4;
 	optional int32 special=5;
-	repeated BuildData buildData=6;
-	repeated BuildIngData BuildIngData=7;
+	repeated BuildClientData buildData=6;
+	repeated BuildClientIngData buildIngData=7;
 }
 
 message CGCreatBuild {
@@ -18,23 +18,26 @@ message CGCreatBuild {
 }
 
 message GCCreatBuild {
+	required int64 buildId = 1;
 }
 
 message GCUpdateBuildData{
-	required BuildData buildData = 1;
+	required BuildClientData buildData = 1;
 }
 
 message GCUpdateBuildIngData{
-	required BuildIngData BuildIngData = 1;
+	required BuildClientIngData BuildIngData = 1;
 }
 
 
-message BuildData{
-	required int32 templateId = 1; //模板id
-	optional int64 outPutTime = 2; //产出的最后时间
+message BuildClientData{
+	required int64 buildId = 1;
+	optional int32 templateId = 2; //模板id
+	optional int64 outPutCdTime = 3; //下次产出倒计时
 }
 
-message BuildIngData{
-	required int32 templateId = 1; //模板id
-	optional int64 buildStartTime = 2; //开始建筑时间
+message BuildClientIngData{
+	required int64 buildId = 1;
+	optional int32 templateId = 2; //模板id
+	optional int64 buildFinishCdTime = 3; //建筑完成倒计时
 }

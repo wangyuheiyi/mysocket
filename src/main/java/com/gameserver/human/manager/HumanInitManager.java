@@ -6,11 +6,11 @@ import org.slf4j.Logger;
 import com.common.constants.Loggers;
 import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
-import com.common.msg.BuildBean.BuildData;
-import com.common.msg.BuildBean.BuildIngData;
 import com.common.msg.BuildBean.GCGetBuildList;
 import com.common.msg.PlayerBean.GCEnterScene;
 import com.gameserver.building.Build;
+import com.gameserver.building.BuildDef.BuildFinishType;
+import com.gameserver.building.BuildListLogic;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.human.Human;
 import com.gameserver.player.Player;
@@ -121,15 +121,16 @@ public final class HumanInitManager
 		BaseMessage.Builder myMessage=BaseMessage.newBuilder();
 		GCGetBuildList.Builder gcGetBuildList=GCGetBuildList.newBuilder();
 		gcGetBuildList.setRoleId(human.getCharId());
-		Build build=human.getHumanAllManager().getHumanBuildManager().getBuild();
-		gcGetBuildList.setWood(build.getWood());
-		gcGetBuildList.setStone(build.getStone());
-		gcGetBuildList.setCrystal(build.getCrystal());
-		for(BuildData buildData:build.getBuildDataList()){
-			gcGetBuildList.addBuildData(buildData);
+		
+		gcGetBuildList.setWood(human.getWood());
+		gcGetBuildList.setStone(human.getStone());
+		gcGetBuildList.setCrystal(human.getCrystal());
+		gcGetBuildList.setSpecial(human.getSpecial());
+		for(Build build:human.getHumanAllManager().getHumanBuildManager().getBuildFinishList(BuildFinishType.FINISH.getIndex())){
+			gcGetBuildList.addBuildData(BuildListLogic.getInstance().getBuildClientData(build));
 		}
-		for(BuildIngData buildIngData:build.getBuildIngDataList()){
-			gcGetBuildList.addBuildIngData(buildIngData);
+		for(Build build:human.getHumanAllManager().getHumanBuildManager().getBuildFinishList(BuildFinishType.UNFINISH.getIndex())){
+			gcGetBuildList.addBuildIngData(BuildListLogic.getInstance().getBuildClientIngData(build));
 		}
 		myMessage.setType(BaseMessage.Type.PLAYERMESSAGE);
 		myMessage.setMessageCode(BaseMessage.MessageCode.GCGETBUILDLIST);

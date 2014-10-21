@@ -11,6 +11,7 @@ import com.common.context.ContextFactiry;
 import com.core.config.ConfigUtil;
 import com.core.templates.TemplateService;
 import com.db.dao.impl.DbServer;
+import com.gameserver.building.server.BuildSever;
 import com.gameserver.common.globals.config.GameConfigServer;
 import com.gameserver.common.globals.server.IBaseServer;
 import com.gameserver.human.server.HumanSever;
@@ -51,6 +52,10 @@ public class ServerManager implements IBaseServer{
 	private HumanSever humanSever;
 	@Autowired
 	private PlayerServer playerServer;
+	
+	/** 建筑服务*/
+	@Autowired
+	private BuildSever buildSever;
 	
 	@Override
 	public void init(GameConfigServer config) {
@@ -136,6 +141,10 @@ public class ServerManager implements IBaseServer{
 
 	public PlayerServer getPlayerServer() {
 		return playerServer;
+	}
+
+	public BuildSever getBuildSever() {
+		return buildSever;
 	}
 	
 	

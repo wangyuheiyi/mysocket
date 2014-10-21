@@ -4,6 +4,8 @@ int allianceType;[notNull=false;minValue=0] // 种族
 int appearance;[notNull=false;minValue=0] // 外观
 int level;[notNull=false;minValue=1] // 等级
 int levelUpdateId;[notNull=false;minValue=0] // 升级后id
+int transitionLevel;[notNull=false;minValue=0] // 转型等级
+int transitionId;[notNull=false;minValue=0] // 转型后id
 int consumeGold;[notNull=false;minValue=0] // 消耗金币
 int consumeDiamond;[notNull=false;minValue=0] // 消耗钻石
 int consumeWood;[notNull=false;minValue=0] // 消耗木材

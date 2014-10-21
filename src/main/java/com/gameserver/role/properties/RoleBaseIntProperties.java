@@ -40,6 +40,26 @@ public class RoleBaseIntProperties extends GenericPropertyObject
 	@Type(Integer.class)
 	public static final int COUPON = ++_END;
 	
+	/** 木材 */
+	@Comment(content = "木材")
+	@Type(Integer.class)
+	public static final int WOOD = ++_END;
+	
+	/** 石头 */
+	@Comment(content = "石头")
+	@Type(Integer.class)
+	public static final int STONE = ++_END;
+	
+	/** 水晶 */
+	@Comment(content = "水晶")
+	@Type(Integer.class)
+	public static final int CRYSTAL = ++_END;
+	
+	/** 特殊资源 */
+	@Comment(content = "特殊资源")
+	@Type(Integer.class)
+	public static final int SPECIAL = ++_END;
+	
 	/** 当前经验 */
 	@Comment(content = "当前经验")
 	@Type(Integer.class)

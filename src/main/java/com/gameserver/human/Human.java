@@ -6,6 +6,8 @@ import java.util.List;
 
 import com.core.util.KeyValuePair;
 import com.db.model.impl.HumanEntity;
+import com.gameserver.common.currencys.Currency;
+import com.gameserver.common.currencys.CurrencyProcessor;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.common.operation.LifeCycle;
 import com.gameserver.common.operation.LifeCycleImpl;
@@ -124,6 +126,10 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 		humanEntity.setDiamond(this.getDiamond());
 		humanEntity.setGold(this.getGold());
 		humanEntity.setCoupon(this.getCoupon());
+		humanEntity.setWood(this.getWood());
+		humanEntity.setStone(this.getStone());
+		humanEntity.setCrystal(this.getCrystal());
+		humanEntity.setSpecial(this.getSpecial());
 		humanEntity.setCurExp(this.getCurExp());
 		humanEntity.setSceneId(this.getSceneId());
 		humanEntity.setPrimBagCount(this.getPrimBagCount());
@@ -151,6 +157,10 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 		this.setDiamond(entity.getDiamond());
 		this.setGold(entity.getGold());
 		this.setCoupon(entity.getCoupon());
+		this.setWood(entity.getWood());
+		this.setStone(entity.getStone());
+		this.setCrystal(entity.getCrystal());
+		this.setSpecial(entity.getSpecial());
 		this.setCurExp(entity.getCurExp());
 		this.setSceneId(entity.getSceneId());
 		this.setPrimBagCount(entity.getPrimBagCount());
@@ -235,6 +245,38 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 
 	public void setCoupon(int coupon) {
 		baseIntProperties.setPropertyValue(RoleBaseIntProperties.COUPON, coupon);
+	}
+	
+	public int getWood() {
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.WOOD);
+	}
+
+	public void setWood(int wood) {
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.WOOD, wood);
+	}
+	
+	public int getStone() {
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.STONE);
+	}
+
+	public void setStone(int stone) {
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.STONE,stone);
+	}
+	
+	public int getCrystal() {
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.CRYSTAL);
+	}
+
+	public void setCrystal(int crystal) {
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.CRYSTAL, crystal);
+	}
+	
+	public int getSpecial() {
+		return baseIntProperties.getPropertyValue(RoleBaseIntProperties.SPECIAL);
+	}
+
+	public void setSpecial(int special) {
+		baseIntProperties.setPropertyValue(RoleBaseIntProperties.SPECIAL, special);
 	}
 
 	public int getAllDiamond()
@@ -477,5 +519,99 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 		return humanAllManager;
 	}
 	
+	
+	
+	/**
+	 * 给钱
+	 * 
+	 * @param amount
+	 *            改变数量, 大于 0 才有效
+	 * @param currencyType
+	 *            货币类型
+	 * @param logReason
+	 *            给钱原因
+	 * @param detailReason
+	 *            详细原因, 通常为 null, 扩展使用
+	 * @return 给钱成功返回 true, 否则返回 false, 失败可能是钱已经超出了最大限额, 参数不合法等
+	 * 
+	 */
+	public boolean giveMoney(int amount,Currency currencyType,boolean needNotify,String detailReason,int productId,
+			int productCount)
+	{
+		// 如果数量小于等于 0,则直接退出!
+		if (amount <= 0) return false;
+
+		// 执行给钱逻辑
+		return CurrencyProcessor.getInstance().giveMoney(this, // 玩家角色
+				amount, // 给钱数量
+				currencyType, // 货币类型
+				needNotify,
+				detailReason, // 详细原因
+				productId,
+				productCount
+				);
+	}
+
+	/**
+	 * 扣钱
+	 * 
+	 * @param amount
+	 *            扣得数量, 大于 0 才有效
+	 * @param mainCurrency
+	 *            主货币类型, 不为 null 才有效
+	 * @param altCurrency
+	 *            替补货币类型, 可以为 null
+	 * @param logReason
+	 *            扣钱的原因
+	 * @param detailReason
+	 *            详细原因, 通常为null, 扩展使用
+	 * @param reportItemID
+	 *            向平台汇报贵重物品消耗时的 itemTemplateID, 非物品的消耗时使用 -1
+	 * @return 扣钱成功返回 true, 否则返回false, 失败可能是钱已经超出了最大限额, 参数不合法等
+	 * 
+	 */
+	public boolean costMoney(int amount, Currency mainCurrency,
+			Currency altCurrency,boolean needNotify,
+			String detailReason,int productId,int productCount)
+	{
+		// 如果数量小于等于 0,则直接退出!
+		if (amount <= 0) return false;
+		
+		// 执行扣钱逻辑
+		return CurrencyProcessor.getInstance().costMoney(this, amount,
+				mainCurrency, altCurrency,needNotify, detailReason,
+				productId,productCount);
+	}
+	/**
+	 * 检查玩家是否足够指定货币, 如果替补货币为 null 则只检查主货币, 主货币不可以为 null
+	 * 
+	 * @param amount
+	 *            数量, 大于等于 0 才有效, 等于 0 时永远返回 true
+	 * @param mainCurrency
+	 *            主货币类型
+	 * @param altCurrency
+	 *            替补货币类型, 为 null 时只检测主货币
+	 * @return 如果主货币够 amount 返回 true; 主货币不够看替补货币够不够除现有主货币外剩下的, 够也返回 true;
+	 *         加起来都不够返回 false; 参数无效也会返回 false;
+	 * 
+	 */
+	public boolean hasEnoughMoney(int amount,Currency mainCurrency,Currency altCurrency)
+	{
+		if (amount < 0)
+		{
+			// 数量小于 0, 则直接退出!
+			return false;
+		} else if (amount == 0)
+		{
+			// 数量等于 0, 直接返回 true
+			return true;
+		}
+		// 判定金钱是否足够 ?
+		return CurrencyProcessor.getInstance().hasEnoughMoney(this, // 玩家角色
+				amount, // 金钱数量
+				mainCurrency, // 主货币
+				altCurrency // 辅助货币
+				);
+	}
 	
 }
