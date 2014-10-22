@@ -19,19 +19,16 @@ public class CGPlayerCheckLoginHandler implements IMessageHandler{
 	private Player player;
 	@Override
 	public void execute() {
-		BaseMessage.Builder myMessage=BaseMessage.newBuilder();
 		GCPlayerCheckLogin.Builder gcPlayerCheckLogin=GCPlayerCheckLogin.newBuilder();
 		gcPlayerCheckLogin.setPlayerId(cgPlayerCheckLogin.getPlayerId());
 		player.setId(cgPlayerCheckLogin.getPlayerId());
 		player.setState(PlayerState.connected);
-		myMessage.setType(BaseMessage.Type.GLOBALMESSAGE);
-		myMessage.setMessageCode(BaseMessage.MessageCode.GCPLAYERCHECKLOGIN);
-		myMessage.setExtension(BaseBean.gcPlayerCheckLogin, gcPlayerCheckLogin.build());
 		 //连接成功后加载在线玩家
 		OnLinePlayerServer onLinePlayerServer = ServerManager.getInstance().getOnLinePlayerServer();
 		player.setState(PlayerState.auth);
 		onLinePlayerServer.onPlayerEnterServer(player.getId(), player);
-		player.sendMessage(myMessage.build());
+		player.sendMessage(player.buildBeseMessage(BaseMessage.Type.GLOBALMESSAGE, BaseMessage.MessageCode.GCPLAYERCHECKLOGIN).
+				setExtension(BaseBean.gcPlayerCheckLogin, gcPlayerCheckLogin.build()).build());
 	}
 
 	@Override

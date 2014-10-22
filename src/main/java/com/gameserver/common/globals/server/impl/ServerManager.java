@@ -72,6 +72,7 @@ public class ServerManager implements IBaseServer{
 		updaterServer.init(config);
 		sceneUpdaterServer.init(config);
 		humanSever.init(config);
+		buildSever.init(config);
 	}
 	
 	public void start(){

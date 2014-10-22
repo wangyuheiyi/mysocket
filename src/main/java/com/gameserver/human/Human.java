@@ -614,4 +614,10 @@ public class Human extends Role implements PersistanceObject<Long, HumanEntity>{
 				);
 	}
 	
+
+	@Override
+	public void heartBeat() 
+	{
+		humanAllManager.onHeartBeat();
+	}
 }

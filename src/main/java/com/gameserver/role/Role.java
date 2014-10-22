@@ -131,6 +131,7 @@ public abstract class Role
 			myMessage.setMessageCode(BaseMessage.MessageCode.GCROLESYMBOLCHANGEDINT);
 			myMessage.setExtension(BaseBean.gcRoleSymbolChangedInt, gcRoleSymbolChangedInt.build());
 			sendMessage(myMessage.build());
+			
 		}
 
 		if (_strChanged != null && _strChanged.length > 0)
@@ -166,7 +167,10 @@ public abstract class Role
 		return _strChanged;
 	}
 	
-	
+	public void heartBeat() 
+	{
+		
+	}
 	
 	/**
 	 * 角色的属性管理器

@@ -3,12 +3,16 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import com.core.util.TimeUtils;
 import com.core.uuids.UUIDType;
 import com.db.model.impl.BuildEntity;
 import com.gameserver.building.Build;
+import com.gameserver.building.BuildDef.BuildFinishType;
 import com.gameserver.building.data.BuildIngData;
+import com.gameserver.building.template.BuildTemplate;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.human.Human;
 import com.gameserver.human.manager.IHumanManager;
@@ -51,6 +55,28 @@ public class HumanBuildManager implements IHumanManager{
 				build.fromEntity(buildEntity);
 				buildDataList.add(build);
 			}
+			checkBuildFinshed();
+		}
+	}
+	
+	
+	/**
+	 * 判断某些建筑是否完成了
+	 * @param buildIngList
+	 */
+	public void checkBuildFinshed(){
+		List<Build> buildIngList=getBuildFinishList(BuildFinishType.UNFINISH.getIndex());
+		if(buildIngList.size()==0)return;
+		long now =ServerManager.getInstance().getSystemTimeService().now();
+		BuildTemplate buildTemplate=null;
+		for(Build build:buildIngList){
+			buildTemplate=ServerManager.getInstance().getBuildSever().getHumanTemplById(build.getTemplateId());
+			if(build.getBuildStartTime()+(buildTemplate.getBuildTime()*TimeUtils.SECOND)>now)continue;
+			build.setIsFinish(BuildFinishType.FINISH.getIndex());
+			if(buildTemplate.getOutputType()!=0){
+				build.setOutPutTime(now+buildTemplate.getOutputInterval()*TimeUtils.SECOND);
+			}
+			build.setModified();
 		}
 	}
 	
@@ -66,6 +92,37 @@ public class HumanBuildManager implements IHumanManager{
 		}
 		return buildFinishList;
 	}
+	
+	/**
+	 * 根据id获取建筑信息
+	 * @param BuildId
+	 * @return
+	 */
+	public Build getBuildById(long buildId){
+		for(Build build:buildDataList){
+			if(build.getDbId()==buildId) return build;
+		}
+		return null;
+	}
+	
+	
+	public Build creatBuildInfo(int templateId){
+		long now=ServerManager.getInstance().getSystemTimeService().now();
+		Build build=new Build();
+		build.setDbId(ServerManager.getInstance().getuUIDService().getNextUUID(UUIDType.BUILD));
+		build.setOwner(owner);
+		build.setTemplateId(templateId);
+		build.setCharId(owner.getCharId());
+		build.setInDb(false);
+		build.setIsFinish(BuildFinishType.UNFINISH.getIndex());
+		build.setBuildStartTime(now);
+		build.setDeleted(0);
+		build.setCreateTime(new Timestamp(now));
+		build.active();
+		build.setModified();
+		buildDataList.add(build);
+		return build;
+	}
 
 	@Override
 	public void checkAfterRoleLoad() {
@@ -74,6 +131,14 @@ public class HumanBuildManager implements IHumanManager{
 
 	@Override
 	public void checkBeforeRoleEnter() {
+		
+	}
+
+
+	@Override
+	@Async
+	public void onHeartBeat() {
+		// TODO Auto-generated method stub
 		
 	}
 	

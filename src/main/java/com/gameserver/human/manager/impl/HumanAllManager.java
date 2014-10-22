@@ -14,6 +14,8 @@ import com.gameserver.human.manager.IHumanManager;
  */
 @Component
 public class HumanAllManager implements IHumanManager{
+	/** 心跳任务处理器 */
+//	private HeartbeatTaskExecutor hbTaskExecutor;
 	/**//// 各个功能的管理器/////*/
 	/** 建筑物数据管理器*/
 	@Autowired
@@ -48,6 +50,12 @@ public class HumanAllManager implements IHumanManager{
 
 	public HumanBuildManager getHumanBuildManager() {
 		return humanBuildManager;
+	}
+
+	@Override
+	public void onHeartBeat() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

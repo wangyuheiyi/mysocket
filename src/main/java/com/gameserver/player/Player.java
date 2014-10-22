@@ -6,6 +6,7 @@ import org.springframework.util.Assert;
 
 import com.common.constants.CommonErrorLogInfo;
 import com.common.constants.Loggers;
+import com.common.msg.BaseBean.BaseMessage;
 import com.core.heartbeat.HeartBeatAble;
 import com.core.util.ErrorsUtil;
 import com.gameserver.common.globals.server.impl.ServerManager;
@@ -115,7 +116,18 @@ public class Player implements HeartBeatAble{
 		channel.writeAndFlush(msg);
 	}
 
-
+	/**
+	 * 构建主消息
+	 * @param type
+	 * @param mesageCode
+	 * @return
+	 */
+	public BaseMessage.Builder buildBeseMessage(BaseMessage.Type type,BaseMessage.MessageCode mesageCode){
+		BaseMessage.Builder myMessage=BaseMessage.newBuilder();
+		myMessage.setType(type);
+		myMessage.setMessageCode(mesageCode);
+		return myMessage;
+	}
 
 	public String getClientIp() {
 		return clientIp;
@@ -135,6 +147,8 @@ public class Player implements HeartBeatAble{
 
 	@Override
 	public void heartBeat() {
+		//玩家角色心跳
+		if(this.human!=null) this.human.heartBeat();
 		this.updateData();
 	}
 	

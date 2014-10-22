@@ -29,11 +29,12 @@ message BaseMessage {
 			GCROLESYMBOLCHANGEDINT=12;
 			GCGETBUILDLIST=13;
 			CGCREATBUILD=14;
-			GCCREATBUILD=15;
-			GCUPDATEBUILDDATA=16;
-			GCUPDATEBUILDINGDATA=17;
-		 	MISSIONINFO=18;
-		 	MISSIONREWARD=19;
+			CGQUICKBUILD=15;
+			CGBREAKBUILD=16;
+			GCUPDATEBUILDDATA=17;
+			GCUPDATEBUILDINGDATA=18;
+		 	MISSIONINFO=19;
+		 	MISSIONREWARD=20;
 		}
 		required MessageCode messageCode=2;
 }
@@ -53,9 +54,10 @@ extend BaseMessage {
 		optional GCRoleSymbolChangedInt gcRoleSymbolChangedInt = 200;
 		optional GCGetBuildList gcGetBuildList = 300;
 		optional CGCreatBuild cgCreatBuild = 301;
-		optional GCCreatBuild gcCreatBuild = 302;
-		optional GCUpdateBuildData gcUpdateBuildData = 303;
-		optional GCUpdateBuildIngData gcUpdateBuildIngData = 304;
+		optional CGQuickBuild cgQuickBuild = 302;
+		optional CGBreakBuild cgBreakBuild = 303;
+		optional GCUpdateBuildData gcUpdateBuildData = 304;
+		optional GCUpdateBuildIngData gcUpdateBuildIngData = 305;
 	  optional MissionInfo missionInfo = 400;
 	  optional MissionReward missionReward = 401;
 }

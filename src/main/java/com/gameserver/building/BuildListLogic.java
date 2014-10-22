@@ -1,5 +1,7 @@
 package com.gameserver.building;
 
+import java.util.List;
+
 import com.common.msg.BuildBean.BuildClientData;
 import com.common.msg.BuildBean.BuildClientIngData;
 import com.core.util.TimeUtils;
@@ -24,7 +26,7 @@ public class BuildListLogic {
 	 * @param buildTemplate
 	 * @return
 	 */
-	public BuildClientData getBuildClientData(Build build){
+	public BuildClientData getBuildClientData(Build build,int updateState){
 		long now =ServerManager.getInstance().getSystemTimeService().now();
 		//获取建筑的模板数据
 		BuildTemplate buildTemplate=ServerManager.getInstance().getBuildSever().getHumanTemplById(build.getTemplateId());
@@ -32,6 +34,7 @@ public class BuildListLogic {
 		//获取建筑的模板数据
 		buildClientData.setBuildId(build.getDbId());
 		buildClientData.setTemplateId(build.getTemplateId());
+		buildClientData.setUpdateState(updateState);
 		//计算产出倒计时
 		long cdtime=TimeUtils.getLongCdtime(build.getOutPutTime()+(buildTemplate.getOutputInterval()*TimeUtils.SECOND),now);
 		buildClientData.setOutPutCdTime(cdtime);
@@ -45,7 +48,7 @@ public class BuildListLogic {
 	 * @param buildTemplate
 	 * @return
 	 */
-	public BuildClientIngData getBuildClientIngData(Build build){
+	public BuildClientIngData getBuildClientIngData(Build build,int updateState){
 		long now =ServerManager.getInstance().getSystemTimeService().now();
 		//获取建筑的模板数据
 		BuildTemplate buildTemplate=ServerManager.getInstance().getBuildSever().getHumanTemplById(build.getTemplateId());
@@ -53,6 +56,7 @@ public class BuildListLogic {
 		//获取建筑的模板数据
 		buildClientIngData.setBuildId(build.getDbId());
 		buildClientIngData.setTemplateId(build.getTemplateId());
+		buildClientIngData.setUpdateState(updateState);
 		//计算产出倒计时
 		long cdtime=TimeUtils.getLongCdtime(build.getBuildStartTime()+(buildTemplate.getBuildTime()*TimeUtils.SECOND),now);
 		buildClientIngData.setBuildFinishCdTime(cdtime);

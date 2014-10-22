@@ -10,6 +10,7 @@ import com.common.msg.BuildBean.GCGetBuildList;
 import com.common.msg.PlayerBean.GCEnterScene;
 import com.gameserver.building.Build;
 import com.gameserver.building.BuildDef.BuildFinishType;
+import com.gameserver.building.BuildDef.BuildUpdateState;
 import com.gameserver.building.BuildListLogic;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.human.Human;
@@ -103,14 +104,11 @@ public final class HumanInitManager
 	 * @param sceneId
 	 */
 	public void sendEnterSceneMessage(Human human,int sceneId){
-		BaseMessage.Builder myMessage=BaseMessage.newBuilder();
 		GCEnterScene.Builder gcEnterScene=GCEnterScene.newBuilder();
 		gcEnterScene.setSceneId(sceneId);
 		gcEnterScene.setRoleId(human.getDbId());
-		myMessage.setType(BaseMessage.Type.PLAYERMESSAGE);
-		myMessage.setMessageCode(BaseMessage.MessageCode.GCENTERSCENE);
-		myMessage.setExtension(BaseBean.gcEnterScene, gcEnterScene.build());
-		human.sendMessage(myMessage.build());
+		human.sendMessage(human.getPlayer().buildBeseMessage(BaseMessage.Type.PLAYERMESSAGE, BaseMessage.MessageCode.GCENTERSCENE).
+				setExtension(BaseBean.gcEnterScene, gcEnterScene.build()).build());
 	}
 	
 	/**
@@ -118,7 +116,6 @@ public final class HumanInitManager
 	 * @param human
 	 */
 	public void sendBuildMessage(Human human){
-		BaseMessage.Builder myMessage=BaseMessage.newBuilder();
 		GCGetBuildList.Builder gcGetBuildList=GCGetBuildList.newBuilder();
 		gcGetBuildList.setRoleId(human.getCharId());
 		
@@ -127,14 +124,12 @@ public final class HumanInitManager
 		gcGetBuildList.setCrystal(human.getCrystal());
 		gcGetBuildList.setSpecial(human.getSpecial());
 		for(Build build:human.getHumanAllManager().getHumanBuildManager().getBuildFinishList(BuildFinishType.FINISH.getIndex())){
-			gcGetBuildList.addBuildData(BuildListLogic.getInstance().getBuildClientData(build));
+			gcGetBuildList.addBuildData(BuildListLogic.getInstance().getBuildClientData(build,BuildUpdateState.ADD.getIndex()));
 		}
 		for(Build build:human.getHumanAllManager().getHumanBuildManager().getBuildFinishList(BuildFinishType.UNFINISH.getIndex())){
-			gcGetBuildList.addBuildIngData(BuildListLogic.getInstance().getBuildClientIngData(build));
+			gcGetBuildList.addBuildIngData(BuildListLogic.getInstance().getBuildClientIngData(build,BuildUpdateState.ADD.getIndex()));
 		}
-		myMessage.setType(BaseMessage.Type.PLAYERMESSAGE);
-		myMessage.setMessageCode(BaseMessage.MessageCode.GCGETBUILDLIST);
-		myMessage.setExtension(BaseBean.gcGetBuildList, gcGetBuildList.build());
-		human.sendMessage(myMessage.build());
+		human.sendMessage(human.getPlayer().buildBeseMessage(BaseMessage.Type.PLAYERMESSAGE, BaseMessage.MessageCode.GCGETBUILDLIST).
+				setExtension(BaseBean.gcGetBuildList, gcGetBuildList.build()).build());
 	}
 }

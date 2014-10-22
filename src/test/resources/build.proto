@@ -17,16 +17,20 @@ message CGCreatBuild {
 	optional int32 templateId = 2;
 }
 
-message GCCreatBuild {
+message CGQuickBuild {
+	required int64 buildId = 1;
+}
+
+message CGBreakBuild {
 	required int64 buildId = 1;
 }
 
 message GCUpdateBuildData{
-	required BuildClientData buildData = 1;
+	repeated BuildClientData buildData = 1;
 }
 
 message GCUpdateBuildIngData{
-	required BuildClientIngData BuildIngData = 1;
+	repeated BuildClientIngData BuildIngData = 1;
 }
 
 
@@ -34,10 +38,12 @@ message BuildClientData{
 	required int64 buildId = 1;
 	optional int32 templateId = 2; //模板id
 	optional int64 outPutCdTime = 3; //下次产出倒计时
+	optional int32 updateState = 4;
 }
 
 message BuildClientIngData{
 	required int64 buildId = 1;
 	optional int32 templateId = 2; //模板id
 	optional int64 buildFinishCdTime = 3; //建筑完成倒计时
+	optional int32 updateState = 4;
 }

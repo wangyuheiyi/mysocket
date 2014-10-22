@@ -54,7 +54,6 @@ public class CreateRoleOperation implements IIoOperation
 		{
 			if (isCreateSucc) 
 			{
-				BaseMessage.Builder myMessage=BaseMessage.newBuilder();
 				player.setHuman(human);
 				GCCreateRole.Builder gcCreateRole=GCCreateRole.newBuilder();
 				gcCreateRole.setPlayerId(human.getPassportId());
@@ -63,10 +62,8 @@ public class CreateRoleOperation implements IIoOperation
 				//玩家选择角色登录
 				ServerManager.getInstance().getPlayerServer().selectRole(player, human.getCharId(), human);
 				//将玩家的角色信息发送给玩家
-				myMessage.setType(BaseMessage.Type.GLOBALMESSAGE);
-				myMessage.setMessageCode(BaseMessage.MessageCode.GCCREATEROLE);
-				myMessage.setExtension(BaseBean.gcCreateRole, gcCreateRole.build());
-				player.sendMessage(myMessage.build());
+				human.sendMessage(human.getPlayer().buildBeseMessage(BaseMessage.Type.GLOBALMESSAGE, BaseMessage.MessageCode.GCCREATEROLE).
+						setExtension(BaseBean.gcCreateRole, gcCreateRole.build()).build());
 				
 			} else
 			{

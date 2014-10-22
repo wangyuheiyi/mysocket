@@ -25,4 +25,6 @@ public interface IHumanManager {
 	 * 进入游戏前调用的方法
 	 */
 	public void checkBeforeRoleEnter();
+	
+	public void onHeartBeat();
 }

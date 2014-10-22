@@ -30,13 +30,10 @@ public class CGRoleReNameHandler implements IMessageHandler{
 		long roleId=cgRoleReName.getRoleId();
 		String roleName=cgRoleReName.getRoleName();
 		human.setName(roleName);
-		BaseMessage.Builder myMessage=BaseMessage.newBuilder();
 		GCRoleReName.Builder gcRoleReName=GCRoleReName.newBuilder();
 		gcRoleReName.setRoleName(roleName);
-		myMessage.setType(BaseMessage.Type.PLAYERMESSAGE);
-		myMessage.setMessageCode(BaseMessage.MessageCode.GCROLERENAME);
-		myMessage.setExtension(BaseBean.gcRoleReName, gcRoleReName.build());
-		player.sendMessage(myMessage.build());
+		player.sendMessage(player.buildBeseMessage(BaseMessage.Type.PLAYERMESSAGE, BaseMessage.MessageCode.GCROLERENAME).
+				setExtension(BaseBean.gcRoleReName, gcRoleReName.build()).build());
 	}
 
 	@Override

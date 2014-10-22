@@ -24,3 +24,6 @@ int effectType;[notNull=false] // 效果类型
 int effectId;[notNull=false] // 效果id
 int humanLevel;[notNull=false] // 玩家需求等级
 int buildTimes;[notNull=false] // 可建造数量
+int quickBuildCost;[notNull=false] // 快速建造所消耗的钻石（每秒）
+int isBreak;[notNull=false] // 是否可以拆除
+int breakRestore;[notNull=false] // 拆除返还比

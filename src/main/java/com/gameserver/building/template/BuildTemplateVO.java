@@ -122,6 +122,18 @@ public abstract class BuildTemplateVO extends TemplateObject {
 	@ExcelCellBinding(offset = 26)
 	protected int buildTimes;
 
+	/** 快速建造所消耗的钻石（每秒） */
+	@ExcelCellBinding(offset = 27)
+	protected int quickBuildCost;
+
+	/** 是否可以拆除 */
+	@ExcelCellBinding(offset = 28)
+	protected int isBreak;
+
+	/** 拆除返还比 */
+	@ExcelCellBinding(offset = 29)
+	protected int breakRestore;
+
 
 	public int getBuildNameLangId() {
 		return this.buildNameLangId;
@@ -478,6 +490,36 @@ public abstract class BuildTemplateVO extends TemplateObject {
 		this.buildTimes = buildTimes;
 	}
 	
+	public int getQuickBuildCost() {
+		return this.quickBuildCost;
+	}
+
+
+
+	public void setQuickBuildCost(int quickBuildCost) {
+		this.quickBuildCost = quickBuildCost;
+	}
+	
+	public int getIsBreak() {
+		return this.isBreak;
+	}
+
+
+
+	public void setIsBreak(int isBreak) {
+		this.isBreak = isBreak;
+	}
+	
+	public int getBreakRestore() {
+		return this.breakRestore;
+	}
+
+
+
+	public void setBreakRestore(int breakRestore) {
+		this.breakRestore = breakRestore;
+	}
+	
 
 	/** 模板字典 */
 	protected final static Map<Integer, BuildTemplateVO> _templates = Maps.newTreeMap();
@@ -502,6 +544,6 @@ public abstract class BuildTemplateVO extends TemplateObject {
 
 	@Override
 	public String toString() {
-		return "BuildTemplateVO [  buildNameLangId=" + buildNameLangId + ", buildName=" + buildName + ", allianceType=" + allianceType + ", appearance=" + appearance + ", level=" + level + ", levelUpdateId=" + levelUpdateId + ", transitionLevel=" + transitionLevel + ", transitionId=" + transitionId + ", consumeGold=" + consumeGold + ", consumeDiamond=" + consumeDiamond + ", consumeWood=" + consumeWood + ", consumeStone=" + consumeStone + ", consumeCrystal=" + consumeCrystal + ", consumeSpecial=" + consumeSpecial + ", buildTime=" + buildTime + ", open=" + open + ", outputType=" + outputType + ", outputCount=" + outputCount + ", outputId=" + outputId + ", outputInterval=" + outputInterval + ", outputMax=" + outputMax + ", descriptionLangId=" + descriptionLangId + ", effectType=" + effectType + ", effectId=" + effectId + ", humanLevel=" + humanLevel + ", buildTimes=" + buildTimes + ",]";
+		return "BuildTemplateVO [  buildNameLangId=" + buildNameLangId + ", buildName=" + buildName + ", allianceType=" + allianceType + ", appearance=" + appearance + ", level=" + level + ", levelUpdateId=" + levelUpdateId + ", transitionLevel=" + transitionLevel + ", transitionId=" + transitionId + ", consumeGold=" + consumeGold + ", consumeDiamond=" + consumeDiamond + ", consumeWood=" + consumeWood + ", consumeStone=" + consumeStone + ", consumeCrystal=" + consumeCrystal + ", consumeSpecial=" + consumeSpecial + ", buildTime=" + buildTime + ", open=" + open + ", outputType=" + outputType + ", outputCount=" + outputCount + ", outputId=" + outputId + ", outputInterval=" + outputInterval + ", outputMax=" + outputMax + ", descriptionLangId=" + descriptionLangId + ", effectType=" + effectType + ", effectId=" + effectId + ", humanLevel=" + humanLevel + ", buildTimes=" + buildTimes + ", quickBuildCost=" + quickBuildCost + ", isBreak=" + isBreak + ", breakRestore=" + breakRestore + ",]";
 	}
 }
