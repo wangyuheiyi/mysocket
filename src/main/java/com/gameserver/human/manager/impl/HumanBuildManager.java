@@ -6,12 +6,16 @@ import java.util.List;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import com.common.msg.BaseBean;
+import com.common.msg.BaseBean.BaseMessage;
+import com.common.msg.BuildBean.GCUpdateBuildData;
 import com.core.util.TimeUtils;
 import com.core.uuids.UUIDType;
 import com.db.model.impl.BuildEntity;
 import com.gameserver.building.Build;
+import com.gameserver.building.BuildListLogic;
 import com.gameserver.building.BuildDef.BuildFinishType;
-import com.gameserver.building.data.BuildIngData;
+import com.gameserver.building.BuildDef.BuildUpdateState;
 import com.gameserver.building.template.BuildTemplate;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.human.Human;
@@ -69,6 +73,7 @@ public class HumanBuildManager implements IHumanManager{
 		if(buildIngList.size()==0)return;
 		long now =ServerManager.getInstance().getSystemTimeService().now();
 		BuildTemplate buildTemplate=null;
+		GCUpdateBuildData.Builder gcUpdateBuildData=GCUpdateBuildData.newBuilder();
 		for(Build build:buildIngList){
 			buildTemplate=ServerManager.getInstance().getBuildSever().getHumanTemplById(build.getTemplateId());
 			if(build.getBuildStartTime()+(buildTemplate.getBuildTime()*TimeUtils.SECOND)>now)continue;
@@ -77,7 +82,11 @@ public class HumanBuildManager implements IHumanManager{
 				build.setOutPutTime(now+buildTemplate.getOutputInterval()*TimeUtils.SECOND);
 			}
 			build.setModified();
+			gcUpdateBuildData.addBuildData(BuildListLogic.getInstance().getBuildClientData(build,BuildUpdateState.ADD.getIndex()));
 		}
+		if(needNotify&&gcUpdateBuildData.getBuildDataCount()!=0)
+			owner.sendMessage(owner.getPlayer().buildBeseMessage(BaseMessage.Type.PLAYERMESSAGE, BaseMessage.MessageCode.GCUPDATEBUILDDATA).
+				setExtension(BaseBean.gcUpdateBuildData, gcUpdateBuildData.build()).build());
 	}
 	
 	/**
@@ -138,8 +147,7 @@ public class HumanBuildManager implements IHumanManager{
 	@Override
 	@Async
 	public void onHeartBeat() {
-		// TODO Auto-generated method stub
-		
+		checkBuildFinshed(true);
 	}
 	
 	
