@@ -55,7 +55,7 @@ public class HumanBuildManager implements IHumanManager{
 				build.fromEntity(buildEntity);
 				buildDataList.add(build);
 			}
-			checkBuildFinshed();
+			checkBuildFinshed(false);
 		}
 	}
 	
@@ -64,7 +64,7 @@ public class HumanBuildManager implements IHumanManager{
 	 * 判断某些建筑是否完成了
 	 * @param buildIngList
 	 */
-	public void checkBuildFinshed(){
+	public void checkBuildFinshed(boolean needNotify){
 		List<Build> buildIngList=getBuildFinishList(BuildFinishType.UNFINISH.getIndex());
 		if(buildIngList.size()==0)return;
 		long now =ServerManager.getInstance().getSystemTimeService().now();
