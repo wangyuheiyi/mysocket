@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 
 import com.common.async.IIoOperation;
 import com.common.constants.Loggers;
-import com.db.dao.impl.HumanDao;
 import com.db.model.impl.HumanEntity;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.human.Human;
