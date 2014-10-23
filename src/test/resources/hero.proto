@@ -14,9 +14,6 @@ message HeroInfoData{
 	optional int32 level=4 [default = 1]; //英雄等级
 	optional int32 vocationType=5 [default = 1]; //职业类型
 	optional int32 allianceTypeId=5 [default = 1]; //英雄种族
-	optional int32 diamond=6 [default = 0]; //角色元宝数量
-	optional int32 gold=7 [default = 0]; //角色金币数量
-	optional int32 coupon=8 [default = 0]; //点卷数量
 	optional int32 curExp=9 [default = 0]; //当前经验
 	optional int32 maxExp=10 [default = 0]; //最大经验
 	optional int32 sceneId=11 [default = 0]; //所在场景

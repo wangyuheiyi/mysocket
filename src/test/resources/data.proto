@@ -11,13 +11,18 @@ message HumanInfo{
 	optional int32 diamond=6 [default = 0]; //角色元宝数量
 	optional int32 gold=7 [default = 0]; //角色金币数量
 	optional int32 coupon=8 [default = 0]; //点卷数量
-	optional int32 curExp=9 [default = 0]; //当前经验
-	optional int32 maxExp=10 [default = 0]; //最大经验
-	optional int32 sceneId=11 [default = 0]; //所在场景
-	optional int32 primBagCount=12 [default = 0]; //主背包数量 
-	optional int32 storyId=13 [default = 0]; //所进行的剧情
-	optional int32 guideId=14 [default = 0]; //新手引导ID
-	optional int32 guideState=15 [default = 0]; //新手引导状态
-	optional int32 roleKind=16 [default = 0]; //角色类型:0正常角色1竞技场角色其它场景角色
-	optional int32 vipLevel=17 [default = 0]; //vip等级
+	optional int32 wood=9 [default = 0]; //木材
+	optional int32 stone=10 [default = 0]; //石料
+	optional int32 crystal=11 [default = 0]; //水晶
+	optional int32 special=12 [default = 0]; //特殊资源
+	optional int32 curExp=13 [default = 0]; //当前经验
+	optional int32 maxExp=14 [default = 0]; //最大经验
+	optional int32 sceneId=15 [default = 0]; //所在场景
+	optional int32 primBagCount=16 [default = 0]; //主背包数量 
+	optional int32 storyId=17 [default = 0]; //所进行的剧情
+	optional int32 guideId=18 [default = 0]; //新手引导ID
+	optional int32 guideState=19 [default = 0]; //新手引导状态
+	optional int32 roleKind=20 [default = 0]; //角色类型:0正常角色1竞技场角色其它场景角色
+	optional int32 vipLevel=21 [default = 0]; //vip等级
 }
+
