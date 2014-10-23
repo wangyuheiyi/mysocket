@@ -76,6 +76,10 @@ public class HumanSever implements IBaseServer{
 				humanInfo.setDiamond(human.getDiamond());
 				humanInfo.setGold(human.getGold());
 				humanInfo.setCoupon(human.getCoupon());
+				humanInfo.setWood(human.getWood());
+				humanInfo.setStone(human.getStone());
+				humanInfo.setCrystal(human.getCrystal());
+				humanInfo.setSpecial(human.getSpecial());
 				humanInfo.setCurExp(human.getCurExp());
 				humanInfo.setMaxExp(human.getMaxExp());
 				humanInfo.setStoryId(human.getStoryId());

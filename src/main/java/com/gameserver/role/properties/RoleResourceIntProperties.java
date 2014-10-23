@@ -18,13 +18,7 @@ public class RoleResourceIntProperties extends GenericPropertyObject
 	
 	/** 基础整型属性索引结束值 */
 	public static int _END = _BEGIN;
-	
-	
-	/** 金币容量 */
-	@Comment(content = "金币容量")
-	@Type(Integer.class)
-	public static final int MAXGOLD = ++_END;
-	
+
 	/** 木材容量 */
 	@Comment(content = "木材容量")
 	@Type(Integer.class)
