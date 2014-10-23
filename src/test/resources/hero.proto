@@ -12,6 +12,7 @@ message HeroInfoData{
 	optional string heroName = 2 [default = ""]; //英雄名称
 	optional int32 templateId=3 [default = 0]; //英雄模板id
 	optional int32 level=4 [default = 1]; //英雄等级
+	optional int32 vocationType=5 [default = 1]; //职业类型
 	optional int32 allianceTypeId=5 [default = 1]; //英雄种族
 	optional int32 diamond=6 [default = 0]; //角色元宝数量
 	optional int32 gold=7 [default = 0]; //角色金币数量
