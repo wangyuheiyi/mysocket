@@ -3,7 +3,6 @@ package com.gameserver.human.effector;
 import org.springframework.util.Assert;
 
 import com.core.util.KeyValuePair;
-import com.gameserver.role.properties.RoleBaseIntProperties;
 import com.gameserver.role.properties.RoleResourceIntProperties;
 
 

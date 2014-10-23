@@ -1,7 +1,6 @@
 package com.gameserver.human.effector;
 
 import com.gameserver.human.Human;
-import com.gameserver.role.properties.RoleBaseIntProperties;
 import com.gameserver.role.properties.RolePropertyManager;
 import com.gameserver.role.properties.RoleResourceIntProperties;
 
