@@ -4,26 +4,27 @@ import org.springframework.util.Assert;
 
 import com.core.util.KeyValuePair;
 import com.gameserver.role.properties.RoleBaseIntProperties;
+import com.gameserver.role.properties.RoleResourceIntProperties;
 
 
 public class HumanProperty
 {
 	/** 一级属性的组成部分 */
-	private final RoleBaseIntProperties[] aProperties;
+	private final RoleResourceIntProperties[] aProperties;
 	
 	
 	/** 经过修正后的最终一级属性 */
-	private final RoleBaseIntProperties aProperty;
+	private final RoleResourceIntProperties aProperty;
 
 	
 	
 	public HumanProperty(int aFromTypeLength)
 	{
-		aProperties = new RoleBaseIntProperties[aFromTypeLength];
-		aProperty = new RoleBaseIntProperties();
+		aProperties = new RoleResourceIntProperties[aFromTypeLength];
+		aProperty = new RoleResourceIntProperties();
 
 		for (int i = 0; i < aProperties.length; i++) {
-			aProperties[i] = new RoleBaseIntProperties();
+			aProperties[i] = new RoleResourceIntProperties();
 		}
 	}
 	
@@ -35,7 +36,7 @@ public class HumanProperty
 	 * @param typeIndex
 	 *            该修正的类型索引
 	 */
-	public void addAProperty(final RoleBaseIntProperties property, int typeIndex) {
+	public void addAProperty(final RoleResourceIntProperties property, int typeIndex) {
 		Assert.isTrue(typeIndex >= 0 && typeIndex < this.aProperties.length);
 		this.aProperties[typeIndex].add(property);
 		this.aProperty.add(property);
@@ -47,7 +48,7 @@ public class HumanProperty
 	 * @param property
 	 * @param typeIndex
 	 */
-	public void minusAProperty(final RoleBaseIntProperties property, int typeIndex) {
+	public void minusAProperty(final RoleResourceIntProperties property, int typeIndex) {
 		Assert.isTrue(typeIndex >= 0 && typeIndex < this.aProperties.length);
 		this.aProperties[typeIndex].dec(property);
 		this.aProperty.dec(property);
@@ -61,7 +62,7 @@ public class HumanProperty
 	 */
 	public void clearAProperty(int typeIndex) {
 		Assert.isTrue(typeIndex >= 0 && typeIndex < this.aProperties.length);
-		final RoleBaseIntProperties _aPre = this.aProperties[typeIndex];
+		final RoleResourceIntProperties _aPre = this.aProperties[typeIndex];
 		this.aProperty.dec(_aPre);
 		_aPre.clear();
 	}
@@ -71,7 +72,7 @@ public class HumanProperty
 	 */
 	public void updateAProperty() {
 		this.aProperty.clear();
-		for (RoleBaseIntProperties _aPre : this.aProperties) {
+		for (RoleResourceIntProperties _aPre : this.aProperties) {
 			this.aProperty.add(_aPre);
 		}
 		this.normalizeProperty(this.aProperty);
@@ -104,7 +105,7 @@ public class HumanProperty
 	 * @param fromTypeIndex
 	 * @return
 	 */
-	public RoleBaseIntProperties getAPropSegment(int fromTypeIndex)
+	public RoleResourceIntProperties getAPropSegment(int fromTypeIndex)
 	{
 		Assert.isTrue(fromTypeIndex >= 0 && fromTypeIndex < this.aProperties.length);
 		return this.aProperties[fromTypeIndex];
@@ -127,7 +128,7 @@ public class HumanProperty
 	 * 
 	 * @param properties
 	 */
-	private void normalizeProperty(RoleBaseIntProperties properties) {
+	private void normalizeProperty(RoleResourceIntProperties properties) {
 		for (int _index = properties.size() - 1; _index >= 0; _index--) {
 			if (properties.get(_index) < 0) {
 				properties.set(_index, 0);

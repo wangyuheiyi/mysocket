@@ -1,13 +1,8 @@
 package com.gameserver.human.effector;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-
 import com.gameserver.human.Human;
-import com.gameserver.human.template.HumanTemplate;
-import com.gameserver.role.properties.PropertyType;
 import com.gameserver.role.properties.RoleBaseIntProperties;
+import com.gameserver.role.properties.RoleResourceIntProperties;
 
 /**
  * 主角一级属性效果器
@@ -19,10 +14,10 @@ public class HumanAPropEffectorFactory
 	/** 
 	 * 初始化影响
 	 */
-	public static final HumanPropertyEffector<RoleBaseIntProperties, Human> INIT_EFFECTOR = new HumanPropertyEffector<RoleBaseIntProperties, Human>() 
+	public static final HumanPropertyEffector<RoleResourceIntProperties, Human> INIT_EFFECTOR = new HumanPropertyEffector<RoleResourceIntProperties, Human>() 
 	{
 		@Override
-		public void effect(RoleBaseIntProperties prop, Human human)
+		public void effect(RoleResourceIntProperties prop, Human human)
 		{
 			prop.clear();
 		}
@@ -32,10 +27,10 @@ public class HumanAPropEffectorFactory
 	/** 
 	 * 等级影响
 	 */
-	public static final HumanPropertyEffector<RoleBaseIntProperties, Human> LEVEL_EFFECTOR = new HumanPropertyEffector<RoleBaseIntProperties, Human>()
+	public static final HumanPropertyEffector<RoleResourceIntProperties, Human> LEVEL_EFFECTOR = new HumanPropertyEffector<RoleResourceIntProperties, Human>()
 	{
 		@Override
-		public void effect(RoleBaseIntProperties prop, Human human)
+		public void effect(RoleResourceIntProperties prop, Human human)
 		{
 			prop.clear();	
 //			HumanTemplate humanTempl=human.getVocationTmpl();			

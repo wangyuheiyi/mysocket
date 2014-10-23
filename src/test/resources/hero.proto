@@ -1,0 +1,28 @@
+package bean;
+option java_package ="com.common.msg";
+option java_outer_classname = "HeroBean";
+
+message GCGetHeroList {
+	required int64 roleId=2; 
+	repeated KeyValueData keyValueData = 3;
+}
+
+message HeroInfoData{
+	required int64 heroId = 1; //英雄id
+	optional string heroName = 2 [default = ""]; //英雄名称
+	optional int32 templateId=3 [default = 0]; //英雄模板id
+	optional int32 level=4 [default = 1]; //英雄等级
+	optional int32 allianceTypeId=5 [default = 1]; //英雄种族
+	optional int32 diamond=6 [default = 0]; //角色元宝数量
+	optional int32 gold=7 [default = 0]; //角色金币数量
+	optional int32 coupon=8 [default = 0]; //点卷数量
+	optional int32 curExp=9 [default = 0]; //当前经验
+	optional int32 maxExp=10 [default = 0]; //最大经验
+	optional int32 sceneId=11 [default = 0]; //所在场景
+	optional int32 primBagCount=12 [default = 0]; //主背包数量 
+	optional int32 storyId=13 [default = 0]; //所进行的剧情
+	optional int32 guideId=14 [default = 0]; //新手引导ID
+	optional int32 guideState=15 [default = 0]; //新手引导状态
+	optional int32 roleKind=16 [default = 0]; //角色类型:0正常角色1竞技场角色其它场景角色
+	optional int32 vipLevel=17 [default = 0]; //vip等级
+}

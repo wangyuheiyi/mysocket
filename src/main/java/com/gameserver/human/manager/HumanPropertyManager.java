@@ -7,6 +7,7 @@ import com.gameserver.human.effector.HumanProperty;
 import com.gameserver.role.properties.PropertyType;
 import com.gameserver.role.properties.RoleBaseIntProperties;
 import com.gameserver.role.properties.RolePropertyManager;
+import com.gameserver.role.properties.RoleResourceIntProperties;
 
 
 /**
@@ -64,7 +65,7 @@ public class HumanPropertyManager extends RolePropertyManager<Human>
 	protected boolean updateAProperty(Human role, int effectMask)
 	{
 		boolean _changed = false;
-		RoleBaseIntProperties property=null;
+		RoleResourceIntProperties property=null;
 		for (HumanAPropFromType fromType : HumanAPropFromType.values())
 		{
 			if ((fromType.mark & effectMask) != 0) 
