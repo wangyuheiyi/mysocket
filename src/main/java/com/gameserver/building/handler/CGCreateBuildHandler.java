@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
+import com.common.msg.BaseBean.BaseMessage.MessageCode;
 import com.common.msg.BuildBean.CGCreatBuild;
 import com.common.msg.BuildBean.GCUpdateBuildIngData;
 import com.gameserver.building.Build;
@@ -13,6 +14,7 @@ import com.gameserver.building.BuildListLogic;
 import com.gameserver.building.template.BuildTemplate;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.common.handler.IMessageHandler;
+import com.gameserver.common.handler.impl.MessageHandlerServer;
 import com.gameserver.human.Human;
 import com.gameserver.player.Player;
 /**
@@ -25,6 +27,9 @@ import com.gameserver.player.Player;
 public class CGCreateBuildHandler implements IMessageHandler{
 	private CGCreatBuild cgCreatBuild;
 	private Player player;
+	public CGCreateBuildHandler(){
+		MessageHandlerServer.getInstance().registerMessageHandler(MessageCode.CGCREATBUILD, this);
+	}
 	@Override
 	public void execute() {
 		Human human=player.getHuman();

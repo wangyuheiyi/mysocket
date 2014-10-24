@@ -1,6 +1,7 @@
 package com.gameserver.human.manager.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Component;
 
 import com.common.context.ContextFactiry;
@@ -18,8 +19,8 @@ public class HumanAllManager implements IHumanManager{
 //	private HeartbeatTaskExecutor hbTaskExecutor;
 	/**//// 各个功能的管理器/////*/
 	/** 建筑物数据管理器*/
-	@Autowired
-	private HumanBuildManager humanBuildManager;
+	@Resource(name="humanBuildManager")
+	private IHumanManager humanBuildManager;
 	
 	public static HumanAllManager getInstance() 
 	{
@@ -49,7 +50,7 @@ public class HumanAllManager implements IHumanManager{
 	}
 
 	public HumanBuildManager getHumanBuildManager() {
-		return humanBuildManager;
+		return (HumanBuildManager)humanBuildManager;
 	}
 
 	@Override

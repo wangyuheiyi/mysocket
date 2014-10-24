@@ -8,9 +8,11 @@ import org.springframework.stereotype.Component;
 
 import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
+import com.common.msg.BaseBean.BaseMessage.MessageCode;
 import com.common.msg.PlayerBean.CGSelectRole;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.common.handler.IMessageHandler;
+import com.gameserver.common.handler.impl.MessageHandlerServer;
 import com.gameserver.human.Human;
 import com.gameserver.human.template.HumanTemplate;
 import com.gameserver.player.Player;
@@ -26,6 +28,9 @@ import com.gameserver.player.async.CreateRoleOperation;
 public class CGSelectRoleHandler implements IMessageHandler{
 	private CGSelectRole cgSelectRole;
 	private Player player;
+	public CGSelectRoleHandler(){
+		MessageHandlerServer.getInstance().registerMessageHandler(MessageCode.CGSELECTROLE, this);
+	}
 	@Override
 	public void execute() {
 		

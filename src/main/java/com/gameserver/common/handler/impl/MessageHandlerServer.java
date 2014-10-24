@@ -4,11 +4,15 @@ package com.gameserver.common.handler.impl;
 
 import io.netty.channel.Channel;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.common.context.ContextFactiry;
 import com.common.msg.BaseBean.BaseMessage;
+import com.common.msg.BaseBean.BaseMessage.MessageCode;
 import com.gameserver.building.handler.CGCreateBuildHandler;
 import com.gameserver.common.globals.server.impl.OnLinePlayerServer;
 import com.gameserver.common.globals.server.impl.ServerManager;
@@ -23,13 +27,20 @@ import com.gameserver.player.handler.CGSelectRoleHandler;
 public class MessageHandlerServer{
 	
 	public static MessageHandlerServer getInstance() 
-	 {
-	     return ContextFactiry.getContext("handlerContext").getBean(MessageHandlerServer.class);
-	 }
+	{
+	    return ContextFactiry.getContext("handlerContext").getBean(MessageHandlerServer.class);
+	}
+	
+	//消息句柄注册
+	public Map<MessageCode,IMessageHandler>  handlerMap=new HashMap<MessageCode,IMessageHandler>();
 	
     public MessageHandlerServer() {
     }
-
+    
+    public void registerMessageHandler(MessageCode code,IMessageHandler iHandler){
+    	handlerMap.put(code, iHandler);
+    }
+    
     public IMessageHandler getMessageHandler(Channel channel,BaseMessage baseBean){
     	Player player=null;
     	OnLinePlayerServer onLinePlayerServer = ServerManager.getInstance().getOnLinePlayerServer();
@@ -38,31 +49,9 @@ public class MessageHandlerServer{
     	case CGPLAYERCHECKLOGIN:
     		player=new Player();
     		player.setChannel(channel);
-    		CGPlayerCheckLoginHandler cgPlayerCheckLoginHandler=ContextFactiry.getContext("handlerContext").getBean(CGPlayerCheckLoginHandler.class);
-    		cgPlayerCheckLoginHandler.setMessage(baseBean, player);
-    		return cgPlayerCheckLoginHandler;
-    	case CGGETROLELIST:
-    		CGGetRoleListHandler cgGetRoleListHandler=ContextFactiry.getContext("handlerContext").getBean(CGGetRoleListHandler.class);
-    		cgGetRoleListHandler.setMessage(baseBean, player);
-    		return cgGetRoleListHandler;
-    	case CGCREATEROLE:
-    		CGCreateRoleHandler cgCreateRoleHandler=ContextFactiry.getContext("handlerContext").getBean(CGCreateRoleHandler.class);
-    		cgCreateRoleHandler.setMessage(baseBean, player);
-    		return cgCreateRoleHandler;
-    	case CGSELECTROLE:
-    		CGSelectRoleHandler cgSelectRoleHandler=ContextFactiry.getContext("handlerContext").getBean(CGSelectRoleHandler.class);
-    		cgSelectRoleHandler.setMessage(baseBean, player);
-    		return cgSelectRoleHandler;
-    	case CGROLERENAME:
-    		CGRoleReNameHandler cgRoleReNameHandler=ContextFactiry.getContext("handlerContext").getBean(CGRoleReNameHandler.class);
-    		cgRoleReNameHandler.setMessage(baseBean, player);
-    		return cgRoleReNameHandler;
-    	case CGCREATBUILD:
-    		CGCreateBuildHandler cgCreateBuildHandler=ContextFactiry.getContext("handlerContext").getBean(CGCreateBuildHandler.class);
-    		cgCreateBuildHandler.setMessage(baseBean, player);
-    		return null;
+    		break;
     	}
-		return null;
+		return handlerMap.get(baseBean.getMessageCode());
     }
     
     @Async

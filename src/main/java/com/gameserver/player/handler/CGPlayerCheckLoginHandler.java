@@ -5,11 +5,13 @@ import org.springframework.stereotype.Component;
 
 import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
+import com.common.msg.BaseBean.BaseMessage.MessageCode;
 import com.common.msg.PlayerBean.CGPlayerCheckLogin;
 import com.common.msg.PlayerBean.GCPlayerCheckLogin;
 import com.gameserver.common.globals.server.impl.OnLinePlayerServer;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.common.handler.IMessageHandler;
+import com.gameserver.common.handler.impl.MessageHandlerServer;
 import com.gameserver.player.Player;
 import com.gameserver.player.PlayerState;
 @Scope("prototype")
@@ -17,6 +19,9 @@ import com.gameserver.player.PlayerState;
 public class CGPlayerCheckLoginHandler implements IMessageHandler{
 	private CGPlayerCheckLogin cgPlayerCheckLogin;
 	private Player player;
+	public CGPlayerCheckLoginHandler(){
+		MessageHandlerServer.getInstance().registerMessageHandler(MessageCode.CGPLAYERCHECKLOGIN, this);
+	}
 	@Override
 	public void execute() {
 		GCPlayerCheckLogin.Builder gcPlayerCheckLogin=GCPlayerCheckLogin.newBuilder();

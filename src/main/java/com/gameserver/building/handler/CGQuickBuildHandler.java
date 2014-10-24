@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
+import com.common.msg.BaseBean.BaseMessage.MessageCode;
 import com.common.msg.BuildBean.CGQuickBuild;
 import com.common.msg.BuildBean.GCUpdateBuildData;
 import com.core.util.TimeUtils;
@@ -15,6 +16,7 @@ import com.gameserver.building.BuildListLogic;
 import com.gameserver.building.template.BuildTemplate;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.common.handler.IMessageHandler;
+import com.gameserver.common.handler.impl.MessageHandlerServer;
 import com.gameserver.human.Human;
 import com.gameserver.player.Player;
 /**
@@ -27,6 +29,9 @@ import com.gameserver.player.Player;
 public class CGQuickBuildHandler implements IMessageHandler{
 	private CGQuickBuild cgQuickBuild;
 	private Player player;
+	public CGQuickBuildHandler(){
+		MessageHandlerServer.getInstance().registerMessageHandler(MessageCode.CGQUICKBUILD, this);
+	}
 	@Override
 	public void execute() {
 		Human human=player.getHuman();

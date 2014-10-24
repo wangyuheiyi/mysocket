@@ -7,12 +7,14 @@ import org.springframework.stereotype.Component;
 
 import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
+import com.common.msg.BaseBean.BaseMessage.MessageCode;
 import com.common.msg.DataBean.HumanInfo;
 import com.common.msg.PlayerBean.CGGetRoleList;
 import com.common.msg.PlayerBean.GCGetRoleList;
 import com.db.model.impl.HumanEntity;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.common.handler.IMessageHandler;
+import com.gameserver.common.handler.impl.MessageHandlerServer;
 import com.gameserver.player.Player;
 import com.gameserver.player.PlayerState;
 /**
@@ -25,6 +27,9 @@ import com.gameserver.player.PlayerState;
 public class CGGetRoleListHandler implements IMessageHandler{
 	private CGGetRoleList cgGetRoleList;
 	private Player player;
+	public CGGetRoleListHandler(){
+		MessageHandlerServer.getInstance().registerMessageHandler(MessageCode.CGGETROLELIST, this);
+	}
 	@Override
 	public void execute() {
 		GCGetRoleList.Builder gcGetRoleList=GCGetRoleList.newBuilder();

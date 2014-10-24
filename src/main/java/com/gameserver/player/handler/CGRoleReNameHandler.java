@@ -5,11 +5,13 @@ import org.springframework.stereotype.Component;
 
 import com.common.msg.BaseBean;
 import com.common.msg.BaseBean.BaseMessage;
+import com.common.msg.BaseBean.BaseMessage.MessageCode;
 import com.common.msg.PlayerBean.CGRoleReName;
 import com.common.msg.PlayerBean.GCGetRoleList;
 import com.common.msg.PlayerBean.GCRoleReName;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.common.handler.IMessageHandler;
+import com.gameserver.common.handler.impl.MessageHandlerServer;
 import com.gameserver.human.Human;
 import com.gameserver.player.Player;
 import com.gameserver.player.PlayerState;
@@ -23,6 +25,9 @@ import com.gameserver.player.PlayerState;
 public class CGRoleReNameHandler implements IMessageHandler{
 	private CGRoleReName cgRoleReName;
 	private Player player;
+	public CGRoleReNameHandler(){
+		MessageHandlerServer.getInstance().registerMessageHandler(MessageCode.CGROLERENAME, this);
+	}
 	@Override
 	public void execute() {
 		Human human=player.getHuman();

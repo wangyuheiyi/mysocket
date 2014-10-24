@@ -20,7 +20,7 @@ import com.gameserver.building.template.BuildTemplate;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.human.Human;
 import com.gameserver.human.manager.IHumanManager;
-@Component
+@Component("humanBuildManager")
 public class HumanBuildManager implements IHumanManager{
 	/** 主人 */
 	private Human owner;
