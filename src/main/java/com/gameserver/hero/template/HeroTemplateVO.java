@@ -10,7 +10,7 @@ import com.core.util.StringUtils;
 import com.google.common.collect.Maps;
 
 /**
- * 英雄信息表
+ * 英雄数据
  * 
  * @author CodeGenerator, don't modify this file please.
  * 
@@ -58,96 +58,108 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	@ExcelCellBinding(offset = 10)
 	protected int qualityStep;
 
-	/** 基础统帅 */
+	/** 进阶后id */
 	@ExcelCellBinding(offset = 11)
+	protected int qualityStepLevelUpId;
+
+	/** 升阶消耗 */
+	@ExcelCellBinding(offset = 12)
+	protected int qualityStepLevelUpConsume;
+
+	/** 合成消耗 */
+	@ExcelCellBinding(offset = 13)
+	protected int groupConsume;
+
+	/** 基础统帅 */
+	@ExcelCellBinding(offset = 14)
 	protected int baseControl;
 
 	/** 统帅成长 */
-	@ExcelCellBinding(offset = 12)
+	@ExcelCellBinding(offset = 15)
 	protected int controlGrow;
 
 	/** 基础攻击 */
-	@ExcelCellBinding(offset = 13)
+	@ExcelCellBinding(offset = 16)
 	protected int baseAttack;
 
 	/** 攻击成长 */
-	@ExcelCellBinding(offset = 14)
+	@ExcelCellBinding(offset = 17)
 	protected int attackGrow;
 
 	/** 基础防御 */
-	@ExcelCellBinding(offset = 15)
+	@ExcelCellBinding(offset = 18)
 	protected int baseDefence;
 
 	/** 防御成长 */
-	@ExcelCellBinding(offset = 16)
+	@ExcelCellBinding(offset = 19)
 	protected int defenceGrow;
 
 	/** 基础法力 */
-	@ExcelCellBinding(offset = 17)
+	@ExcelCellBinding(offset = 20)
 	protected int baseMagic;
 
 	/** 法力成长 */
-	@ExcelCellBinding(offset = 18)
+	@ExcelCellBinding(offset = 21)
 	protected int magicGrow;
 
 	/** 基础幸运 */
-	@ExcelCellBinding(offset = 19)
+	@ExcelCellBinding(offset = 22)
 	protected int baseLucky;
 
 	/** 幸运成长 */
-	@ExcelCellBinding(offset = 20)
+	@ExcelCellBinding(offset = 23)
 	protected int luckyGrow;
 
 	/** 基础命中 */
-	@ExcelCellBinding(offset = 21)
+	@ExcelCellBinding(offset = 24)
 	protected int baseHit;
 
 	/** 命中成长 */
-	@ExcelCellBinding(offset = 22)
+	@ExcelCellBinding(offset = 25)
 	protected int hitGrow;
 
 	/** 基础闪避 */
-	@ExcelCellBinding(offset = 23)
+	@ExcelCellBinding(offset = 26)
 	protected int baseDodge;
 
 	/** 闪避成长 */
-	@ExcelCellBinding(offset = 24)
+	@ExcelCellBinding(offset = 27)
 	protected int dodgeGrow;
 
 	/** 基础免伤 */
-	@ExcelCellBinding(offset = 25)
+	@ExcelCellBinding(offset = 28)
 	protected int baseAvoidDamage;
 
 	/** 免伤成长 */
-	@ExcelCellBinding(offset = 26)
+	@ExcelCellBinding(offset = 29)
 	protected int avoidDamageGrow;
 
 	/** 基础暴击 */
-	@ExcelCellBinding(offset = 27)
+	@ExcelCellBinding(offset = 30)
 	protected int baseCrit;
 
 	/** 暴击成长 */
-	@ExcelCellBinding(offset = 28)
+	@ExcelCellBinding(offset = 31)
 	protected int critGrow;
 
 	/** 移动速度 */
-	@ExcelCellBinding(offset = 29)
+	@ExcelCellBinding(offset = 32)
 	protected int moveSpeed;
 
 	/** 是否开放 */
-	@ExcelCellBinding(offset = 30)
+	@ExcelCellBinding(offset = 33)
 	protected int open;
 
 	/** 职业说明多语言Id */
-	@ExcelCellBinding(offset = 31)
+	@ExcelCellBinding(offset = 34)
 	protected int vocationDescriptionLangId;
 
 	/** 被动技能A */
-	@ExcelCellBinding(offset = 32)
+	@ExcelCellBinding(offset = 35)
 	protected int passiveSkillA;
 
 	/** 被动技能B */
-	@ExcelCellBinding(offset = 33)
+	@ExcelCellBinding(offset = 36)
 	protected int passiveSkillB;
 
 
@@ -301,6 +313,57 @@ public abstract class HeroTemplateVO extends TemplateObject {
 		this.qualityStep = qualityStep;
 	}
 	
+	public int getQualityStepLevelUpId() {
+		return this.qualityStepLevelUpId;
+	}
+
+
+	public final static int getQualityStepLevelUpIdMinLimit() {
+		return 0;
+	}
+
+	public void setQualityStepLevelUpId(int qualityStepLevelUpId) {
+		if (qualityStepLevelUpId < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					12, "[进阶后id]qualityStepLevelUpId的值不得小于0");
+		}
+		this.qualityStepLevelUpId = qualityStepLevelUpId;
+	}
+	
+	public int getQualityStepLevelUpConsume() {
+		return this.qualityStepLevelUpConsume;
+	}
+
+
+	public final static int getQualityStepLevelUpConsumeMinLimit() {
+		return 0;
+	}
+
+	public void setQualityStepLevelUpConsume(int qualityStepLevelUpConsume) {
+		if (qualityStepLevelUpConsume < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					13, "[升阶消耗]qualityStepLevelUpConsume的值不得小于0");
+		}
+		this.qualityStepLevelUpConsume = qualityStepLevelUpConsume;
+	}
+	
+	public int getGroupConsume() {
+		return this.groupConsume;
+	}
+
+
+	public final static int getGroupConsumeMinLimit() {
+		return 0;
+	}
+
+	public void setGroupConsume(int groupConsume) {
+		if (groupConsume < 0) {
+			throw new TemplateConfigException(this.getSheetName(), this.getId(),
+					14, "[合成消耗]groupConsume的值不得小于0");
+		}
+		this.groupConsume = groupConsume;
+	}
+	
 	public int getBaseControl() {
 		return this.baseControl;
 	}
@@ -313,7 +376,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setBaseControl(int baseControl) {
 		if (baseControl < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					12, "[基础统帅]baseControl的值不得小于0");
+					15, "[基础统帅]baseControl的值不得小于0");
 		}
 		this.baseControl = baseControl;
 	}
@@ -330,7 +393,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setControlGrow(int controlGrow) {
 		if (controlGrow < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					13, "[统帅成长]controlGrow的值不得小于0");
+					16, "[统帅成长]controlGrow的值不得小于0");
 		}
 		this.controlGrow = controlGrow;
 	}
@@ -347,7 +410,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setBaseAttack(int baseAttack) {
 		if (baseAttack < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					14, "[基础攻击]baseAttack的值不得小于0");
+					17, "[基础攻击]baseAttack的值不得小于0");
 		}
 		this.baseAttack = baseAttack;
 	}
@@ -364,7 +427,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setAttackGrow(int attackGrow) {
 		if (attackGrow < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					15, "[攻击成长]attackGrow的值不得小于0");
+					18, "[攻击成长]attackGrow的值不得小于0");
 		}
 		this.attackGrow = attackGrow;
 	}
@@ -381,7 +444,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setBaseDefence(int baseDefence) {
 		if (baseDefence < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					16, "[基础防御]baseDefence的值不得小于0");
+					19, "[基础防御]baseDefence的值不得小于0");
 		}
 		this.baseDefence = baseDefence;
 	}
@@ -398,7 +461,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setDefenceGrow(int defenceGrow) {
 		if (defenceGrow < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					17, "[防御成长]defenceGrow的值不得小于0");
+					20, "[防御成长]defenceGrow的值不得小于0");
 		}
 		this.defenceGrow = defenceGrow;
 	}
@@ -415,7 +478,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setBaseMagic(int baseMagic) {
 		if (baseMagic < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					18, "[基础法力]baseMagic的值不得小于0");
+					21, "[基础法力]baseMagic的值不得小于0");
 		}
 		this.baseMagic = baseMagic;
 	}
@@ -432,7 +495,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setMagicGrow(int magicGrow) {
 		if (magicGrow < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					19, "[法力成长]magicGrow的值不得小于0");
+					22, "[法力成长]magicGrow的值不得小于0");
 		}
 		this.magicGrow = magicGrow;
 	}
@@ -449,7 +512,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setBaseLucky(int baseLucky) {
 		if (baseLucky < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					20, "[基础幸运]baseLucky的值不得小于0");
+					23, "[基础幸运]baseLucky的值不得小于0");
 		}
 		this.baseLucky = baseLucky;
 	}
@@ -466,7 +529,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setLuckyGrow(int luckyGrow) {
 		if (luckyGrow < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					21, "[幸运成长]luckyGrow的值不得小于0");
+					24, "[幸运成长]luckyGrow的值不得小于0");
 		}
 		this.luckyGrow = luckyGrow;
 	}
@@ -483,7 +546,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setBaseHit(int baseHit) {
 		if (baseHit < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					22, "[基础命中]baseHit的值不得小于0");
+					25, "[基础命中]baseHit的值不得小于0");
 		}
 		this.baseHit = baseHit;
 	}
@@ -500,7 +563,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setHitGrow(int hitGrow) {
 		if (hitGrow < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					23, "[命中成长]hitGrow的值不得小于0");
+					26, "[命中成长]hitGrow的值不得小于0");
 		}
 		this.hitGrow = hitGrow;
 	}
@@ -517,7 +580,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setBaseDodge(int baseDodge) {
 		if (baseDodge < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					24, "[基础闪避]baseDodge的值不得小于0");
+					27, "[基础闪避]baseDodge的值不得小于0");
 		}
 		this.baseDodge = baseDodge;
 	}
@@ -534,7 +597,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setDodgeGrow(int dodgeGrow) {
 		if (dodgeGrow < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					25, "[闪避成长]dodgeGrow的值不得小于0");
+					28, "[闪避成长]dodgeGrow的值不得小于0");
 		}
 		this.dodgeGrow = dodgeGrow;
 	}
@@ -551,7 +614,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setBaseAvoidDamage(int baseAvoidDamage) {
 		if (baseAvoidDamage < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					26, "[基础免伤]baseAvoidDamage的值不得小于0");
+					29, "[基础免伤]baseAvoidDamage的值不得小于0");
 		}
 		this.baseAvoidDamage = baseAvoidDamage;
 	}
@@ -568,7 +631,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setAvoidDamageGrow(int avoidDamageGrow) {
 		if (avoidDamageGrow < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					27, "[免伤成长]avoidDamageGrow的值不得小于0");
+					30, "[免伤成长]avoidDamageGrow的值不得小于0");
 		}
 		this.avoidDamageGrow = avoidDamageGrow;
 	}
@@ -585,7 +648,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setBaseCrit(int baseCrit) {
 		if (baseCrit < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					28, "[基础暴击]baseCrit的值不得小于0");
+					31, "[基础暴击]baseCrit的值不得小于0");
 		}
 		this.baseCrit = baseCrit;
 	}
@@ -602,7 +665,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setCritGrow(int critGrow) {
 		if (critGrow < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					29, "[暴击成长]critGrow的值不得小于0");
+					32, "[暴击成长]critGrow的值不得小于0");
 		}
 		this.critGrow = critGrow;
 	}
@@ -619,7 +682,7 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	public void setMoveSpeed(int moveSpeed) {
 		if (moveSpeed < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					30, "[移动速度]moveSpeed的值不得小于0");
+					33, "[移动速度]moveSpeed的值不得小于0");
 		}
 		this.moveSpeed = moveSpeed;
 	}
@@ -688,6 +751,6 @@ public abstract class HeroTemplateVO extends TemplateObject {
 
 	@Override
 	public String toString() {
-		return "HeroTemplateVO [  heroNameLangId=" + heroNameLangId + ", heroName=" + heroName + ", vocationNameLangId=" + vocationNameLangId + ", vocationName=" + vocationName + ", vocationType=" + vocationType + ", allianceType=" + allianceType + ", photo=" + photo + ", head=" + head + ", quality=" + quality + ", qualityStep=" + qualityStep + ", baseControl=" + baseControl + ", controlGrow=" + controlGrow + ", baseAttack=" + baseAttack + ", attackGrow=" + attackGrow + ", baseDefence=" + baseDefence + ", defenceGrow=" + defenceGrow + ", baseMagic=" + baseMagic + ", magicGrow=" + magicGrow + ", baseLucky=" + baseLucky + ", luckyGrow=" + luckyGrow + ", baseHit=" + baseHit + ", hitGrow=" + hitGrow + ", baseDodge=" + baseDodge + ", dodgeGrow=" + dodgeGrow + ", baseAvoidDamage=" + baseAvoidDamage + ", avoidDamageGrow=" + avoidDamageGrow + ", baseCrit=" + baseCrit + ", critGrow=" + critGrow + ", moveSpeed=" + moveSpeed + ", open=" + open + ", vocationDescriptionLangId=" + vocationDescriptionLangId + ", passiveSkillA=" + passiveSkillA + ", passiveSkillB=" + passiveSkillB + ",]";
+		return "HeroTemplateVO [  heroNameLangId=" + heroNameLangId + ", heroName=" + heroName + ", vocationNameLangId=" + vocationNameLangId + ", vocationName=" + vocationName + ", vocationType=" + vocationType + ", allianceType=" + allianceType + ", photo=" + photo + ", head=" + head + ", quality=" + quality + ", qualityStep=" + qualityStep + ", qualityStepLevelUpId=" + qualityStepLevelUpId + ", qualityStepLevelUpConsume=" + qualityStepLevelUpConsume + ", groupConsume=" + groupConsume + ", baseControl=" + baseControl + ", controlGrow=" + controlGrow + ", baseAttack=" + baseAttack + ", attackGrow=" + attackGrow + ", baseDefence=" + baseDefence + ", defenceGrow=" + defenceGrow + ", baseMagic=" + baseMagic + ", magicGrow=" + magicGrow + ", baseLucky=" + baseLucky + ", luckyGrow=" + luckyGrow + ", baseHit=" + baseHit + ", hitGrow=" + hitGrow + ", baseDodge=" + baseDodge + ", dodgeGrow=" + dodgeGrow + ", baseAvoidDamage=" + baseAvoidDamage + ", avoidDamageGrow=" + avoidDamageGrow + ", baseCrit=" + baseCrit + ", critGrow=" + critGrow + ", moveSpeed=" + moveSpeed + ", open=" + open + ", vocationDescriptionLangId=" + vocationDescriptionLangId + ", passiveSkillA=" + passiveSkillA + ", passiveSkillB=" + passiveSkillB + ",]";
 	}
 }

@@ -8,6 +8,9 @@ int photo;[notNull=false;minValue=0] // 头像
 int head;[notNull=false;minValue=0] // 全身像
 int quality;[notNull=false;minValue=1] // 品质
 int qualityStep;[notNull=false;minValue=0] // 品阶
+int qualityStepLevelUpId;[notNull=false;minValue=0] // 进阶后id
+int qualityStepLevelUpConsume;[notNull=false;minValue=0] // 升阶消耗
+int groupConsume;[notNull=false;minValue=0] // 合成消耗
 int baseControl;[notNull=false;minValue=0] // 基础统帅
 int controlGrow;[notNull=false;minValue=0] // 统帅成长
 int baseAttack;[notNull=false;minValue=0] // 基础攻击
