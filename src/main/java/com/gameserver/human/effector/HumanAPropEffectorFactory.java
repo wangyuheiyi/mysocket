@@ -1,6 +1,7 @@
 package com.gameserver.human.effector;
 
 import com.gameserver.human.Human;
+import com.gameserver.role.properties.PropertyEffector;
 import com.gameserver.role.properties.RoleResourceIntProperties;
 
 /**
@@ -13,7 +14,7 @@ public class HumanAPropEffectorFactory
 	/** 
 	 * 初始化影响
 	 */
-	public static final HumanPropertyEffector<RoleResourceIntProperties, Human> INIT_EFFECTOR = new HumanPropertyEffector<RoleResourceIntProperties, Human>() 
+	public static final PropertyEffector<RoleResourceIntProperties, Human> INIT_EFFECTOR = new PropertyEffector<RoleResourceIntProperties, Human>() 
 	{
 		@Override
 		public void effect(RoleResourceIntProperties prop, Human human)
@@ -26,7 +27,7 @@ public class HumanAPropEffectorFactory
 	/** 
 	 * 等级影响
 	 */
-	public static final HumanPropertyEffector<RoleResourceIntProperties, Human> LEVEL_EFFECTOR = new HumanPropertyEffector<RoleResourceIntProperties, Human>()
+	public static final PropertyEffector<RoleResourceIntProperties, Human> LEVEL_EFFECTOR = new PropertyEffector<RoleResourceIntProperties, Human>()
 	{
 		@Override
 		public void effect(RoleResourceIntProperties prop, Human human)

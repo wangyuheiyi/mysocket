@@ -1,6 +1,7 @@
 package com.gameserver.human.effector;
 
 import com.gameserver.human.Human;
+import com.gameserver.role.properties.PropertyEffector;
 import com.gameserver.role.properties.RolePropertyManager;
 import com.gameserver.role.properties.RoleResourceIntProperties;
 
@@ -19,9 +20,9 @@ public enum HumanAPropFromType
 	
 	public final int index;
 	public final int mark;
-	public final HumanPropertyEffector<RoleResourceIntProperties, Human> effector;
+	public final PropertyEffector<RoleResourceIntProperties, Human> effector;
 	
-	private HumanAPropFromType(int index, int mark,HumanPropertyEffector<RoleResourceIntProperties, Human> effector) 
+	private HumanAPropFromType(int index, int mark,PropertyEffector<RoleResourceIntProperties, Human> effector) 
 	{
 		this.index = index;
 		this.mark = mark;

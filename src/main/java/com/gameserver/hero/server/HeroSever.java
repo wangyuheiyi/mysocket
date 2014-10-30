@@ -4,16 +4,13 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.core.converter.AbstractConverter;
-import com.core.converter.Converter;
 import com.core.templates.TemplateService;
 import com.gameserver.common.globals.config.GameConfigServer;
 import com.gameserver.common.globals.server.IBaseServer;
 import com.gameserver.common.globals.server.impl.ServerManager;
+import com.gameserver.hero.template.HeroRecruitPoolTemplate;
+import com.gameserver.hero.template.HeroRecruitTemplate;
 import com.gameserver.hero.template.HeroTemplate;
-import com.gameserver.human.Human;
-import com.gameserver.human.template.ExperienceTemplate;
-import com.gameserver.human.template.HumanTemplate;
 /**
  * 英雄服务类
  * @author Administrator
@@ -47,6 +44,42 @@ public class HeroSever implements IBaseServer{
 	public Map<Integer,HeroTemplate> getAllHeroTemplate()
 	{
 		return this.templateService.getAll(HeroTemplate.class);
+	}
+	
+	/**
+	 * 根据Id获取英雄招募模板
+	 * @return
+	 */
+	public HeroRecruitTemplate getHeroRecruitTemplById(int heroRecruitTemplId)
+	{
+		return this.templateService.get(heroRecruitTemplId,HeroRecruitTemplate.class);
+	}
+	
+	/**
+	 * 获取全部英雄招募模板
+	 * @return
+	 */
+	public Map<Integer,HeroRecruitTemplate> getAllHeroRecruitTemplate()
+	{
+		return this.templateService.getAll(HeroRecruitTemplate.class);
+	}
+	
+	/**
+	 * 根据Id获取英雄招募池模板
+	 * @return
+	 */
+	public HeroRecruitPoolTemplate getHeroRecruitPoolTemplById(int heroRecruitPoolTemplId)
+	{
+		return this.templateService.get(heroRecruitPoolTemplId,HeroRecruitPoolTemplate.class);
+	}
+	
+	/**
+	 * 获取全部英雄招募池模板
+	 * @return
+	 */
+	public Map<Integer,HeroRecruitPoolTemplate> getAllHeroRecruitPoolTemplate()
+	{
+		return this.templateService.getAll(HeroRecruitPoolTemplate.class);
 	}
 	
 	

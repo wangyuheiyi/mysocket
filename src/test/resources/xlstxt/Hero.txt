@@ -11,6 +11,8 @@ int quality;[notNull=false;minValue=0] // 品阶
 int qualityLevelUpId;[notNull=false;minValue=0] // 进阶后id
 int qualityLevelUpConsume;[notNull=false;minValue=0] // 升阶消耗
 int groupConsume;[notNull=false;minValue=0] // 合成消耗
+int baseHp;[notNull=false;minValue=0] // 基础血量
+int hpGrow;[notNull=false;minValue=0] // 血量成长
 int baseControl;[notNull=false;minValue=0] // 基础统帅
 int controlGrow;[notNull=false;minValue=0] // 统帅成长
 int baseAttack;[notNull=false;minValue=0] // 基础攻击

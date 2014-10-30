@@ -1,4 +1,4 @@
-package com.gameserver.human.effector;
+package com.gameserver.role.properties;
 
 import com.gameserver.role.Role;
 import com.gameserver.role.properties.GenericPropertyObject;
@@ -10,7 +10,7 @@ import com.gameserver.role.properties.GenericPropertyObject;
  * @param <P>
  * @param <R>
  */
-public interface HumanPropertyEffector<P extends GenericPropertyObject, R extends Role>
+public interface PropertyEffector<P extends GenericPropertyObject, R extends Role>
 {
 	/**
 	 * 计算该效应提供的属性值
