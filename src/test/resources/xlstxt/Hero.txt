@@ -6,10 +6,10 @@ int vocationType;[notNull=false;minValue=0] // 职业类型
 int allianceType;[notNull=false;minValue=0] // 种族
 int photo;[notNull=false;minValue=0] // 头像
 int head;[notNull=false;minValue=0] // 全身像
-int quality;[notNull=false;minValue=1] // 品质
-int qualityStep;[notNull=false;minValue=0] // 品阶
-int qualityStepLevelUpId;[notNull=false;minValue=0] // 进阶后id
-int qualityStepLevelUpConsume;[notNull=false;minValue=0] // 升阶消耗
+int maxLevel;[notNull=false;] // 等级上限
+int quality;[notNull=false;minValue=0] // 品阶
+int qualityLevelUpId;[notNull=false;minValue=0] // 进阶后id
+int qualityLevelUpConsume;[notNull=false;minValue=0] // 升阶消耗
 int groupConsume;[notNull=false;minValue=0] // 合成消耗
 int baseControl;[notNull=false;minValue=0] // 基础统帅
 int controlGrow;[notNull=false;minValue=0] // 统帅成长
@@ -34,3 +34,8 @@ int open;[notNull=false] //是否开放
 int vocationDescriptionLangId;[notNull=false] // 职业说明多语言Id
 int passiveSkillA;[notNull=false] //被动技能A
 int passiveSkillB;[notNull=false] //被动技能B
+int passiveSkillC;[notNull=false] //被动技能C
+int passiveSkillD;[notNull=false] //被动技能D
+int isRecruit;[notNull=false] //是否能被招募
+int isChangeVocation;[notNull=false] //是否能转职
+int changeVocationId;[notNull=false] //转职后id

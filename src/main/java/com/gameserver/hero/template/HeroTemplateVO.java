@@ -50,21 +50,21 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	@ExcelCellBinding(offset = 8)
 	protected int head;
 
-	/** 品质 */
+	/** 等级上限 */
 	@ExcelCellBinding(offset = 9)
-	protected int quality;
+	protected int maxLevel;
 
 	/** 品阶 */
 	@ExcelCellBinding(offset = 10)
-	protected int qualityStep;
+	protected int quality;
 
 	/** 进阶后id */
 	@ExcelCellBinding(offset = 11)
-	protected int qualityStepLevelUpId;
+	protected int qualityLevelUpId;
 
 	/** 升阶消耗 */
 	@ExcelCellBinding(offset = 12)
-	protected int qualityStepLevelUpConsume;
+	protected int qualityLevelUpConsume;
 
 	/** 合成消耗 */
 	@ExcelCellBinding(offset = 13)
@@ -161,6 +161,26 @@ public abstract class HeroTemplateVO extends TemplateObject {
 	/** 被动技能B */
 	@ExcelCellBinding(offset = 36)
 	protected int passiveSkillB;
+
+	/** 被动技能C */
+	@ExcelCellBinding(offset = 37)
+	protected int passiveSkillC;
+
+	/** 被动技能D */
+	@ExcelCellBinding(offset = 38)
+	protected int passiveSkillD;
+
+	/** 是否能被招募 */
+	@ExcelCellBinding(offset = 39)
+	protected int isRecruit;
+
+	/** 是否能转职 */
+	@ExcelCellBinding(offset = 40)
+	protected int isChangeVocation;
+
+	/** 转职后id */
+	@ExcelCellBinding(offset = 41)
+	protected int changeVocationId;
 
 
 	public int getHeroNameLangId() {
@@ -279,72 +299,65 @@ public abstract class HeroTemplateVO extends TemplateObject {
 		this.head = head;
 	}
 	
+	public int getMaxLevel() {
+		return this.maxLevel;
+	}
+
+
+
+	public void setMaxLevel(int maxLevel) {
+		this.maxLevel = maxLevel;
+	}
+	
 	public int getQuality() {
 		return this.quality;
 	}
 
 
 	public final static int getQualityMinLimit() {
-		return 1;
+		return 0;
 	}
 
 	public void setQuality(int quality) {
-		if (quality < 1) {
+		if (quality < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					10, "[品质]quality的值不得小于1");
+					11, "[品阶]quality的值不得小于0");
 		}
 		this.quality = quality;
 	}
 	
-	public int getQualityStep() {
-		return this.qualityStep;
+	public int getQualityLevelUpId() {
+		return this.qualityLevelUpId;
 	}
 
 
-	public final static int getQualityStepMinLimit() {
+	public final static int getQualityLevelUpIdMinLimit() {
 		return 0;
 	}
 
-	public void setQualityStep(int qualityStep) {
-		if (qualityStep < 0) {
+	public void setQualityLevelUpId(int qualityLevelUpId) {
+		if (qualityLevelUpId < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					11, "[品阶]qualityStep的值不得小于0");
+					12, "[进阶后id]qualityLevelUpId的值不得小于0");
 		}
-		this.qualityStep = qualityStep;
+		this.qualityLevelUpId = qualityLevelUpId;
 	}
 	
-	public int getQualityStepLevelUpId() {
-		return this.qualityStepLevelUpId;
+	public int getQualityLevelUpConsume() {
+		return this.qualityLevelUpConsume;
 	}
 
 
-	public final static int getQualityStepLevelUpIdMinLimit() {
+	public final static int getQualityLevelUpConsumeMinLimit() {
 		return 0;
 	}
 
-	public void setQualityStepLevelUpId(int qualityStepLevelUpId) {
-		if (qualityStepLevelUpId < 0) {
+	public void setQualityLevelUpConsume(int qualityLevelUpConsume) {
+		if (qualityLevelUpConsume < 0) {
 			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					12, "[进阶后id]qualityStepLevelUpId的值不得小于0");
+					13, "[升阶消耗]qualityLevelUpConsume的值不得小于0");
 		}
-		this.qualityStepLevelUpId = qualityStepLevelUpId;
-	}
-	
-	public int getQualityStepLevelUpConsume() {
-		return this.qualityStepLevelUpConsume;
-	}
-
-
-	public final static int getQualityStepLevelUpConsumeMinLimit() {
-		return 0;
-	}
-
-	public void setQualityStepLevelUpConsume(int qualityStepLevelUpConsume) {
-		if (qualityStepLevelUpConsume < 0) {
-			throw new TemplateConfigException(this.getSheetName(), this.getId(),
-					13, "[升阶消耗]qualityStepLevelUpConsume的值不得小于0");
-		}
-		this.qualityStepLevelUpConsume = qualityStepLevelUpConsume;
+		this.qualityLevelUpConsume = qualityLevelUpConsume;
 	}
 	
 	public int getGroupConsume() {
@@ -727,6 +740,56 @@ public abstract class HeroTemplateVO extends TemplateObject {
 		this.passiveSkillB = passiveSkillB;
 	}
 	
+	public int getPassiveSkillC() {
+		return this.passiveSkillC;
+	}
+
+
+
+	public void setPassiveSkillC(int passiveSkillC) {
+		this.passiveSkillC = passiveSkillC;
+	}
+	
+	public int getPassiveSkillD() {
+		return this.passiveSkillD;
+	}
+
+
+
+	public void setPassiveSkillD(int passiveSkillD) {
+		this.passiveSkillD = passiveSkillD;
+	}
+	
+	public int getIsRecruit() {
+		return this.isRecruit;
+	}
+
+
+
+	public void setIsRecruit(int isRecruit) {
+		this.isRecruit = isRecruit;
+	}
+	
+	public int getIsChangeVocation() {
+		return this.isChangeVocation;
+	}
+
+
+
+	public void setIsChangeVocation(int isChangeVocation) {
+		this.isChangeVocation = isChangeVocation;
+	}
+	
+	public int getChangeVocationId() {
+		return this.changeVocationId;
+	}
+
+
+
+	public void setChangeVocationId(int changeVocationId) {
+		this.changeVocationId = changeVocationId;
+	}
+	
 
 	/** 模板字典 */
 	protected final static Map<Integer, HeroTemplateVO> _templates = Maps.newTreeMap();
@@ -751,6 +814,6 @@ public abstract class HeroTemplateVO extends TemplateObject {
 
 	@Override
 	public String toString() {
-		return "HeroTemplateVO [  heroNameLangId=" + heroNameLangId + ", heroName=" + heroName + ", vocationNameLangId=" + vocationNameLangId + ", vocationName=" + vocationName + ", vocationType=" + vocationType + ", allianceType=" + allianceType + ", photo=" + photo + ", head=" + head + ", quality=" + quality + ", qualityStep=" + qualityStep + ", qualityStepLevelUpId=" + qualityStepLevelUpId + ", qualityStepLevelUpConsume=" + qualityStepLevelUpConsume + ", groupConsume=" + groupConsume + ", baseControl=" + baseControl + ", controlGrow=" + controlGrow + ", baseAttack=" + baseAttack + ", attackGrow=" + attackGrow + ", baseDefence=" + baseDefence + ", defenceGrow=" + defenceGrow + ", baseMagic=" + baseMagic + ", magicGrow=" + magicGrow + ", baseLucky=" + baseLucky + ", luckyGrow=" + luckyGrow + ", baseHit=" + baseHit + ", hitGrow=" + hitGrow + ", baseDodge=" + baseDodge + ", dodgeGrow=" + dodgeGrow + ", baseAvoidDamage=" + baseAvoidDamage + ", avoidDamageGrow=" + avoidDamageGrow + ", baseCrit=" + baseCrit + ", critGrow=" + critGrow + ", moveSpeed=" + moveSpeed + ", open=" + open + ", vocationDescriptionLangId=" + vocationDescriptionLangId + ", passiveSkillA=" + passiveSkillA + ", passiveSkillB=" + passiveSkillB + ",]";
+		return "HeroTemplateVO [  heroNameLangId=" + heroNameLangId + ", heroName=" + heroName + ", vocationNameLangId=" + vocationNameLangId + ", vocationName=" + vocationName + ", vocationType=" + vocationType + ", allianceType=" + allianceType + ", photo=" + photo + ", head=" + head + ", maxLevel=" + maxLevel + ", quality=" + quality + ", qualityLevelUpId=" + qualityLevelUpId + ", qualityLevelUpConsume=" + qualityLevelUpConsume + ", groupConsume=" + groupConsume + ", baseControl=" + baseControl + ", controlGrow=" + controlGrow + ", baseAttack=" + baseAttack + ", attackGrow=" + attackGrow + ", baseDefence=" + baseDefence + ", defenceGrow=" + defenceGrow + ", baseMagic=" + baseMagic + ", magicGrow=" + magicGrow + ", baseLucky=" + baseLucky + ", luckyGrow=" + luckyGrow + ", baseHit=" + baseHit + ", hitGrow=" + hitGrow + ", baseDodge=" + baseDodge + ", dodgeGrow=" + dodgeGrow + ", baseAvoidDamage=" + baseAvoidDamage + ", avoidDamageGrow=" + avoidDamageGrow + ", baseCrit=" + baseCrit + ", critGrow=" + critGrow + ", moveSpeed=" + moveSpeed + ", open=" + open + ", vocationDescriptionLangId=" + vocationDescriptionLangId + ", passiveSkillA=" + passiveSkillA + ", passiveSkillB=" + passiveSkillB + ", passiveSkillC=" + passiveSkillC + ", passiveSkillD=" + passiveSkillD + ", isRecruit=" + isRecruit + ", isChangeVocation=" + isChangeVocation + ", changeVocationId=" + changeVocationId + ",]";
 	}
 }

@@ -5,13 +5,13 @@ import com.common.exception.TemplateConfigException;
 import com.core.annotation.ExcelRowBinding;
 
 /**
- * 玩家英雄初始化配置模板
+ * 玩家英雄招募初始化配置模板
  * 
  * @author Thinker
  * 
  */
 @ExcelRowBinding
-public class HeroTemplate extends HeroTemplateVO
+public class HeroRecruitTemplate extends HeroRecruitTemplateVO
 {
 	@Override
 	public void check() throws TemplateConfigException
