@@ -20,9 +20,9 @@ import com.gameserver.scene.server.SceneService;
 @Component
 public class ServerManager implements IBaseServer{
 	public static ServerManager getInstance() 
-	 {
+	{
 	     return ContextFactiry.getContext("serverContext").getBean(ServerManager.class);
-	 }
+	}
 	
 	@Autowired
 	private DiscardServer discardServer;
@@ -57,6 +57,10 @@ public class ServerManager implements IBaseServer{
 	@Autowired
 	private BuildSever buildSever;
 	
+	public ServerManager() {
+	    	System.out.println("ServerManager");
+	}
+	 
 	@Override
 	public void init(GameConfigServer config) {
 		//策划数据模板类

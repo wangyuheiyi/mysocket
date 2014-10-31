@@ -29,9 +29,7 @@ public class CGCreateRoleHandler implements IMessageHandler{
 	private CGCreateRole cgCreateRole;
 	private Player player;
 	
-	public CGCreateRoleHandler(){
-		MessageHandlerServer.getInstance().registerMessageHandler(MessageCode.CGPLAYERCHECKLOGIN, this);
-	}
+
 	@Override
 	public void execute() {
 		

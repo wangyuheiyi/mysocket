@@ -28,9 +28,7 @@ import com.gameserver.player.async.CreateRoleOperation;
 public class CGSelectRoleHandler implements IMessageHandler{
 	private CGSelectRole cgSelectRole;
 	private Player player;
-	public CGSelectRoleHandler(){
-		MessageHandlerServer.getInstance().registerMessageHandler(MessageCode.CGSELECTROLE, this);
-	}
+
 	@Override
 	public void execute() {
 		

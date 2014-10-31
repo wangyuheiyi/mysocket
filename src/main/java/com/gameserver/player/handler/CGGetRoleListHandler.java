@@ -27,9 +27,7 @@ import com.gameserver.player.PlayerState;
 public class CGGetRoleListHandler implements IMessageHandler{
 	private CGGetRoleList cgGetRoleList;
 	private Player player;
-	public CGGetRoleListHandler(){
-		MessageHandlerServer.getInstance().registerMessageHandler(MessageCode.CGGETROLELIST, this);
-	}
+
 	@Override
 	public void execute() {
 		GCGetRoleList.Builder gcGetRoleList=GCGetRoleList.newBuilder();
@@ -58,6 +56,7 @@ public class CGGetRoleListHandler implements IMessageHandler{
 		//将玩家的角色信息发送给玩家
 		player.sendMessage(player.buildBeseMessage(BaseMessage.Type.GLOBALMESSAGE, BaseMessage.MessageCode.GCGETROLELIST).
 				setExtension(BaseBean.gcGetRoleList, gcGetRoleList.build()).build());
+		System.out.println("================end======================");
 	}
 
 	@Override

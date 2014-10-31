@@ -27,9 +27,7 @@ import com.gameserver.player.Player;
 public class CGCreateBuildHandler implements IMessageHandler{
 	private CGCreatBuild cgCreatBuild;
 	private Player player;
-	public CGCreateBuildHandler(){
-		MessageHandlerServer.getInstance().registerMessageHandler(MessageCode.CGCREATBUILD, this);
-	}
+
 	@Override
 	public void execute() {
 		Human human=player.getHuman();

@@ -25,9 +25,7 @@ import com.gameserver.player.PlayerState;
 public class CGRoleReNameHandler implements IMessageHandler{
 	private CGRoleReName cgRoleReName;
 	private Player player;
-	public CGRoleReNameHandler(){
-		MessageHandlerServer.getInstance().registerMessageHandler(MessageCode.CGROLERENAME, this);
-	}
+
 	@Override
 	public void execute() {
 		Human human=player.getHuman();

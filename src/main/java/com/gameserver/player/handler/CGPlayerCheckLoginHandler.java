@@ -19,9 +19,7 @@ import com.gameserver.player.PlayerState;
 public class CGPlayerCheckLoginHandler implements IMessageHandler{
 	private CGPlayerCheckLogin cgPlayerCheckLogin;
 	private Player player;
-	public CGPlayerCheckLoginHandler(){
-		MessageHandlerServer.getInstance().registerMessageHandler(MessageCode.CGPLAYERCHECKLOGIN, this);
-	}
+
 	@Override
 	public void execute() {
 		GCPlayerCheckLogin.Builder gcPlayerCheckLogin=GCPlayerCheckLogin.newBuilder();

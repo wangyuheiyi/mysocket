@@ -29,9 +29,7 @@ import com.gameserver.player.Player;
 public class CGQuickBuildHandler implements IMessageHandler{
 	private CGQuickBuild cgQuickBuild;
 	private Player player;
-	public CGQuickBuildHandler(){
-		MessageHandlerServer.getInstance().registerMessageHandler(MessageCode.CGQUICKBUILD, this);
-	}
+
 	@Override
 	public void execute() {
 		Human human=player.getHuman();
