@@ -17,11 +17,11 @@ import com.google.common.collect.Maps;
 @ExcelRowBinding
 public abstract class BuildQueueTemplateVO extends TemplateObject {
 
-	/** 等级下限 */
+	/** vip等级下限 */
 	@ExcelCellBinding(offset = 1)
 	protected int minLevel;
 
-	/** 等级上限 */
+	/** vip等级上限 */
 	@ExcelCellBinding(offset = 2)
 	protected int maxLevel;
 

@@ -17,7 +17,6 @@ import com.gameserver.common.handler.WebSocketServerInitializer;
 public class DiscardServer implements IBaseServer{
 	private int port;
     public DiscardServer() {
-    	System.out.println("cccccc");
     }
 
     public void run() throws Exception {

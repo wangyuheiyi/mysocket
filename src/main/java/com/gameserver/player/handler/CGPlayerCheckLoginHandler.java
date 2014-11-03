@@ -19,6 +19,10 @@ import com.gameserver.player.PlayerState;
 public class CGPlayerCheckLoginHandler implements IMessageHandler{
 	private CGPlayerCheckLogin cgPlayerCheckLogin;
 	private Player player;
+	
+	public CGPlayerCheckLoginHandler(){
+		System.out.println("CGPlayerCheckLoginHandler");
+	}
 
 	@Override
 	public void execute() {

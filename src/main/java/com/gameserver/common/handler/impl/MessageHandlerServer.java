@@ -28,7 +28,7 @@ public class MessageHandlerServer{
 	 }
 	
     public MessageHandlerServer() {
-    	System.out.println("aaaaaa");
+    	System.out.println("MessageHandlerServer");
     }
 
     public IMessageHandler getMessageHandler(Channel channel,BaseMessage baseBean){
