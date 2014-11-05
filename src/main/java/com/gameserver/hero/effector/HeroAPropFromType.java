@@ -1,6 +1,6 @@
 package com.gameserver.hero.effector;
 
-import com.gameserver.human.Human;
+import com.gameserver.hero.Hero;
 import com.gameserver.role.properties.PropertyEffector;
 import com.gameserver.role.properties.RoleBattleIntProperties;
 import com.gameserver.role.properties.RolePropertyManager;
@@ -20,9 +20,9 @@ public enum HeroAPropFromType
 	
 	public final int index;
 	public final int mark;
-	public final PropertyEffector<RoleBattleIntProperties, Human> effector;
+	public final PropertyEffector<RoleBattleIntProperties, Hero> effector;
 	
-	private HeroAPropFromType(int index, int mark,PropertyEffector<RoleBattleIntProperties, Human> effector) 
+	private HeroAPropFromType(int index, int mark,PropertyEffector<RoleBattleIntProperties, Hero> effector) 
 	{
 		this.index = index;
 		this.mark = mark;

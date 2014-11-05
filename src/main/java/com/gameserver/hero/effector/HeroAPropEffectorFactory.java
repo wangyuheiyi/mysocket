@@ -1,9 +1,8 @@
 package com.gameserver.hero.effector;
 
-import com.gameserver.human.Human;
+import com.gameserver.hero.Hero;
 import com.gameserver.role.properties.PropertyEffector;
 import com.gameserver.role.properties.RoleBattleIntProperties;
-import com.gameserver.role.properties.RoleResourceIntProperties;
 
 /**
  * 主角一级属性效果器
@@ -15,10 +14,10 @@ public class HeroAPropEffectorFactory
 	/** 
 	 * 初始化影响
 	 */
-	public static final PropertyEffector<RoleBattleIntProperties, Human> INIT_EFFECTOR = new PropertyEffector<RoleBattleIntProperties, Human>() 
+	public static final PropertyEffector<RoleBattleIntProperties, Hero> INIT_EFFECTOR = new PropertyEffector<RoleBattleIntProperties, Hero>() 
 	{
 		@Override
-		public void effect(RoleBattleIntProperties prop, Human human)
+		public void effect(RoleBattleIntProperties prop, Hero human)
 		{
 			prop.clear();
 		}
@@ -28,10 +27,10 @@ public class HeroAPropEffectorFactory
 	/** 
 	 * 等级影响
 	 */
-	public static final PropertyEffector<RoleBattleIntProperties, Human> LEVEL_EFFECTOR = new PropertyEffector<RoleBattleIntProperties, Human>()
+	public static final PropertyEffector<RoleBattleIntProperties, Hero> LEVEL_EFFECTOR = new PropertyEffector<RoleBattleIntProperties, Hero>()
 	{
 		@Override
-		public void effect(RoleBattleIntProperties prop, Human human)
+		public void effect(RoleBattleIntProperties prop, Hero human)
 		{
 			prop.clear();	
 //			HumanTemplate humanTempl=human.getVocationTmpl();			

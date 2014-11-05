@@ -13,6 +13,7 @@ import com.gameserver.common.operation.LifeCycle;
 import com.gameserver.common.operation.PersistanceObject;
 import com.gameserver.common.persistance.AbstractDataUpdater;
 import com.gameserver.common.persistance.POUpdater;
+import com.gameserver.hero.Hero;
 import com.gameserver.human.Human;
 
 /**
@@ -27,6 +28,11 @@ public class SceneUpdaterServer extends AbstractDataUpdater implements IBaseServ
 	private static Map<Class<? extends PersistanceObject<?, ?>>, POUpdater> operationDbMap = new LinkedHashMap<Class<? extends PersistanceObject<?, ?>>, POUpdater>();
 	@Resource(name = "humanUpdater")
 	private POUpdater poHumanUpdater;
+	
+	@Resource(name = "heroUpdater")
+	private POUpdater poHeroUpdater;
+	
+	
 	public SceneUpdaterServer()
 	{
 		super();
@@ -65,5 +71,6 @@ public class SceneUpdaterServer extends AbstractDataUpdater implements IBaseServ
 	@Override
 	public void init(GameConfigServer config) {
 		operationDbMap.put(Human.class, poHumanUpdater);
+		operationDbMap.put(Hero.class, poHeroUpdater);
 	}
 }

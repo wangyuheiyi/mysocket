@@ -1,8 +1,10 @@
 package com.gameserver.human.manager.impl;
 import java.sql.Timestamp;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -19,9 +21,8 @@ import com.gameserver.building.BuildDef.BuildUpdateState;
 import com.gameserver.building.template.BuildTemplate;
 import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.human.Human;
-import com.gameserver.human.manager.IHumanManager;
 @Component("humanBuildManager")
-public class HumanBuildManager implements IHumanManager{
+public class HumanBuildManager{
 	/** 主人 */
 	private Human owner;
 	
@@ -29,7 +30,7 @@ public class HumanBuildManager implements IHumanManager{
 	private List<Build> buildDataList=new ArrayList<Build>();
 	
 	public HumanBuildManager(){
-		
+		System.out.println("humanBuildManager");
 	}
 
 
@@ -38,12 +39,12 @@ public class HumanBuildManager implements IHumanManager{
 	}
 
 
-	@Override
+
 	public void init(Human human) {
 		this.owner=human;
 	}
 
-	@Override
+
 	public void load() {
 		loadDataFromDb();
 	}
@@ -133,18 +134,18 @@ public class HumanBuildManager implements IHumanManager{
 		return build;
 	}
 
-	@Override
+
 	public void checkAfterRoleLoad() {
 		
 	}
 
-	@Override
+
 	public void checkBeforeRoleEnter() {
 		
 	}
 
 
-	@Override
+
 	@Async
 	public void onHeartBeat() {
 		checkBuildFinshed(true);

@@ -191,5 +191,7 @@ public abstract class Role
 	 * 
 	 * @see Human#sendMessage(GCMessage)
 	 */
-	abstract protected void sendMessage(Object msg) ;
+	protected void sendMessage(Object msg){
+		
+	}
 }

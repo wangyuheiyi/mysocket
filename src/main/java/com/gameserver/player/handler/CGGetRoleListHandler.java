@@ -56,7 +56,7 @@ public class CGGetRoleListHandler implements IMessageHandler{
 		//将玩家的角色信息发送给玩家
 		player.sendMessage(player.buildBeseMessage(BaseMessage.Type.GLOBALMESSAGE, BaseMessage.MessageCode.GCGETROLELIST).
 				setExtension(BaseBean.gcGetRoleList, gcGetRoleList.build()).build());
-		System.out.println("================end======================");
+		System.out.println("================CGGetRoleList end======================");
 	}
 
 	@Override
