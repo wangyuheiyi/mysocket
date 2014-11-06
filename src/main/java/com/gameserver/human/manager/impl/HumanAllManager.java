@@ -50,7 +50,7 @@ public class HumanAllManager {
 	}
 
 	public HumanBuildManager getHumanBuildManager() {
-		return humanBuildManager;
+		return (HumanBuildManager)humanBuildManager;
 	}
 
 	public void onHeartBeat() {
