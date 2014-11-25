@@ -12,6 +12,7 @@ import com.gameserver.common.globals.server.impl.ServerManager;
 import com.gameserver.common.handler.IMessageHandler;
 import com.gameserver.player.Player;
 import com.gameserver.player.PlayerState;
+import com.test.BuildMissionInfo;
 @Scope("prototype")
 @Component
 public class CGPlayerCheckLoginHandler implements IMessageHandler{
@@ -32,6 +33,8 @@ public class CGPlayerCheckLoginHandler implements IMessageHandler{
 		OnLinePlayerServer onLinePlayerServer = ServerManager.getInstance().getOnLinePlayerServer();
 		player.setState(PlayerState.auth);
 		onLinePlayerServer.onPlayerEnterServer(player.getId(), player);
+//		player.sendMessage(BuildMissionInfo.getBuildMissionInfo());
+		
 		player.sendMessage(player.buildBeseMessage(BaseMessage.Type.GLOBALMESSAGE, BaseMessage.MessageCode.GCPLAYERCHECKLOGIN).
 				setExtension(BaseBean.gcPlayerCheckLogin, gcPlayerCheckLogin.build()).build());
 		System.out.println("================CGPlayerCheckLogin end======================");
